@@ -17,9 +17,11 @@ namespace Player.Script
             rb = GetComponent<Rigidbody>();
         }
 
-        public void Move(Vector2 input)
+        public void SetDirection(Vector2 input)
         {
-            moveInput = input;
+            moveInput += input;
+            
+            direction.Set(moveInput.x, 0f, moveInput.y);
         }
 
         private void FixedUpdate()
@@ -32,7 +34,7 @@ namespace Player.Script
                 transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, rotationSpeed * Time.fixedDeltaTime);
 
                 rb.MovePosition(rb.position + direction.normalized * (moveSpeed * Time.fixedDeltaTime));
-            }
+            } 
         }
     }
 

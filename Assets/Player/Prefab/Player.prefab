@@ -251,8 +251,8 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 9125393718844719433}
-        m_TargetAssemblyTypeName: Player.Script.PlayerController, Assembly-CSharp
-        m_MethodName: ReceiveMovementInput
+        m_TargetAssemblyTypeName: Player.Script.PlayerInputHandler, Assembly-CSharp
+        m_MethodName: ReceiveMovementUpInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -262,8 +262,120 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 8acf780f-976a-456d-b18f-5e15c0e52e00
-    m_ActionName: 'Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+    m_ActionId: 4a22b53b-f78a-4d23-a76b-fb471f4e3044
+    m_ActionName: 'Player/MovementUp[/Alexandre Devert Gamefest 2024 Giant Gamepad/button3]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9125393718844719433}
+        m_TargetAssemblyTypeName: Player.Script.PlayerInputHandler, Assembly-CSharp
+        m_MethodName: ReceiveMovementDownInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9f810065-0452-4d66-a5ea-6a90baa1ab3a
+    m_ActionName: 'Player/MovementDown[/Alexandre Devert Gamefest 2024 Giant Gamepad/stick/left]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9125393718844719433}
+        m_TargetAssemblyTypeName: Player.Script.PlayerInputHandler, Assembly-CSharp
+        m_MethodName: ReceiveMovementLeftInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 94e6bc9d-25da-48c4-9179-c27d3a4ab331
+    m_ActionName: 'Player/MovementLeft[/Alexandre Devert Gamefest 2024 Giant Gamepad/stick/left]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9125393718844719433}
+        m_TargetAssemblyTypeName: Player.Script.PlayerInputHandler, Assembly-CSharp
+        m_MethodName: ReceiveMovementRightInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9a05e93e-8422-4ec9-b519-f23365e3f259
+    m_ActionName: 'Player/MovementRight[/Alexandre Devert Gamefest 2024 Giant Gamepad/stick/down]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9125393718844719433}
+        m_TargetAssemblyTypeName: Player.Script.PlayerInputHandler, Assembly-CSharp
+        m_MethodName: ReceiveAInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a82998cc-6d5e-4e32-a229-604890118f31
+    m_ActionName: Player/ActionA
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9125393718844719433}
+        m_TargetAssemblyTypeName: Player.Script.PlayerInputHandler, Assembly-CSharp
+        m_MethodName: ReceiveBInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c631b1e6-c7af-4d9d-ab18-696d3671e6d3
+    m_ActionName: Player/ActionB
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9125393718844719433}
+        m_TargetAssemblyTypeName: Player.Script.PlayerInputHandler, Assembly-CSharp
+        m_MethodName: ReceiveSelectInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b1a141dd-88a5-493f-a47f-df2a98b48ff3
+    m_ActionName: Player/ActionSelect
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9125393718844719433}
+        m_TargetAssemblyTypeName: Player.Script.PlayerInputHandler, Assembly-CSharp
+        m_MethodName: ReceiveStartInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a2605f70-6cc9-4b46-ac25-21c94939f772
+    m_ActionName: Player/ActionStart
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

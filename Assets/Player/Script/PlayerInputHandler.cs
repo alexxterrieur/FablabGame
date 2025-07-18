@@ -1,10 +1,15 @@
-﻿using UnityEngine;
+﻿using GameManagement;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Player.Script
 {
     public class PlayerInputHandler : MonoBehaviour
     {
+        [Header("Game References")]
+        [SerializeField] private GameManager gameManager;
+        
+        [Header("Player References")]
         [SerializeField] private PlayerMovement playerMovement;
         [SerializeField] private PlayerInteraction playerInteraction;
         
@@ -30,7 +35,11 @@ namespace Player.Script
         
         public void ReceiveAInput(InputAction.CallbackContext context)
         {
-            if (context.started)
+            if (!context.started) return;
+            
+            if (gameManager.IsGamePaused())
+                gameManager.ResumeGame();
+            else
                 playerInteraction.Interact();
         }
         
@@ -38,8 +47,8 @@ namespace Player.Script
         {
             if (context.started)
             {
-                // Handle B button pressed logic here
-                Debug.Log("B button pressed");
+                if (gameManager.IsGamePaused())
+                    gameManager.RestartGame();
             }
         }
         
@@ -56,8 +65,7 @@ namespace Player.Script
         {
             if (context.started)
             {
-                // Handle Y button pressed logic here
-                Debug.Log("Y button pressed");
+                gameManager.PauseGame();
             }
         }
 

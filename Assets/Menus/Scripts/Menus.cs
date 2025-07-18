@@ -1,18 +1,17 @@
-using UnityEditor.SearchService;
 using UnityEngine;
 
-public class StartMenu : MonoBehaviour
+public class Menus : MonoBehaviour
 {
     [SerializeField] private string sceneToLoad;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            StartGame();
+            LoadGivenScene();
         }
     }
 
-    private void StartGame()
+    private void LoadGivenScene()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
     }

@@ -32,10 +32,8 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    public void Interact(InputAction.CallbackContext ctx)
+    public void Interact()
     {
-        if (!ctx.started) return;
-
         if (isCarrying)
         {
             if (collisionAssembler != null)
@@ -44,7 +42,7 @@ public class PlayerInteraction : MonoBehaviour
 
                 if (delivered)
                 {
-                    Debug.Log("Item livré");
+                    Debug.Log("Item livrï¿½");
                     heldItem = null;
                     isCarrying = false;
                 }

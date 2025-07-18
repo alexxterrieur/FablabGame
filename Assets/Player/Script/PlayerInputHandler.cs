@@ -6,6 +6,7 @@ namespace Player.Script
     public class PlayerInputHandler : MonoBehaviour
     {
         [SerializeField] private PlayerMovement playerMovement;
+        [SerializeField] private PlayerInteraction playerInteraction;
         
         public void ReceiveMovementUpInput(InputAction.CallbackContext context)
         {
@@ -30,10 +31,7 @@ namespace Player.Script
         public void ReceiveAInput(InputAction.CallbackContext context)
         {
             if (context.started)
-            {
-                // Handle A button pressed logic here
-                Debug.Log("A button pressed");
-            }
+                playerInteraction.Interact();
         }
         
         public void ReceiveBInput(InputAction.CallbackContext context)

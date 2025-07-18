@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46644a2065d37264fbc8eac1c2c828f6, type: 3}
+  m_Name: Test
+  m_EditorClassIdentifier: 
+  forms:
+  - position: {x: 0, y: 0.07, z: 0}
+    radius: 10
+    form: {fileID: 2800000, guid: 8e97c4d20503e4c45b4e83de26d0b527, type: 3}
+  - position: {x: 2, y: 0.07, z: 0}
+    radius: 10
+    form: {fileID: 2800000, guid: d195af55e494530448b6d5a76c926314, type: 3}
+  - position: {x: 0, y: 0.07, z: 2}
+    radius: 10
+    form: {fileID: 2800000, guid: 4a6255ecacf61804dad3d7dd402fe42b, type: 3}
+  - position: {x: 2, y: 0.07, z: 2}
+    radius: 10
+    form: {fileID: 2800000, guid: 6ef3f035d29f13c488227f5c28b72784, type: 3}

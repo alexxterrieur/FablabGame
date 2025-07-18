@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Shelf
+  - Assembler
   layers:
   - Default
   - TransparentFX

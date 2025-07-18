@@ -184,9 +184,10 @@ GameObject:
   - component: {fileID: 394070963}
   - component: {fileID: 394070962}
   - component: {fileID: 394070961}
+  - component: {fileID: 394070965}
   m_Layer: 0
-  m_Name: Assembleur
-  m_TagString: Shelf
+  m_Name: Assembler
+  m_TagString: Assembler
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -274,13 +275,26 @@ Transform:
   m_GameObject: {fileID: 394070960}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.34, y: 0.95, z: -4.75}
+  m_LocalPosition: {x: -3.03, y: 0.95, z: -5.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2033712466}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &394070965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394070960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7143e217cc7b59148b1e5d76a2550611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assemblerMaterial: 0
 --- !u!1 &527435299
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,6 +539,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shelfItem: {fileID: 11400000, guid: a6c81ffc327f75b4781c536e630f821f, type: 2}
+--- !u!1 &946515548
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 946515550}
+  - component: {fileID: 946515549}
+  m_Layer: 0
+  m_Name: OrderManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &946515549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946515548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e685bd9195f23740840756e66f367cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orders:
+  - {fileID: 11400000, guid: b4d8be28b9fa6b94e835ad2f16337698, type: 2}
+  currentOrder: {fileID: 0}
+--- !u!4 &946515550
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946515548}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.8231546, y: 3.5572026, z: -0.16392677}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1554904024
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,6 +597,7 @@ GameObject:
   - component: {fileID: 1554904027}
   - component: {fileID: 1554904026}
   - component: {fileID: 1554904025}
+  - component: {fileID: 1554904028}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -617,6 +679,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1554904028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554904024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &1731353841
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,6 +878,7 @@ MonoBehaviour:
   isCarrying: 0
   heldItem: {fileID: 0}
   collisionShelf: {fileID: 0}
+  collisionAssembler: {fileID: 0}
 --- !u!114 &1731353848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1141,3 +1248,4 @@ SceneRoots:
   - {fileID: 527604963}
   - {fileID: 394070964}
   - {fileID: 1886543234}
+  - {fileID: 946515550}

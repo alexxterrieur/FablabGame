@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a69aa6d1eab1f84fa2a36d0c26d2342, type: 3}
   m_Name: SO_CollectableItem 1
   m_EditorClassIdentifier: 
-  itemName: CACA QUI PUEEEE
+  itemName: test item
   itemIcon: {fileID: 0}

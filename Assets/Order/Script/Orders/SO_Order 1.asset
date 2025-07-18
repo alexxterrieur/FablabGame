@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bf2fbe9c8595b54eb1e89b299fe206e, type: 3}
   m_Name: SO_Order 1
   m_EditorClassIdentifier: 
-  orderName: 
+  orderName: test
   orderIcon: {fileID: 0}
   mainMaterial: 0
-  items: []
-  orderPoints: 0
+  items:
+  - {fileID: 11400000, guid: a6c81ffc327f75b4781c536e630f821f, type: 2}
+  - {fileID: 11400000, guid: a6c81ffc327f75b4781c536e630f821f, type: 2}
+  orderPoints: 2
+  delivered: 01

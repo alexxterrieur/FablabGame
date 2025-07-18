@@ -86,7 +86,7 @@ public class MillingMachine : MonoBehaviour
                 break;
 
             case MillingButton.DrillCondition.TooMuch:
-                /* Destroy the material end Drilling Machine*/
+                /* Destroy the material end Drilling       */
                 Destroy(millingButton.gameObject);
                 Debug.Log("Material Is Destroyed");
                 break;

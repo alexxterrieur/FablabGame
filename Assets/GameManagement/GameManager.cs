@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DeliveryPoint;
 using Player.Script;
 using PlayerPrefsManagement;
@@ -12,6 +13,8 @@ namespace GameManagement
         [SerializeField] private DeliveryPointManagement deliveryPointManagement;
         [SerializeField] private CountdownTimer countdownTimer;
         [SerializeField] private PlayerScore playerScore;
+        [SerializeField] private OrderManager orderManager;
+        [SerializeField] private List<AssemblerInteraction> assemblers = new();
         
         public event Action<bool> OnGameFinished;
         public event Action<bool> OnGamePaused;
@@ -23,6 +26,9 @@ namespace GameManagement
             
             if (deliveryPointManagement) deliveryPointManagement.onItemDelivered += playerScore.IncreaseScore;
             else Debug.LogError("DeliveryPointManagement is not assigned in the inspector");
+            
+            if (orderManager) orderManager.OnOrderChanged += ReceiveOrderChanged;
+            else Debug.LogError("OrderManager is not assigned in the inspector");
         }
 
         public void PauseGame()
@@ -60,6 +66,14 @@ namespace GameManagement
             OnGameFinished?.Invoke(betterScore);
         }
         
+        private void ReceiveOrderChanged(SO_Order order)
+        {
+            foreach (var assembler in assemblers)
+            {
+                assembler.SetCurrentOrder(order);
+            }
+        }
+        
         public PlayerScore PlayerScore => playerScore;
 
         private void OnDestroy()
@@ -69,6 +83,9 @@ namespace GameManagement
 
             if (deliveryPointManagement)
                 deliveryPointManagement.onItemDelivered -= playerScore.IncreaseScore;
+            
+            if (orderManager)
+                orderManager.OnOrderChanged -= ReceiveOrderChanged;
         }
     }
 }

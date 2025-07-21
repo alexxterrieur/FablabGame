@@ -1,8 +1,10 @@
-﻿using GameManagement;
+﻿using System;
+using GameManagement;
+using OrderChoice;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Player.Script
+namespace InputsManagement
 {
     public class PlayerInputHandler : MonoBehaviour
     {
@@ -10,27 +12,36 @@ namespace Player.Script
         [SerializeField] private GameManager gameManager;
         
         [Header("Player References")]
-        [SerializeField] private PlayerMovement playerMovement;
-        [SerializeField] private PlayerInteraction playerInteraction;
+        [SerializeField] private CharacterInputHandler characterInputHandler;
         
+        [Header("Input Handlers")]
+        [SerializeField] private OrderChoiceManager orderChoiceInputHandler;
+        
+        private IPlayerInputsControlled currentInputHandler;
+
+        private void Start()
+        {
+            currentInputHandler = orderChoiceInputHandler;
+        }
+
         public void ReceiveMovementUpInput(InputAction.CallbackContext context)
         {
-            MovementPlayer(context, Vector2.up);
+            currentInputHandler.ReceiveMovementUpInput(context);
         }
         
         public void ReceiveMovementDownInput(InputAction.CallbackContext context)
         {
-            MovementPlayer(context, Vector2.down);
+            currentInputHandler.ReceiveMovementDownInput(context);
         }
         
         public void ReceiveMovementLeftInput(InputAction.CallbackContext context)
         {
-            MovementPlayer(context, Vector2.left);
+            currentInputHandler.ReceiveMovementLeftInput(context);
         }
         
         public void ReceiveMovementRightInput(InputAction.CallbackContext context)
         {
-            MovementPlayer(context, Vector2.right);
+            currentInputHandler.ReceiveMovementRightInput(context);
         }
         
         public void ReceiveAInput(InputAction.CallbackContext context)
@@ -40,7 +51,7 @@ namespace Player.Script
             if (gameManager.IsGamePaused())
                 gameManager.ResumeGame();
             else
-                playerInteraction.Interact();
+                currentInputHandler.ReceiveAInput(context);
         }
         
         public void ReceiveBInput(InputAction.CallbackContext context)
@@ -67,14 +78,6 @@ namespace Player.Script
             {
                 gameManager.PauseGame();
             }
-        }
-
-        private void MovementPlayer(InputAction.CallbackContext context, Vector2 input)
-        {
-            if (context.started)
-                playerMovement.SetDirection(input);
-            else if (context.canceled)
-                playerMovement.SetDirection(-input);
         }
     }
 }

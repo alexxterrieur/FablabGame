@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31282f5e3a42a3b4c8c0925d05c37008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  simonManager: {fileID: 42266637}
+  simonManager: {fileID: 1633466893}
 --- !u!114 &22875934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,87 +284,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 22875932}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 341.86606, y: 246.33081, z: -98.7067}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 340.48438, y: 246.34714, z: -98.277725}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &42266636
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 42266638}
-  - component: {fileID: 42266637}
-  m_Layer: 0
-  m_Name: SimonManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &42266637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 42266636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb99feb444a4f01499362b40edbb0ff7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  simonButtons:
-  - button: {fileID: 1162551110}
-    buttonColor: {r: 0.004714012, g: 1, b: 0, a: 1}
-    sound: {fileID: 0}
-  - button: {fileID: 1879462836}
-    buttonColor: {r: 1, g: 0, b: 0, a: 1}
-    sound: {fileID: 0}
-  - button: {fileID: 1942562306}
-    buttonColor: {r: 0, g: 0.09661269, b: 1, a: 1}
-    sound: {fileID: 0}
-  - button: {fileID: 2009155091}
-    buttonColor: {r: 1, g: 0.9216272, b: 0, a: 1}
-    sound: {fileID: 0}
-  - button: {fileID: 1127140062}
-    buttonColor: {r: 1, g: 0.5008964, b: 0, a: 1}
-    sound: {fileID: 0}
-  - button: {fileID: 1039648622}
-    buttonColor: {r: 1, g: 0, b: 0.89150095, a: 1}
-    sound: {fileID: 0}
-  neutralColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  wrongColor: {r: 1, g: 0, b: 0, a: 1}
-  activeTime: 0.4
-  pauseTime: 0.2
-  delayAfterSequence: 1.5
-  endless: 0
-  targetScore: 5
-  accelerationPerStep: 0.1
-  minSpeedMultiplier: 0.3
-  audioSource: {fileID: 0}
-  targetText: {fileID: 391382044}
-  currentText: {fileID: 1975588657}
---- !u!4 &42266638
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 42266636}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3816805, y: -0.016326629, z: -0.42897478}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1633466892}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &333768695
 GameObject:
@@ -1391,7 +1316,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 42266637}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SimonManager, Assembly-CSharp
         m_MethodName: OnButtonPressed
         m_Mode: 3
@@ -1662,7 +1587,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 42266637}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SimonManager, Assembly-CSharp
         m_MethodName: OnButtonPressed
         m_Mode: 3
@@ -1795,7 +1720,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 42266637}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SimonManager, Assembly-CSharp
         m_MethodName: OnButtonPressed
         m_Mode: 3
@@ -1895,6 +1820,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1633466892}
+  - component: {fileID: 1633466893}
   m_Layer: 0
   m_Name: Simon
   m_TagString: Untagged
@@ -1916,8 +1842,52 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 952580147}
+  - {fileID: 22875935}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1633466893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633466891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb99feb444a4f01499362b40edbb0ff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  simonButtons:
+  - button: {fileID: 1162551110}
+    buttonColor: {r: 0.004714012, g: 1, b: 0, a: 1}
+    sound: {fileID: 0}
+  - button: {fileID: 1879462836}
+    buttonColor: {r: 1, g: 0, b: 0, a: 1}
+    sound: {fileID: 0}
+  - button: {fileID: 1942562306}
+    buttonColor: {r: 0, g: 0.09661269, b: 1, a: 1}
+    sound: {fileID: 0}
+  - button: {fileID: 2009155091}
+    buttonColor: {r: 1, g: 0.9216272, b: 0, a: 1}
+    sound: {fileID: 0}
+  - button: {fileID: 1127140062}
+    buttonColor: {r: 1, g: 0.5008964, b: 0, a: 1}
+    sound: {fileID: 0}
+  - button: {fileID: 1039648622}
+    buttonColor: {r: 1, g: 0, b: 0.89150095, a: 1}
+    sound: {fileID: 0}
+  neutralColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  wrongColor: {r: 1, g: 0, b: 0, a: 1}
+  activeTime: 0.4
+  pauseTime: 0.2
+  delayAfterSequence: 1.5
+  endless: 0
+  targetScore: 5
+  accelerationPerStep: 0.1
+  minSpeedMultiplier: 0.3
+  audioSource: {fileID: 0}
+  targetText: {fileID: 391382044}
+  currentText: {fileID: 1975588657}
 --- !u!1 &1736323031
 GameObject:
   m_ObjectHideFlags: 0
@@ -2137,7 +2107,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 42266637}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SimonManager, Assembly-CSharp
         m_MethodName: OnButtonPressed
         m_Mode: 3
@@ -2270,7 +2240,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 42266637}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SimonManager, Assembly-CSharp
         m_MethodName: OnButtonPressed
         m_Mode: 3
@@ -2675,7 +2645,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 42266637}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SimonManager, Assembly-CSharp
         m_MethodName: OnButtonPressed
         m_Mode: 3
@@ -2731,7 +2701,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 989570795}
   - {fileID: 701966772}
-  - {fileID: 42266638}
   - {fileID: 1633466892}
   - {fileID: 333768698}
-  - {fileID: 22875935}

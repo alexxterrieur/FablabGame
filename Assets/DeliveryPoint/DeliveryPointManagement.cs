@@ -7,7 +7,7 @@ namespace DeliveryPoint
     {
         [SerializeField] private SO_Order currentOrder;
         
-        public event Action<int> onItemDelivered;
+        public event Action<int> OnItemDelivered;
         
         public void DeliverItem()
         {
@@ -15,7 +15,7 @@ namespace DeliveryPoint
             Debug.Log("Item delivered successfully!");
 
             // Trigger the event to notify subscribers
-            onItemDelivered?.Invoke(currentOrder.orderPoints);
+            OnItemDelivered?.Invoke(currentOrder.orderPoints);
         }
     }
 }

@@ -23,6 +23,11 @@ namespace Player.Script
             
             direction.Set(moveInput.x, 0f, moveInput.y);
         }
+        
+        public void ResetDirection()
+        {
+            SetDirection(-moveInput);
+        }
 
         private void FixedUpdate()
         {

@@ -71,6 +71,7 @@ public class PlayerInteraction : MonoBehaviour
                 Debug.Log("Item delivered to delivery point");
                 heldItem = null;
                 isCarrying = false;
+                objectHolding.SetActive(false);
             }
             else
             {

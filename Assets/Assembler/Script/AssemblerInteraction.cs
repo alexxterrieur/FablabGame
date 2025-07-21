@@ -3,23 +3,28 @@ using UnityEngine;
 public class AssemblerInteraction : MonoBehaviour
 {
     public Materials assemblerMaterial;
+    
+    private SO_Order currentOrder;
+
+    public void SetCurrentOrder(SO_Order order)
+    {
+        currentOrder = order;
+    }
 
     public bool TryDeliverItem(SO_CollectableItem item)
     {
-        SO_Order order = OrderManager.instance.currentOrder;
-
-        if (order.mainMaterial != assemblerMaterial)
+        if (currentOrder.mainMaterial != assemblerMaterial)
         {
             Debug.Log("Mauvais type d'assembleur");
             return false;
         }
 
-        bool valid = order.MarkItemDelivered(item);
+        bool valid = currentOrder.MarkItemDelivered(item);
 
         if (valid)
         {
-            Debug.Log("Item commande validé");
-            if (order.IsOrderComplete())
+            Debug.Log("Item commande validï¿½");
+            if (currentOrder.IsOrderComplete())
             {
                 Debug.Log("play mini game");
             }
@@ -27,7 +32,7 @@ public class AssemblerInteraction : MonoBehaviour
             return true;
         }
 
-        Debug.Log("item pas bon ou déja livré");
+        Debug.Log("item pas bon ou dï¿½ja livrï¿½");
         return false;
     }
 }

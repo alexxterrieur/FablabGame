@@ -1,43 +1,30 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class OrderManager : MonoBehaviour
 {
-    public static OrderManager instance;
-    [SerializeField] private List<SO_Order> orders = new List<SO_Order>();
-    public SO_Order currentOrder;
+    [SerializeField] private List<SO_Order> orders = new();
+    
+    private SO_Order currentOrder;
+    
+    public event Action<SO_Order> OnOrderChanged; 
 
-    private void Awake()
+    public void SetCurrentOrder(SO_Order order)
     {
-        if (instance != null && instance != this)
+        if (!order)
         {
-            Destroy(this.gameObject);
+            Debug.LogWarning("Attempted to set current order to null.");
             return;
         }
 
-        instance = this;
-    }
-
-    void Start()
-    {
-        currentOrder = orders[0];
+        currentOrder = order;
         currentOrder.InitDeliveryStatus();
+        
+        OnOrderChanged?.Invoke(currentOrder);
     }
 
-    public void GoNextOrder()
-    {
-        orders.Remove(currentOrder);
-
-        if (orders.Count > 0)
-        {
-            currentOrder = orders[Random.Range(0, orders.Count)];
-            currentOrder.InitDeliveryStatus();
-        }
-        else
-        {
-            Debug.Log("No more orders");
-        }
-    }
+    public List<SO_Order> Orders => orders;
 }
 
 public enum Materials { Wood, Plastic, Metal }

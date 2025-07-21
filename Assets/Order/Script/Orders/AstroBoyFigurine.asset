@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bf2fbe9c8595b54eb1e89b299fe206e, type: 3}
+  m_Name: AstroBoyFigurine
+  m_EditorClassIdentifier: 
+  orderName: Astro Boy Figurine
+  orderIcon: {fileID: 0}
+  mainMaterial: 1
+  items:
+  - {fileID: 11400000, guid: a5f3f296058344d419b706aa108fa509, type: 2}
+  - {fileID: 11400000, guid: a5f3f296058344d419b706aa108fa509, type: 2}
+  - {fileID: 11400000, guid: a5f3f296058344d419b706aa108fa509, type: 2}
+  orderPoints: 4
+  delivered: 000000

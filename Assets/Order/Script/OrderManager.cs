@@ -18,7 +18,19 @@ public class OrderManager : MonoBehaviour
         instance = this;
     }
 
-    void Start()
+    public void SetCurrentOrder(SO_Order order)
+    {
+        if (!order)
+        {
+            Debug.LogWarning("Attempted to set current order to null.");
+            return;
+        }
+
+        currentOrder = order;
+        currentOrder.InitDeliveryStatus();
+    }
+
+    /*void Start()
     {
         currentOrder = orders[0];
         currentOrder.InitDeliveryStatus();
@@ -37,7 +49,9 @@ public class OrderManager : MonoBehaviour
         {
             Debug.Log("No more orders");
         }
-    }
+    }*/
+
+    public List<SO_Order> Orders => orders;
 }
 
 public enum Materials { Wood, Plastic, Metal }

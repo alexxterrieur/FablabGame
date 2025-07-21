@@ -2,10 +2,21 @@ using UnityEngine;
 
 public class Shelf : MonoBehaviour
 {
-    public SO_CollectableItem shelfItem;
+    [SerializeField] private SO_CollectableItem shelfItem;
+    public bool isDroppedItem;
 
     public SO_CollectableItem TakeItem()
     {
+        if (isDroppedItem)
+        {
+            Destroy(gameObject);
+        }
+
         return shelfItem;
+    }
+
+    public void SetItem(SO_CollectableItem item)
+    {
+        shelfItem = item;
     }
 }

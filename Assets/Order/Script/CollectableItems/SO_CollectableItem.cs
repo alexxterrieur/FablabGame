@@ -5,4 +5,5 @@ public class SO_CollectableItem : ScriptableObject
 {
     public string itemName;
     public Sprite itemIcon;
+    public Mesh itemMesh;
 }

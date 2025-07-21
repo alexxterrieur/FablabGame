@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 8255506664015166656}
   - component: {fileID: 9047686521027110155}
   - component: {fileID: -2784942574676848876}
+  - component: {fileID: 5806903988838381698}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -483,8 +484,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  playerMovement: {fileID: 5063624506528668381}
-  playerInteraction: {fileID: -2784942574676848876}
+  characterInputHandler: {fileID: 5806903988838381698}
+  orderChoiceInputHandler: {fileID: 0}
 --- !u!114 &5063624506528668381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,3 +558,17 @@ MonoBehaviour:
   deliveryPointManagement: {fileID: 0}
   objectHolding: {fileID: 199613019211562563}
   dropedObjectPrefab: {fileID: 332438709699883110, guid: bafb47151fcbed5439747b95650dfdcd, type: 3}
+--- !u!114 &5806903988838381698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5172113431821167111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5cc9afb73824f6eb02097869b0ed95f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 5063624506528668381}
+  playerInteraction: {fileID: -2784942574676848876}

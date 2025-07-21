@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using GameManagement;
 using InputsManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,20 +11,33 @@ namespace OrderChoice
 {
     public class OrderChoiceManager : MonoBehaviour, IPlayerInputsControlled
     {
+        [SerializeField] private GameManager gameManager;
         [SerializeField] private OrderManager orderManager;
         
         [SerializeField] private List<OrderDisplay> orderDisplays = new();
         
         private List<SO_Order> availableOrders = new();
-        private int selectedOrderIndex = 0;
+        private int selectedOrderIndex;
+        
+        public event Action OnOrderSelected;
 
         private void Start()
         {
+            if (gameManager) gameManager.DeliveryPoint.OnItemDelivered += ReceiveItemDelivered;
+            else Debug.LogError("GameManager is not assigned in the inspector");
+            
             ResetAvailableOrders();
             UpdateOrderDisplays();
             orderDisplays[selectedOrderIndex].SetSelected(true);
         }
-        
+
+        private void ReceiveItemDelivered(int _)
+        {
+            SetVisibility(true);
+            //selectedOrderIndex = 0;
+            UpdateOrderDisplays();
+        }
+
         private void ResetAvailableOrders()
         {
             availableOrders = new List<SO_Order>(orderManager.Orders);
@@ -45,6 +60,13 @@ namespace OrderChoice
         {
             orderManager.SetCurrentOrder(availableOrders[selectedOrderIndex]);
             availableOrders.RemoveAt(selectedOrderIndex);
+            SetVisibility(false);
+            OnOrderSelected?.Invoke();
+        }
+        
+        public void SetVisibility(bool isVisible)
+        {
+            gameObject.SetActive(isVisible);
         }
 
         public void ReceiveMovementLeftInput(InputAction.CallbackContext context)
@@ -52,7 +74,7 @@ namespace OrderChoice
             if (context.started)
             {
                 orderDisplays[selectedOrderIndex].SetSelected(false);
-                selectedOrderIndex = (selectedOrderIndex - 1 + (availableOrders.Count - 1)) % (availableOrders.Count - 1);
+                selectedOrderIndex = (selectedOrderIndex - 1 + orderDisplays.Count) % orderDisplays.Count;
                 orderDisplays[selectedOrderIndex].SetSelected(true);
             }
         }
@@ -62,7 +84,7 @@ namespace OrderChoice
             if (context.started)
             {
                 orderDisplays[selectedOrderIndex].SetSelected(false);
-                selectedOrderIndex = (selectedOrderIndex + 1) % (availableOrders.Count - 1);
+                selectedOrderIndex = (selectedOrderIndex + 1) % orderDisplays.Count;
                 orderDisplays[selectedOrderIndex].SetSelected(true);
             }
         }
@@ -70,6 +92,12 @@ namespace OrderChoice
         public void ReceiveAInput(InputAction.CallbackContext context)
         {
             SelectOrder();
+        }
+
+        private void OnDestroy()
+        {
+            if (gameManager)
+                gameManager.DeliveryPoint.OnItemDelivered -= ReceiveItemDelivered;
         }
 
         public void ReceiveMovementUpInput(InputAction.CallbackContext context) { }

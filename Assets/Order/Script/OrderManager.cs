@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class OrderManager : MonoBehaviour
 {
-    [SerializeField] private List<SO_Order> orders = new List<SO_Order>();
-    public SO_Order currentOrder;
+    [SerializeField] private List<SO_Order> orders = new();
+    
+    private SO_Order currentOrder;
     
     public event Action<SO_Order> OnOrderChanged; 
 

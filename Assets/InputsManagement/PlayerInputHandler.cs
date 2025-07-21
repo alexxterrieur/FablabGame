@@ -1,5 +1,4 @@
-﻿using System;
-using GameManagement;
+﻿using GameManagement;
 using OrderChoice;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -21,7 +20,18 @@ namespace InputsManagement
 
         private void Start()
         {
-            currentInputHandler = orderChoiceInputHandler;
+            if (orderChoiceInputHandler)
+            {
+                orderChoiceInputHandler.OnOrderSelected += ReceiveOrderSelected;
+                
+                currentInputHandler = orderChoiceInputHandler;
+            }
+            else Debug.LogError("OrderChoiceManager is not assigned in the inspector");
+            
+            if (!characterInputHandler) Debug.LogError("CharacterInputHandler is not assigned in the inspector");
+            
+            if (gameManager) gameManager.DeliveryPoint.OnItemDelivered += ReceiveItemDelivered;
+            else Debug.LogError("GameManager is not assigned in the inspector");
         }
 
         public void ReceiveMovementUpInput(InputAction.CallbackContext context)
@@ -78,6 +88,25 @@ namespace InputsManagement
             {
                 gameManager.PauseGame();
             }
+        }
+
+        private void ReceiveItemDelivered(int _)
+        {
+            currentInputHandler = orderChoiceInputHandler;
+        }
+
+        private void ReceiveOrderSelected()
+        {
+            currentInputHandler = characterInputHandler;
+        }
+
+        private void OnDestroy()
+        {
+            if (orderChoiceInputHandler)
+                orderChoiceInputHandler.OnOrderSelected -= ReceiveOrderSelected;
+
+            if (gameManager)
+                gameManager.DeliveryPoint.OnItemDelivered -= ReceiveItemDelivered;
         }
     }
 }

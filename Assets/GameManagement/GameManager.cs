@@ -24,7 +24,7 @@ namespace GameManagement
             if (countdownTimer) countdownTimer.onTimerFinished.AddListener(ReceiveTimerFinished);
             else Debug.LogError("CountdownTimer is not assign in the inspector");
             
-            if (deliveryPointManagement) deliveryPointManagement.onItemDelivered += playerScore.IncreaseScore;
+            if (deliveryPointManagement) deliveryPointManagement.OnItemDelivered += ReceiveItemDelivered;
             else Debug.LogError("DeliveryPointManagement is not assigned in the inspector");
             
             if (orderManager) orderManager.OnOrderChanged += ReceiveOrderChanged;
@@ -66,6 +66,11 @@ namespace GameManagement
             OnGameFinished?.Invoke(betterScore);
         }
         
+        private void ReceiveItemDelivered(int orderPoints)
+        {
+            playerScore.IncreaseScore(orderPoints);
+        }
+        
         private void ReceiveOrderChanged(SO_Order order)
         {
             foreach (var assembler in assemblers)
@@ -75,6 +80,7 @@ namespace GameManagement
         }
         
         public PlayerScore PlayerScore => playerScore;
+        public DeliveryPointManagement DeliveryPoint => deliveryPointManagement;
 
         private void OnDestroy()
         {
@@ -82,7 +88,7 @@ namespace GameManagement
                 countdownTimer.onTimerFinished.RemoveListener(ReceiveTimerFinished);
 
             if (deliveryPointManagement)
-                deliveryPointManagement.onItemDelivered -= playerScore.IncreaseScore;
+                deliveryPointManagement.OnItemDelivered -= ReceiveItemDelivered;
             
             if (orderManager)
                 orderManager.OnOrderChanged -= ReceiveOrderChanged;

@@ -7,6 +7,8 @@ public class PlayerInteraction : MonoBehaviour
     public SO_CollectableItem heldItem;
     public Shelf collisionShelf;
     public AssemblerInteraction collisionAssembler;
+    public GameObject objectHolding;
+    public GameObject dropedObjectPrefab;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -45,6 +47,7 @@ public class PlayerInteraction : MonoBehaviour
                     Debug.Log("Item livr�");
                     heldItem = null;
                     isCarrying = false;
+                    objectHolding.SetActive(false);
                 }
                 else
                 {
@@ -53,16 +56,26 @@ public class PlayerInteraction : MonoBehaviour
             }
             else
             {
-                heldItem = null;
+                //drop item
                 isCarrying = false;
+                objectHolding.SetActive(false);
+
+                GameObject dropedItem = Instantiate(dropedObjectPrefab, transform.position, Quaternion.identity);
+                Shelf dropShelf = dropedItem.GetComponent<Shelf>();
+                dropShelf.SetItem(heldItem);
+                dropShelf.isDroppedItem = true;
+
+                heldItem = null;
             }
         }
         else
         {
             if (collisionShelf != null)
             {
-                heldItem = collisionShelf.shelfItem;
+                heldItem = collisionShelf.TakeItem();
                 isCarrying = true;
+                objectHolding.GetComponent<MeshFilter>().mesh = heldItem.itemMesh;
+                objectHolding.SetActive(true);
             }
         }
     }

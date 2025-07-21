@@ -1,4 +1,5 @@
 ﻿using System;
+using DeliveryPoint;
 using Player.Script;
 using PlayerPrefsManagement;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace GameManagement
 {
     public class GameManager : MonoBehaviour
     {
+        [SerializeField] private DeliveryPointManagement deliveryPointManagement;
         [SerializeField] private CountdownTimer countdownTimer;
         [SerializeField] private PlayerScore playerScore;
         
@@ -18,6 +20,9 @@ namespace GameManagement
         {
             if (countdownTimer) countdownTimer.onTimerFinished.AddListener(ReceiveTimerFinished);
             else Debug.LogError("CountdownTimer is not assign in the inspector");
+            
+            if (deliveryPointManagement) deliveryPointManagement.onItemDelivered += playerScore.IncreaseScore;
+            else Debug.LogError("DeliveryPointManagement is not assigned in the inspector");
         }
 
         public void PauseGame()
@@ -56,5 +61,14 @@ namespace GameManagement
         }
         
         public PlayerScore PlayerScore => playerScore;
+
+        private void OnDestroy()
+        {
+            if (countdownTimer)
+                countdownTimer.onTimerFinished.RemoveListener(ReceiveTimerFinished);
+
+            if (deliveryPointManagement)
+                deliveryPointManagement.onItemDelivered -= playerScore.IncreaseScore;
+        }
     }
 }

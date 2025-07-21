@@ -1,5 +1,5 @@
+using DeliveryPoint;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -7,6 +7,7 @@ public class PlayerInteraction : MonoBehaviour
     public SO_CollectableItem heldItem;
     public Shelf collisionShelf;
     public AssemblerInteraction collisionAssembler;
+    public DeliveryPointManagement deliveryPointManagement;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,6 +18,10 @@ public class PlayerInteraction : MonoBehaviour
         else if (other.transform.parent.CompareTag("Assembler"))
         {
             collisionAssembler = other.transform.parent.GetComponent<AssemblerInteraction>();
+        }
+        else if (other.transform.parent.CompareTag("DeliveryPoint"))
+        {
+            deliveryPointManagement = other.transform.parent.GetComponent<DeliveryPointManagement>();
         }
     }
 
@@ -29,6 +34,10 @@ public class PlayerInteraction : MonoBehaviour
         else if (other.transform.parent.CompareTag("Assembler"))
         {
             collisionAssembler = null;
+        }
+        else if (other.transform.parent.CompareTag("DeliveryPoint"))
+        {
+            deliveryPointManagement = null;
         }
     }
 
@@ -50,6 +59,14 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     Debug.Log("item pas bon");
                 }
+            }
+            else if (deliveryPointManagement != null)
+            {
+                deliveryPointManagement.DeliverItem();
+
+                Debug.Log("Item delivered to delivery point");
+                heldItem = null;
+                isCarrying = false;
             }
             else
             {

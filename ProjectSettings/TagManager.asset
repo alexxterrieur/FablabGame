@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Shelf
   - Assembler
+  - DeliveryPoint
   layers:
   - Default
   - TransparentFX

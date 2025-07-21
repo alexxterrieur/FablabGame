@@ -92,6 +92,7 @@ namespace InputsManagement
 
         private void ReceiveItemDelivered(int _)
         {
+            currentInputHandler.ResetInputs();
             currentInputHandler = orderChoiceInputHandler;
         }
 

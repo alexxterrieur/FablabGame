@@ -109,5 +109,7 @@ namespace OrderChoice
         public void ReceiveStartInput(InputAction.CallbackContext context) { }
 
         public void ReceiveSelectInput(InputAction.CallbackContext context) { }
+        
+        public void ResetInputs() { }
     }
 }

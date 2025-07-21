@@ -53,5 +53,10 @@ namespace InputsManagement
             else if (context.canceled)
                 playerMovement.SetDirection(-input);
         }
+        
+        public void ResetInputs()
+        {
+            playerMovement.ResetDirection();
+        }
     }
 }

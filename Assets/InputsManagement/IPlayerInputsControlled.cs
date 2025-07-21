@@ -12,5 +12,7 @@ namespace InputsManagement
         public void ReceiveBInput(InputAction.CallbackContext context);
         public void ReceiveStartInput(InputAction.CallbackContext context);
         public void ReceiveSelectInput(InputAction.CallbackContext context);
+
+        public void ResetInputs();
     }
 }

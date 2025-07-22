@@ -18,8 +18,5 @@ MonoBehaviour:
   items:
   - {fileID: 11400000, guid: 53c1f22a71aade44aa568126c90c0a0a, type: 2}
   - {fileID: 11400000, guid: 53c1f22a71aade44aa568126c90c0a0a, type: 2}
-  - {fileID: 11400000, guid: 53c1f22a71aade44aa568126c90c0a0a, type: 2}
-  - {fileID: 11400000, guid: 53c1f22a71aade44aa568126c90c0a0a, type: 2}
-  - {fileID: 11400000, guid: 53c1f22a71aade44aa568126c90c0a0a, type: 2}
   orderPoints: 5
-  delivered: 
+  delivered: 0101010101

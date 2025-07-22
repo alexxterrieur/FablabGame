@@ -2,7 +2,7 @@ using InputsManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SimonInputManager : Controller
+public class SimonInputManager : MonoBehaviour, IPlayerInputsControlled
 {
     [SerializeField] private SimonManager simonManager;
   
@@ -44,18 +44,11 @@ public class SimonInputManager : Controller
         ClickOnButton(5, context);
     }
 
-    public void ReceiveStartInput(InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
+    public void ReceiveStartInput(InputAction.CallbackContext context) { }
 
-    public void ReceiveSelectInput(InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
+    public void ReceiveSelectInput(InputAction.CallbackContext context) { }
 
-    public void ResetInputs()
-    {
-        throw new System.NotImplementedException();
-    }
+    public void ResetInputs() { }
+    
+    public SimonManager SimonManager => simonManager;
 }

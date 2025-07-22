@@ -19,10 +19,7 @@ public class AssemblerInteraction : MonoBehaviour
         if (isSuccess)
             return;
 
-       currentOrder.RemoveDeliveredItem();
-
-        Debug.Log("Remove item");
-
+        currentOrder.RemoveDeliveredItem();
     }
 
     public void SetCurrentOrder(SO_Order order)
@@ -34,7 +31,6 @@ public class AssemblerInteraction : MonoBehaviour
     {
         if (currentOrder.mainMaterial != assemblerMaterial)
         {
-            Debug.Log("Mauvais type d'assembleur");
             return false;
         }
 
@@ -42,10 +38,8 @@ public class AssemblerInteraction : MonoBehaviour
 
         if (valid)
         {
-            Debug.Log("Item commande valid�");
             if (currentOrder.IsOrderComplete())
             {
-                Debug.Log("play mini game");
                 assembler.Activate();
                 OnOrderCompleted?.Invoke();
             }
@@ -53,7 +47,6 @@ public class AssemblerInteraction : MonoBehaviour
             return true;
         }
 
-        Debug.Log("item pas bon ou d�ja livr�");
         return false;
     }
 }

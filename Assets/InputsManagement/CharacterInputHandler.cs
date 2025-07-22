@@ -56,6 +56,7 @@ namespace InputsManagement
         
         public void ResetInputs()
         {
+            Debug.Log("Resetting character inputs");
             playerMovement.ResetDirection();
         }
     }

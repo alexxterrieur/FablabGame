@@ -54,21 +54,15 @@ public class PlayerInteraction : MonoBehaviour
 
                 if (delivered)
                 {
-                    Debug.Log("Item livr�");
                     heldItem = null;
                     isCarrying = false;
                     objectHolding.SetActive(false);
-                }
-                else
-                {
-                    Debug.Log("item pas bon");
                 }
             }
             else if (deliveryPointManagement != null)
             {
                 deliveryPointManagement.DeliverItem();
 
-                Debug.Log("Item delivered to delivery point");
                 heldItem = null;
                 isCarrying = false;
                 objectHolding.SetActive(false);

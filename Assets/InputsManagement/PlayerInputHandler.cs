@@ -17,9 +17,11 @@ namespace InputsManagement
         [SerializeField] private OrderChoiceManager orderChoiceInputHandler;
 
         [Header("Assemblers Reference")]
-        [SerializeField] private Controller woodAssembler;
+        [SerializeField] private SimonInputManager woodAssembler;
+        /*
         [SerializeField] private Controller metalAssembler;
         [SerializeField] private Controller plasticAssembler;
+        */
         
         private IPlayerInputsControlled currentInputHandler;
 
@@ -117,18 +119,30 @@ namespace InputsManagement
         {
             currentInputHandler.ResetInputs();
             currentInputHandler = woodAssembler;
+
+            if (woodAssembler is SimonInputManager simonInputManager)
+                simonInputManager.SimonManager.OnAssembleurActivityEnd += ReceiveWoodAssemblerActivityEnd;
+        }
+
+        private void ReceiveWoodAssemblerActivityEnd(bool _)
+        {
+            if (woodAssembler is SimonInputManager simonInputManager)
+                simonInputManager.SimonManager.OnAssembleurActivityEnd -= ReceiveWoodAssemblerActivityEnd;
+
+            currentInputHandler.ResetInputs();
+            currentInputHandler = characterInputHandler;
         }
 
         private void ReceiveMetalAssemblerOrderCompleted()
         {
             currentInputHandler.ResetInputs();
-            currentInputHandler = metalAssembler;
+            //currentInputHandler = metalAssembler;
         }
 
         private void ReceivePlasticAssemblerOrderCompleted()
         {
             currentInputHandler.ResetInputs();
-            currentInputHandler = plasticAssembler;
+            //currentInputHandler = plasticAssembler;
         }
 
         private void OnDestroy()

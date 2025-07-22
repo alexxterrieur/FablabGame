@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class MillingMachine : MonoBehaviour
+public class MillingMachine : Assembler
 {
     [SerializeField] private FormData data;
     [SerializeField] private List<Sprite> images;
@@ -97,4 +97,13 @@ public class MillingMachine : MonoBehaviour
         }  
     }
 
+    public override void Activate()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void UnActivate()
+    {
+        throw new System.NotImplementedException();
+    }
 }

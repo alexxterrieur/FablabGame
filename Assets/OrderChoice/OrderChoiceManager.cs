@@ -17,6 +17,7 @@ namespace OrderChoice
         [SerializeField] private List<OrderDisplay> orderDisplays = new();
         
         private List<SO_Order> availableOrders = new();
+        private List<SO_Order> selectedOrders = new();
         private int selectedOrderIndex;
         
         public event Action OnOrderSelected;
@@ -48,7 +49,7 @@ namespace OrderChoice
             if (availableOrders.Count < orderDisplays.Count)
                 ResetAvailableOrders();
             
-            List<SO_Order> selectedOrders = availableOrders.OrderBy(_ => Random.value).Take(orderDisplays.Count).ToList();
+            selectedOrders = availableOrders.OrderBy(_ => Random.value).Take(orderDisplays.Count).ToList();
 
             for (var i = 0; i < selectedOrders.Count; i++)
             {
@@ -58,7 +59,7 @@ namespace OrderChoice
 
         private void SelectOrder()
         {
-            orderManager.SetCurrentOrder(availableOrders[selectedOrderIndex]);
+            orderManager.SetCurrentOrder(selectedOrders[selectedOrderIndex]);
             availableOrders.RemoveAt(selectedOrderIndex);
             SetVisibility(false);
             OnOrderSelected?.Invoke();

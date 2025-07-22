@@ -1,10 +1,29 @@
+using System;
 using UnityEngine;
 
 public class AssemblerInteraction : MonoBehaviour
 {
     public Materials assemblerMaterial;
-    
+    public Assembler assembler;
     private SO_Order currentOrder;
+
+    public event Action OnOrderCompleted;
+
+    private void Start()
+    {
+        assembler.OnAssembleurActivityEnd += EndActivity;
+    }
+
+    private void EndActivity(bool isSuccess)
+    {
+        if (isSuccess)
+            return;
+
+       currentOrder.RemoveDeliveredItem();
+
+        Debug.Log("Remove item");
+
+    }
 
     public void SetCurrentOrder(SO_Order order)
     {
@@ -27,6 +46,8 @@ public class AssemblerInteraction : MonoBehaviour
             if (currentOrder.IsOrderComplete())
             {
                 Debug.Log("play mini game");
+                assembler.Activate();
+                OnOrderCompleted?.Invoke();
             }
 
             return true;

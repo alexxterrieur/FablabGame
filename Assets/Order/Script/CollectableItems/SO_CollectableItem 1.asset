@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a69aa6d1eab1f84fa2a36d0c26d2342, type: 3}
   m_Name: SO_CollectableItem 1
   m_EditorClassIdentifier: 
-  itemName: test item
+  itemName: Wood
   itemIcon: {fileID: 0}
   itemMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}

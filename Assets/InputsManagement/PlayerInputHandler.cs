@@ -15,6 +15,11 @@ namespace InputsManagement
         
         [Header("Input Handlers")]
         [SerializeField] private OrderChoiceManager orderChoiceInputHandler;
+
+        [Header("Assemblers Reference")]
+        [SerializeField] private Controller woodAssembler;
+        [SerializeField] private Controller metalAssembler;
+        [SerializeField] private Controller plasticAssembler;
         
         private IPlayerInputsControlled currentInputHandler;
 
@@ -29,14 +34,21 @@ namespace InputsManagement
             else Debug.LogError("OrderChoiceManager is not assigned in the inspector");
             
             if (!characterInputHandler) Debug.LogError("CharacterInputHandler is not assigned in the inspector");
-            
-            if (gameManager) gameManager.DeliveryPoint.OnItemDelivered += ReceiveItemDelivered;
+
+            if (gameManager)
+            { 
+                gameManager.DeliveryPoint.OnItemDelivered += ReceiveItemDelivered;
+
+                gameManager.WoodAssembler.OnOrderCompleted += ReceiveWoodAssemblerOrderCompleted;
+                gameManager.MetalAssembler.OnOrderCompleted += ReceiveMetalAssemblerOrderCompleted;
+                gameManager.PlasticAssembler.OnOrderCompleted += ReceivePlasticAssemblerOrderCompleted;
+            }
             else Debug.LogError("GameManager is not assigned in the inspector");
         }
 
         public void ReceiveMovementUpInput(InputAction.CallbackContext context)
         {
-            currentInputHandler.ReceiveMovementUpInput(context);
+            currentInputHandler.ReceiveMovementUpInput(context);  
         }
         
         public void ReceiveMovementDownInput(InputAction.CallbackContext context)
@@ -101,13 +113,37 @@ namespace InputsManagement
             currentInputHandler = characterInputHandler;
         }
 
+        private void ReceiveWoodAssemblerOrderCompleted()
+        {
+            currentInputHandler.ResetInputs();
+            currentInputHandler = woodAssembler;
+        }
+
+        private void ReceiveMetalAssemblerOrderCompleted()
+        {
+            currentInputHandler.ResetInputs();
+            currentInputHandler = metalAssembler;
+        }
+
+        private void ReceivePlasticAssemblerOrderCompleted()
+        {
+            currentInputHandler.ResetInputs();
+            currentInputHandler = plasticAssembler;
+        }
+
         private void OnDestroy()
         {
             if (orderChoiceInputHandler)
                 orderChoiceInputHandler.OnOrderSelected -= ReceiveOrderSelected;
 
             if (gameManager)
+            {
                 gameManager.DeliveryPoint.OnItemDelivered -= ReceiveItemDelivered;
+
+                gameManager.WoodAssembler.OnOrderCompleted -= ReceiveWoodAssemblerOrderCompleted;
+                gameManager.MetalAssembler.OnOrderCompleted -= ReceiveMetalAssemblerOrderCompleted;
+                gameManager.PlasticAssembler.OnOrderCompleted -= ReceivePlasticAssemblerOrderCompleted;
+            }
         }
     }
 }

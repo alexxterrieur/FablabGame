@@ -15,6 +15,9 @@ namespace GameManagement
         [SerializeField] private PlayerScore playerScore;
         [SerializeField] private OrderManager orderManager;
         [SerializeField] private List<AssemblerInteraction> assemblers = new();
+        [SerializeField] private AssemblerInteraction woodAssembler;
+        [SerializeField] private AssemblerInteraction metalAssembler;
+        [SerializeField] private AssemblerInteraction plasticAssembler;
         
         public event Action<bool> OnGameFinished;
         public event Action<bool> OnGamePaused;
@@ -29,6 +32,10 @@ namespace GameManagement
             
             if (orderManager) orderManager.OnOrderChanged += ReceiveOrderChanged;
             else Debug.LogError("OrderManager is not assigned in the inspector");
+
+            if (!woodAssembler)    Debug.LogError("woodAssembler is not assigned in the inspector");
+            if (!metalAssembler)   Debug.LogError("metalAssembler is not assigned in the inspector");
+            if (!plasticAssembler) Debug.LogError("plasticAssembler is not assigned in the inspector");
         }
 
         public void PauseGame()
@@ -77,10 +84,17 @@ namespace GameManagement
             {
                 assembler.SetCurrentOrder(order);
             }
+
+            woodAssembler.SetCurrentOrder(order);
+            metalAssembler.SetCurrentOrder(order);
+            plasticAssembler.SetCurrentOrder(order);
         }
         
         public PlayerScore PlayerScore => playerScore;
         public DeliveryPointManagement DeliveryPoint => deliveryPointManagement;
+        public AssemblerInteraction WoodAssembler => woodAssembler;
+        public AssemblerInteraction MetalAssembler => metalAssembler;
+        public AssemblerInteraction PlasticAssembler => plasticAssembler;
 
         private void OnDestroy()
         {

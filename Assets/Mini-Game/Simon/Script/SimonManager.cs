@@ -80,7 +80,7 @@ public class SimonManager : Assembler
     {
         int newIndex = Random.Range(0, simonButtons.Length);
         sequence.Add(newIndex);
-        Debug.Log("Nouvelle séquence longueur: " + sequence.Count);
+        Debug.Log("Nouvelle sï¿½quence longueur: " + sequence.Count);
 
         // Calcul de la vitesse
         int speedStep = sequence.Count / 5;
@@ -110,6 +110,8 @@ public class SimonManager : Assembler
 
     public void OnButtonPressed(int buttonIndex)
     {
+        /*if (sequence.Count <= 0)
+            return;*/
         if (!inputEnabled)
             return;
 
@@ -188,8 +190,9 @@ public class SimonManager : Assembler
 
     private IEnumerator Activation()
     {
+        inputEnabled = false;
         yield return new WaitForSeconds(2f);
-
+        
         canvas.SetActive(true);
         this.StopAllCoroutines();
         ResetButtons();

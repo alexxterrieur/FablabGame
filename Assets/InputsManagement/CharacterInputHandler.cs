@@ -31,7 +31,8 @@ namespace InputsManagement
 
         public void ReceiveAInput(InputAction.CallbackContext context)
         { 
-            playerInteraction.Interact();
+            if (context.started)
+                playerInteraction.Interact();
         }
 
         public void ReceiveBInput(InputAction.CallbackContext context)

@@ -1435,7 +1435,7 @@ PrefabInstance:
     - target: {fileID: 491447529680411004, guid: acda3772290f77f439df4c4f30f48613, type: 3}
       propertyPath: assembler
       value: 
-      objectReference: {fileID: 1115193829388367821}
+      objectReference: {fileID: 0}
     - target: {fileID: 491447529680411004, guid: acda3772290f77f439df4c4f30f48613, type: 3}
       propertyPath: assemblerMaterial
       value: 1
@@ -1767,7 +1767,7 @@ PrefabInstance:
     - target: {fileID: 491447529680411004, guid: acda3772290f77f439df4c4f30f48613, type: 3}
       propertyPath: assembler
       value: 
-      objectReference: {fileID: 1115193829388367821}
+      objectReference: {fileID: 0}
     - target: {fileID: 491447529680411004, guid: acda3772290f77f439df4c4f30f48613, type: 3}
       propertyPath: assemblerMaterial
       value: 2

@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [CreateAssetMenu(fileName = "SO_Order", menuName = "FabLabGame_SO/SO_Order")]
 public class SO_Order : ScriptableObject
@@ -12,6 +14,8 @@ public class SO_Order : ScriptableObject
 
     [HideInInspector]
     public List<bool> delivered = new List<bool>();
+    
+    public event Action<int, bool> OnItemDeliveryStatusChanged;
 
     public void InitDeliveryStatus()
     {
@@ -29,10 +33,18 @@ public class SO_Order : ScriptableObject
             if (items[i] == item && !delivered[i])
             {
                 delivered[i] = true;
+                OnItemDeliveryStatusChanged?.Invoke(i, true);
                 return true;
             }
         }
         return false;
+    }
+
+    public void RemoveDeliveredItem()
+    {
+        int index = Random.Range(0, items.Count);
+        delivered[index] = false;
+        OnItemDeliveryStatusChanged?.Invoke(index, false);
     }
 
     public bool IsOrderComplete()

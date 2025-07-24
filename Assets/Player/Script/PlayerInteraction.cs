@@ -14,9 +14,12 @@ public class PlayerInteraction : MonoBehaviour
     public GameObject dropedObjectPrefab;
     public GameObject finalItemPrefab;
 
+    [SerializeField] private Animator animator;
+
     private void Start()
     {
-
+        if (animator == null)
+            Debug.LogWarning("Animator not assigned to PlayerInteraction.");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,6 +38,11 @@ public class PlayerInteraction : MonoBehaviour
         {
             deliveryPointManagement = other.transform.parent.GetComponent<DeliveryPointManagement>();
         }
+
+        if(other.gameObject.TryGetComponent(out Highlight hl))
+        {
+            hl.ToggleHighlight(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -51,6 +59,10 @@ public class PlayerInteraction : MonoBehaviour
         {
             deliveryPointManagement = null;
         }
+        if (other.gameObject.TryGetComponent(out Highlight hl))
+        {
+            hl.ToggleHighlight(false);
+        }
     }
     
     public void EquipCraftItem(SO_CollectableItem item)
@@ -64,6 +76,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public void Interact()
     {
+
         if (isCarrying)
         {
             if (collisionAssembler != null)
@@ -75,6 +88,8 @@ public class PlayerInteraction : MonoBehaviour
                     heldItem = null;
                     isCarrying = false;
                     objectHolding.SetActive(false);
+                    //Play interaction animation
+                    animator.SetTrigger("Interact");
                 }
             }
             else if (deliveryPointManagement != null)
@@ -95,15 +110,20 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (collisionShelf != null)
             {
+                //Play interaction animation
+                animator.SetTrigger("Interact");
                 EquipItem(collisionShelf.TakeItem());
             }
-            else if(collisionAssembler != null)
+            else if (collisionAssembler != null)
             {
                 heldItem = collisionAssembler.TryGetCraftItem();
 
-                if(heldItem == null)
+                if (heldItem == null)
                     return;
 
+                //Play interaction animation
+                animator.SetTrigger("Interact");
+                //equip item
                 isCarrying = true;
                 objectHolding.GetComponent<MeshFilter>().mesh = heldItem.itemMesh;
                 objectHolding.SetActive(true);
@@ -121,6 +141,8 @@ public class PlayerInteraction : MonoBehaviour
 
     private GameObject DropHoldItem(GameObject itemPrefab)
     {
+        animator.SetTrigger("Drop");
+
         //drop item
         isCarrying = false;
         objectHolding.SetActive(false);

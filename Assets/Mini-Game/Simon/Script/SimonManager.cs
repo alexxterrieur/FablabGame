@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SimonManager : MonoBehaviour
+public class SimonManager : Assembler
 {
     [System.Serializable]
     public class SimonButton
@@ -47,12 +47,8 @@ public class SimonManager : MonoBehaviour
     public TMP_Text targetText;
     public TMP_Text currentText;
 
-
-    void Start()
-    {
-        ResetButtons();
-        StartCoroutine(StartNewGame());
-    }
+    [Header("Canvas")]
+    [SerializeField] GameObject canvas;
 
     void ResetButtons()
     {
@@ -84,7 +80,7 @@ public class SimonManager : MonoBehaviour
     {
         int newIndex = Random.Range(0, simonButtons.Length);
         sequence.Add(newIndex);
-        Debug.Log("Nouvelle séquence longueur: " + sequence.Count);
+        Debug.Log("Nouvelle sï¿½quence longueur: " + sequence.Count);
 
         // Calcul de la vitesse
         int speedStep = sequence.Count / 5;
@@ -114,6 +110,8 @@ public class SimonManager : MonoBehaviour
 
     public void OnButtonPressed(int buttonIndex)
     {
+        /*if (sequence.Count <= 0)
+            return;*/
         if (!inputEnabled)
             return;
 
@@ -140,6 +138,9 @@ public class SimonManager : MonoBehaviour
         {
             StartCoroutine(FlashButton(buttonIndex, wrongColor));
 
+            OnAssembleurActivityEnd?.Invoke(false);
+            UnActivate();
+
             if (!endless && sequence.Count >= targetScore)
             {
                 Debug.Log("Victory");
@@ -147,6 +148,7 @@ public class SimonManager : MonoBehaviour
             else
             {
                 Debug.Log("Fail");
+                return;
             }
 
             StartCoroutine(StartNewGame());
@@ -169,6 +171,8 @@ public class SimonManager : MonoBehaviour
         {
             Debug.Log("End MiniGame");
 
+            OnAssembleurActivityEnd?.Invoke(true);
+            UnActivate();
             //PlayerPrefs.SetInt("Level2Completed", 1);
             //PlayerPrefs.Save();
             //SceneManager.LoadScene("MainMenu");
@@ -177,5 +181,29 @@ public class SimonManager : MonoBehaviour
         {
             yield return AddAndShowSequence();
         }
+    }
+
+    public override void Activate()
+    {
+        StartCoroutine(Activation());
+    }
+
+    private IEnumerator Activation()
+    {
+        inputEnabled = false;
+        //yield return new WaitForSeconds(2f);
+
+        canvas.SetActive(true);
+        this.StopAllCoroutines();
+        ResetButtons();
+        StartCoroutine(StartNewGame());
+        yield return null;
+    }
+
+    public override void UnActivate()
+    {
+        canvas.SetActive(false);
+        this.StopAllCoroutines();
+        ResetButtons();
     }
 }

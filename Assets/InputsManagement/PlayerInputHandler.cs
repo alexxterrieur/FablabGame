@@ -15,8 +15,15 @@ namespace InputsManagement
         
         [Header("Input Handlers")]
         [SerializeField] private OrderChoiceManager orderChoiceInputHandler;
+
+        [Header("Assemblers Reference")]
+        [SerializeField] private SimonInputManager woodAssembler;
+        [SerializeField] private QTEInputManager metalAssembler;
+        [SerializeField] private MillingInputHandler plasticAssembler;
+        
         
         private IPlayerInputsControlled currentInputHandler;
+        private bool hasChangedInputHandler;
 
         private void Start()
         {
@@ -29,34 +36,55 @@ namespace InputsManagement
             else Debug.LogError("OrderChoiceManager is not assigned in the inspector");
             
             if (!characterInputHandler) Debug.LogError("CharacterInputHandler is not assigned in the inspector");
-            
-            if (gameManager) gameManager.DeliveryPoint.OnItemDelivered += ReceiveItemDelivered;
+
+            if (gameManager)
+            { 
+                gameManager.DeliveryPoint.OnItemDelivered += ReceiveItemDelivered;
+
+                gameManager.WoodAssembler.OnOrderCompleted += ReceiveWoodAssemblerOrderCompleted;
+                gameManager.MetalAssembler.OnOrderCompleted += ReceiveMetalAssemblerOrderCompleted;
+                gameManager.PlasticAssembler.OnOrderCompleted += ReceivePlasticAssemblerOrderCompleted;
+            }
             else Debug.LogError("GameManager is not assigned in the inspector");
         }
 
         public void ReceiveMovementUpInput(InputAction.CallbackContext context)
         {
+            if (!context.started && hasChangedInputHandler) return;
+            
+            hasChangedInputHandler = false;
             currentInputHandler.ReceiveMovementUpInput(context);
         }
         
         public void ReceiveMovementDownInput(InputAction.CallbackContext context)
         {
+            if (!context.started && hasChangedInputHandler) return;
+            
+            hasChangedInputHandler = false;
             currentInputHandler.ReceiveMovementDownInput(context);
         }
         
         public void ReceiveMovementLeftInput(InputAction.CallbackContext context)
         {
+            if (!context.started && hasChangedInputHandler) return;
+            
+            hasChangedInputHandler = false;
             currentInputHandler.ReceiveMovementLeftInput(context);
         }
         
         public void ReceiveMovementRightInput(InputAction.CallbackContext context)
         {
+            if (!context.started && hasChangedInputHandler) return;
+            
+            hasChangedInputHandler = false;
             currentInputHandler.ReceiveMovementRightInput(context);
         }
         
         public void ReceiveAInput(InputAction.CallbackContext context)
         {
-            if (!context.started) return;
+            if (!context.started && hasChangedInputHandler) return;
+            
+            hasChangedInputHandler = false;
             
             if (gameManager.IsGamePaused())
                 gameManager.ResumeGame();
@@ -66,39 +94,80 @@ namespace InputsManagement
         
         public void ReceiveBInput(InputAction.CallbackContext context)
         {
-            if (context.started)
-            {
-                if (gameManager.IsGamePaused())
-                    gameManager.RestartGame();
-            }
+            if (!context.started && hasChangedInputHandler) return;
+                
+            hasChangedInputHandler = false;
+            
+            if (gameManager.IsGamePaused())
+                gameManager.RestartGame();
+            else
+                currentInputHandler.ReceiveBInput(context);
         }
         
         public void ReceiveStartInput(InputAction.CallbackContext context)
         {
-            if (context.started)
-            {
-                // Handle X button pressed logic here
-                Debug.Log("X button pressed");
-            }
+            if (!context.started && hasChangedInputHandler) return;
+                
+            hasChangedInputHandler = false;
+            
+            // Handle X button pressed logic here
+            Debug.Log("X button pressed");
         }
         
         public void ReceiveSelectInput(InputAction.CallbackContext context)
         {
-            if (context.started)
-            {
-                gameManager.PauseGame();
-            }
+            if (!context.started && hasChangedInputHandler) return;
+                
+            hasChangedInputHandler = false;
+            
+            gameManager.PauseGame();
         }
 
         private void ReceiveItemDelivered(int _)
         {
             currentInputHandler.ResetInputs();
             currentInputHandler = orderChoiceInputHandler;
+            hasChangedInputHandler = true;
         }
 
         private void ReceiveOrderSelected()
         {
             currentInputHandler = characterInputHandler;
+            hasChangedInputHandler = true;
+        }
+
+        private void ReceiveWoodAssemblerOrderCompleted()
+        {
+            currentInputHandler.ResetInputs();
+            currentInputHandler = woodAssembler;
+            hasChangedInputHandler = true;
+
+            woodAssembler.SimonManager.OnAssembleurActivityEnd += ReceiveAssemblerActivityEnd;
+        }
+
+        private void ReceiveAssemblerActivityEnd(bool _)
+        {
+            //woodAssembler.SimonManager.OnAssembleurActivityEnd -= ReceiveWoodAssemblerActivityEnd;
+
+            currentInputHandler.ResetInputs();
+            currentInputHandler = characterInputHandler;
+            hasChangedInputHandler = true;
+        }
+
+        private void ReceiveMetalAssemblerOrderCompleted()
+        {
+            metalAssembler.OnActivityEnd += ReceiveAssemblerActivityEnd;
+            currentInputHandler.ResetInputs();
+            currentInputHandler = metalAssembler;
+            hasChangedInputHandler = true;
+        }
+
+        private void ReceivePlasticAssemblerOrderCompleted()
+        {
+            plasticAssembler.millingMachine.millingMachineManager.OnAssembleurActivityEnd += ReceiveAssemblerActivityEnd;
+            currentInputHandler.ResetInputs();
+            currentInputHandler = plasticAssembler;
+            hasChangedInputHandler = true;
         }
 
         private void OnDestroy()
@@ -107,7 +176,13 @@ namespace InputsManagement
                 orderChoiceInputHandler.OnOrderSelected -= ReceiveOrderSelected;
 
             if (gameManager)
+            {
                 gameManager.DeliveryPoint.OnItemDelivered -= ReceiveItemDelivered;
+
+                gameManager.WoodAssembler.OnOrderCompleted -= ReceiveWoodAssemblerOrderCompleted;
+                gameManager.MetalAssembler.OnOrderCompleted -= ReceiveMetalAssemblerOrderCompleted;
+                gameManager.PlasticAssembler.OnOrderCompleted -= ReceivePlasticAssemblerOrderCompleted;
+            }
         }
     }
 }

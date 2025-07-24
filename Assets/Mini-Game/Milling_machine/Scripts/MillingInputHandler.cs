@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class MillingInputHandler : IPlayerInputsControlled
 {
-    [SerializeField] private MillingMachine millingMachine;
+    public MillingMachine millingMachine;
     private Vector2 movementDir = Vector2.zero;
 
     public void ReceiveAInput(InputAction.CallbackContext context)

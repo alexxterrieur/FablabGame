@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class MillingMachine : MonoBehaviour
 {
-    [SerializeField] private MillingMachineManager millingMachineManager;
+    [SerializeField] public MillingMachineManager millingMachineManager;
 
     [SerializeField] private Transform parent;
 

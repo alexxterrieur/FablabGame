@@ -19,7 +19,7 @@ namespace InputsManagement
         [Header("Assemblers Reference")]
         [SerializeField] private SimonInputManager woodAssembler;
         [SerializeField] private QTEInputManager metalAssembler;
-        [SerializeField] private MillingMachineManager plasticAssembler;
+        [SerializeField] private MillingInputHandler plasticAssembler;
         
         
         private IPlayerInputsControlled currentInputHandler;
@@ -164,7 +164,7 @@ namespace InputsManagement
 
         private void ReceivePlasticAssemblerOrderCompleted()
         {
-            plasticAssembler.OnAssembleurActivityEnd += ReceiveAssemblerActivityEnd;
+            plasticAssembler.millingMachine.millingMachineManager.OnAssembleurActivityEnd += ReceiveAssemblerActivityEnd;
             currentInputHandler.ResetInputs();
             currentInputHandler = plasticAssembler;
             hasChangedInputHandler = true;

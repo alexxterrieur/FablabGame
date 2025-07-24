@@ -191,12 +191,13 @@ public class SimonManager : Assembler
     private IEnumerator Activation()
     {
         inputEnabled = false;
-        yield return new WaitForSeconds(2f);
-        
+        //yield return new WaitForSeconds(2f);
+
         canvas.SetActive(true);
         this.StopAllCoroutines();
         ResetButtons();
         StartCoroutine(StartNewGame());
+        yield return null;
     }
 
     public override void UnActivate()

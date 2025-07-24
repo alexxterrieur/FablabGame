@@ -10,6 +10,7 @@ public class SO_Order : ScriptableObject
     public Sprite orderIcon;
     public Materials mainMaterial;
     public List<SO_CollectableItem> items = new List<SO_CollectableItem>();
+    public SO_CollectableItem finalItem;
     public int orderPoints;
 
     [HideInInspector]

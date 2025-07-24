@@ -1,4 +1,5 @@
 using DeliveryPoint;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
@@ -12,6 +13,11 @@ public class PlayerInteraction : MonoBehaviour
     public GameObject objectHolding;
     public GameObject dropedObjectPrefab;
 
+    private void Start()
+    {
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.parent.CompareTag("Shelf"))
@@ -21,6 +27,8 @@ public class PlayerInteraction : MonoBehaviour
         else if (other.transform.parent.CompareTag("Assembler"))
         {
             collisionAssembler = other.transform.parent.GetComponent<AssemblerInteraction>();
+            collisionAssembler.OnOrderCraft = null;
+            collisionAssembler.OnOrderCraft += EquipCraftItem;
         }
         else if (other.transform.parent.CompareTag("DeliveryPoint"))
         {
@@ -42,6 +50,15 @@ public class PlayerInteraction : MonoBehaviour
         {
             deliveryPointManagement = null;
         }
+    }
+    
+    public void EquipCraftItem(SO_CollectableItem item)
+    {
+        if (isCarrying)
+            DropHoldItem();
+
+        EquipItem(item);
+
     }
 
     public void Interact()
@@ -69,27 +86,49 @@ public class PlayerInteraction : MonoBehaviour
             }
             else
             {
-                //drop item
-                isCarrying = false;
-                objectHolding.SetActive(false);
-
-                GameObject dropedItem = Instantiate(dropedObjectPrefab, transform.position, Quaternion.identity);
-                Shelf dropShelf = dropedItem.GetComponent<Shelf>();
-                dropShelf.SetItem(heldItem);
-                dropShelf.isDroppedItem = true;
-
-                heldItem = null;
+                DropHoldItem();
             }
         }
         else
         {
             if (collisionShelf != null)
             {
-                heldItem = collisionShelf.TakeItem();
+                EquipItem(collisionShelf.TakeItem());
+            }
+            else if(collisionAssembler != null)
+            {
+                heldItem = collisionAssembler.TryGetCraftItem();
+
+                if(heldItem == null)
+                    return;
+
                 isCarrying = true;
                 objectHolding.GetComponent<MeshFilter>().mesh = heldItem.itemMesh;
                 objectHolding.SetActive(true);
             }
         }
     }
+
+    private void EquipItem(SO_CollectableItem item)
+    {
+        heldItem = item;
+        isCarrying = true;
+        objectHolding.GetComponent<MeshFilter>().mesh = heldItem.itemMesh;
+        objectHolding.SetActive(true);
+    }
+
+    private void DropHoldItem()
+    {
+        //drop item
+        isCarrying = false;
+        objectHolding.SetActive(false);
+
+        GameObject dropedItem = Instantiate(dropedObjectPrefab, transform.position, Quaternion.identity);
+        Shelf dropShelf = dropedItem.GetComponent<Shelf>();
+        dropShelf.SetItem(heldItem);
+        dropShelf.isDroppedItem = true;
+
+        heldItem = null;
+    }
 }
+

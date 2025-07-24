@@ -19,5 +19,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 27d9766982214a04da10a33e6c6916db, type: 2}
   - {fileID: 11400000, guid: 27d9766982214a04da10a33e6c6916db, type: 2}
   - {fileID: 11400000, guid: 27d9766982214a04da10a33e6c6916db, type: 2}
+  finalItem: {fileID: 11400000, guid: a6c81ffc327f75b4781c536e630f821f, type: 2}
   orderPoints: 6
   delivered: 

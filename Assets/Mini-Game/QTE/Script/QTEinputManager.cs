@@ -1,40 +1,14 @@
+using InputsManagement;
+using System;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class QTEInputManager : MonoBehaviour
+public class QTEInputManager : MonoBehaviour, IPlayerInputsControlled
 {
+
+    public Action<bool> OnActivityEnd;
     public QTEKey pressedKey { get; private set; }
-
-    public void Up(InputAction.CallbackContext context)
-    {
-        SetKeyState(context, QTEKey.Up);
-    }
-
-    public void Down(InputAction.CallbackContext context)
-    {
-        SetKeyState(context, QTEKey.Down);
-    }
-
-    public void Left(InputAction.CallbackContext context)
-    {
-        SetKeyState(context, QTEKey.Left);
-    }
-
-    public void Right(InputAction.CallbackContext context)
-    {
-        SetKeyState(context, QTEKey.Right);
-    }
-
-    public void A(InputAction.CallbackContext context)
-    {
-        SetKeyState(context, QTEKey.A);
-    }
-
-    public void B(InputAction.CallbackContext context)
-    {
-        SetKeyState(context, QTEKey.B);
-    }
 
     private void SetKeyState(InputAction.CallbackContext context, QTEKey key)
     {
@@ -47,6 +21,48 @@ public class QTEInputManager : MonoBehaviour
             pressedKey &= ~key; // Remove flag
         }
     }
+
+    public void ReceiveMovementUpInput(InputAction.CallbackContext context)
+    {
+        SetKeyState(context, QTEKey.Up);
+    }
+
+    public void ReceiveMovementDownInput(InputAction.CallbackContext context)
+    {
+        SetKeyState(context, QTEKey.Down);
+    }
+
+    public void ReceiveMovementLeftInput(InputAction.CallbackContext context)
+    {
+        SetKeyState(context, QTEKey.Left);
+    }
+
+    public void ReceiveMovementRightInput(InputAction.CallbackContext context)
+    {
+        SetKeyState(context, QTEKey.Right);
+    }
+
+    public void ReceiveAInput(InputAction.CallbackContext context)
+    {
+        SetKeyState(context, QTEKey.A);
+    }
+
+    public void ReceiveBInput(InputAction.CallbackContext context)
+    {
+        SetKeyState(context, QTEKey.B);
+    }
+
+    public void ReceiveStartInput(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void ReceiveSelectInput(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void ResetInputs(){}
 }
 
 [System.Flags]

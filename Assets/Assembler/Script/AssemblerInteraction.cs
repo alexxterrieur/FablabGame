@@ -8,6 +8,7 @@ public class AssemblerInteraction : MonoBehaviour
     private SO_Order currentOrder;
 
     public event Action OnOrderCompleted;
+    public Action<SO_CollectableItem> OnOrderCraft;
 
     private void Start()
     {
@@ -17,7 +18,10 @@ public class AssemblerInteraction : MonoBehaviour
     private void EndActivity(bool isSuccess)
     {
         if (isSuccess)
+        {
+            OnOrderCraft(currentOrder.finalItem);
             return;
+        }
 
         currentOrder.RemoveDeliveredItem();
     }
@@ -25,6 +29,11 @@ public class AssemblerInteraction : MonoBehaviour
     public void SetCurrentOrder(SO_Order order)
     {
         currentOrder = order;
+    }
+
+    public SO_CollectableItem TryGetCraftItem()
+    {
+        return null;
     }
 
     public bool TryDeliverItem(SO_CollectableItem item)

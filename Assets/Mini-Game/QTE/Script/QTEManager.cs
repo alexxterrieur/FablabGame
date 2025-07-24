@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 
-public class QTEManager : MonoBehaviour
+public class QTEManager : Assembler
 {
     [Header("Dependencies")]
     [SerializeField] private QTEInputManager inputManager;
@@ -15,14 +15,17 @@ public class QTEManager : MonoBehaviour
     [Header("Parameters")]
     [SerializeField] private float spawnInterval = 1.5f;
     [SerializeField] private float moveSpeed = 100f;
-    [SerializeField] private int sequenceLength = 10;
+    [SerializeField] private int sequenceLength = 2;
 
     [Header("Debug")]
     [SerializeField] private List<QTEKeys> activeKeys = new();
 
+    [Header("Canvas")]
+    [SerializeField] private GameObject canvas;
+
     private void Start()
     {
-        StartCoroutine(QTESequenceRoutine());
+        OnAssembleurActivityEnd += (bool p) => { inputManager?.OnActivityEnd.Invoke(p); };
     }
 
     private IEnumerator QTESequenceRoutine()
@@ -32,6 +35,8 @@ public class QTEManager : MonoBehaviour
             SpawnNewQTE();
             yield return new WaitForSeconds(spawnInterval);
         }
+        OnAssembleurActivityEnd?.Invoke(true);
+        UnActivate();
     }
 
     private void SpawnNewQTE()
@@ -61,7 +66,7 @@ public class QTEManager : MonoBehaviour
 
     private void ValidateKey(QTEKeys key)
     {
-        if (key.RequiredKeys.All(k => inputManager.pressedKey.HasFlag(k)))
+        if (key.RequiredKeys.All(k => inputManager.pressedKey.HasFlag(k)) /*Add Lenght verif*/ )
         {
             Debug.Log("QTE success!");
             key.MarkAsValidated();
@@ -69,13 +74,36 @@ public class QTEManager : MonoBehaviour
         else
         {
             Debug.Log("Wrong input.");
+            Debug.Log(key);
+            FailKey(key);
             // Let it exit naturally for now
         }
     }
 
-    private void FailKey(QTEKeys key)
+    private void FailKey(QTEKeys _)
     {
         Debug.Log("QTE failed (too late)");
-        activeKeys.Remove(key);
+        OnAssembleurActivityEnd?.Invoke(false);
+        UnActivate();
+    }
+
+    public override void Activate()
+    {
+        canvas.SetActive(true);
+        this.StopAllCoroutines();
+        StartCoroutine(QTESequenceRoutine());
+    }
+
+    public override void UnActivate()
+    {
+        foreach(var a in activeKeys)
+        { 
+            if(a != null)
+                Destroy(a.gameObject);
+        }
+            
+
+        canvas.SetActive(false);
+        this.StopAllCoroutines();
     }
 }

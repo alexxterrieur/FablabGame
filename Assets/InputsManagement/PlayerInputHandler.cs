@@ -18,10 +18,9 @@ namespace InputsManagement
 
         [Header("Assemblers Reference")]
         [SerializeField] private SimonInputManager woodAssembler;
-        /*
-        [SerializeField] private Controller metalAssembler;
-        [SerializeField] private Controller plasticAssembler;
-        */
+        [SerializeField] private QTEInputManager metalAssembler;
+        [SerializeField] private MillingMachineManager plasticAssembler;
+        
         
         private IPlayerInputsControlled currentInputHandler;
         private bool hasChangedInputHandler;
@@ -101,6 +100,8 @@ namespace InputsManagement
             
             if (gameManager.IsGamePaused())
                 gameManager.RestartGame();
+            else
+                currentInputHandler.ReceiveBInput(context);
         }
         
         public void ReceiveStartInput(InputAction.CallbackContext context)
@@ -141,12 +142,12 @@ namespace InputsManagement
             currentInputHandler = woodAssembler;
             hasChangedInputHandler = true;
 
-            woodAssembler.SimonManager.OnAssembleurActivityEnd += ReceiveWoodAssemblerActivityEnd;
+            woodAssembler.SimonManager.OnAssembleurActivityEnd += ReceiveAssemblerActivityEnd;
         }
 
-        private void ReceiveWoodAssemblerActivityEnd(bool _)
+        private void ReceiveAssemblerActivityEnd(bool _)
         {
-            woodAssembler.SimonManager.OnAssembleurActivityEnd -= ReceiveWoodAssemblerActivityEnd;
+            //woodAssembler.SimonManager.OnAssembleurActivityEnd -= ReceiveWoodAssemblerActivityEnd;
 
             currentInputHandler.ResetInputs();
             currentInputHandler = characterInputHandler;
@@ -155,15 +156,17 @@ namespace InputsManagement
 
         private void ReceiveMetalAssemblerOrderCompleted()
         {
+            metalAssembler.OnActivityEnd += ReceiveAssemblerActivityEnd;
             currentInputHandler.ResetInputs();
-            //currentInputHandler = metalAssembler;
+            currentInputHandler = metalAssembler;
             hasChangedInputHandler = true;
         }
 
         private void ReceivePlasticAssemblerOrderCompleted()
         {
+            plasticAssembler.OnAssembleurActivityEnd += ReceiveAssemblerActivityEnd;
             currentInputHandler.ResetInputs();
-            //currentInputHandler = plasticAssembler;
+            currentInputHandler = plasticAssembler;
             hasChangedInputHandler = true;
         }
 

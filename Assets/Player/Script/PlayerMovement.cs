@@ -12,6 +12,9 @@ namespace Player.Script
         private Vector3 direction;
         private Rigidbody rb;
 
+        [SerializeField] private Animator animator;
+        [SerializeField] private PlayerInteraction interaction;
+
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
@@ -20,10 +23,10 @@ namespace Player.Script
         public void SetDirection(Vector2 input)
         {
             moveInput += input;
-            
+
             direction.Set(moveInput.x, 0f, moveInput.y);
         }
-        
+
         public void ResetDirection()
         {
             SetDirection(-moveInput);
@@ -39,7 +42,13 @@ namespace Player.Script
                 transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, rotationSpeed * Time.fixedDeltaTime);
 
                 rb.MovePosition(rb.position + direction.normalized * (moveSpeed * Time.fixedDeltaTime));
-            } 
+            }
+        }
+
+        private void Update()
+        {
+            animator.SetFloat("Speed", direction.magnitude);
+            animator.SetBool("IsCarryingObject", interaction.isCarrying);
         }
     }
 

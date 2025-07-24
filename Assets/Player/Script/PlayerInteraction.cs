@@ -13,9 +13,12 @@ public class PlayerInteraction : MonoBehaviour
     public GameObject objectHolding;
     public GameObject dropedObjectPrefab;
 
+    [SerializeField] private Animator animator;
+
     private void Start()
     {
-
+        if (animator == null)
+            Debug.LogWarning("Animator not assigned to PlayerInteraction.");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -72,6 +75,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public void Interact()
     {
+
         if (isCarrying)
         {
             if (collisionAssembler != null)
@@ -83,6 +87,8 @@ public class PlayerInteraction : MonoBehaviour
                     heldItem = null;
                     isCarrying = false;
                     objectHolding.SetActive(false);
+                    //Play interaction animation
+                    animator.SetTrigger("Interact");
                 }
             }
             else if (deliveryPointManagement != null)
@@ -102,15 +108,20 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (collisionShelf != null)
             {
+                //Play interaction animation
+                animator.SetTrigger("Interact");
                 EquipItem(collisionShelf.TakeItem());
             }
-            else if(collisionAssembler != null)
+            else if (collisionAssembler != null)
             {
                 heldItem = collisionAssembler.TryGetCraftItem();
 
-                if(heldItem == null)
+                if (heldItem == null)
                     return;
 
+                //Play interaction animation
+                animator.SetTrigger("Interact");
+                //equip item
                 isCarrying = true;
                 objectHolding.GetComponent<MeshFilter>().mesh = heldItem.itemMesh;
                 objectHolding.SetActive(true);
@@ -128,6 +139,8 @@ public class PlayerInteraction : MonoBehaviour
 
     private void DropHoldItem()
     {
+        animator.SetTrigger("Drop");
+
         //drop item
         isCarrying = false;
         objectHolding.SetActive(false);

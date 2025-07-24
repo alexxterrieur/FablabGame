@@ -12,6 +12,7 @@ public class PlayerInteraction : MonoBehaviour
     
     public GameObject objectHolding;
     public GameObject dropedObjectPrefab;
+    public GameObject finalItemPrefab;
 
     [SerializeField] private Animator animator;
 
@@ -67,7 +68,7 @@ public class PlayerInteraction : MonoBehaviour
     public void EquipCraftItem(SO_CollectableItem item)
     {
         if (isCarrying)
-            DropHoldItem();
+            DropHoldItem(dropedObjectPrefab);
 
         EquipItem(item);
 
@@ -93,15 +94,16 @@ public class PlayerInteraction : MonoBehaviour
             }
             else if (deliveryPointManagement != null)
             {
-                deliveryPointManagement.DeliverItem();
-
-                heldItem = null;
-                isCarrying = false;
-                objectHolding.SetActive(false);
+                if (deliveryPointManagement.CanDeliver(heldItem))
+                {
+                    //deliveryPointManagement.DeliverItem();
+                    
+                    DropHoldItem(finalItemPrefab).GetComponent<FinalItem>().SetDeliveryPointManagement(deliveryPointManagement);
+                }
             }
             else
             {
-                DropHoldItem();
+                DropHoldItem(dropedObjectPrefab);
             }
         }
         else
@@ -137,7 +139,7 @@ public class PlayerInteraction : MonoBehaviour
         objectHolding.SetActive(true);
     }
 
-    private void DropHoldItem()
+    private GameObject DropHoldItem(GameObject itemPrefab)
     {
         animator.SetTrigger("Drop");
 
@@ -145,12 +147,12 @@ public class PlayerInteraction : MonoBehaviour
         isCarrying = false;
         objectHolding.SetActive(false);
 
-        GameObject dropedItem = Instantiate(dropedObjectPrefab, transform.position, Quaternion.identity);
-        Shelf dropShelf = dropedItem.GetComponent<Shelf>();
-        dropShelf.SetItem(heldItem);
-        dropShelf.isDroppedItem = true;
+        GameObject droppedItem = Instantiate(itemPrefab, transform.position, Quaternion.identity);
+        Shelf dropShelf = droppedItem.GetComponent<Shelf>();
+        dropShelf.SetItem(heldItem, true);
 
         heldItem = null;
+        return droppedItem;
     }
 }
 

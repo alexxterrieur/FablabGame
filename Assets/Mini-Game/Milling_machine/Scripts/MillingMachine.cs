@@ -98,7 +98,7 @@ public class MillingMachine : MonoBehaviour
                 Form form = Instantiate(partPrefab, parent).GetComponent<Form>();
                 parts.Add(form.gameObject);
                 form.SetImage(millingButton.GetPart().form);
-
+                nbrOfPerfectForm++;
                 Debug.Log("Perfect");
 
                 if (nbrOfPerfectForm >= data.forms.Count)

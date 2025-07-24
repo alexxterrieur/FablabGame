@@ -34,6 +34,11 @@ public class PlayerInteraction : MonoBehaviour
         {
             deliveryPointManagement = other.transform.parent.GetComponent<DeliveryPointManagement>();
         }
+
+        if(other.gameObject.TryGetComponent(out Highlight hl))
+        {
+            hl.ToggleHighlight(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -49,6 +54,10 @@ public class PlayerInteraction : MonoBehaviour
         else if (other.transform.parent.CompareTag("DeliveryPoint"))
         {
             deliveryPointManagement = null;
+        }
+        if (other.gameObject.TryGetComponent(out Highlight hl))
+        {
+            hl.ToggleHighlight(false);
         }
     }
     

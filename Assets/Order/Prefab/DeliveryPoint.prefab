@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4522553021783661097}
   - component: {fileID: 1477836955620953425}
+  - component: {fileID: 8666315843908340906}
   m_Layer: 0
   m_Name: InteractionZone
   m_TagString: Shelf
@@ -53,6 +54,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8666315843908340906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464703316181821825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef6caf3a78eca7a4cb51aabff8bc2e36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderer: {fileID: 2827475399044521987}
+  color: {r: 0.043137256, g: 0.043137256, b: 0.043137256, a: 1}
 --- !u!1 &6680181568778097137
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,4 +190,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd967d436a1467db5d11dab2e35e81e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentOrder: {fileID: 11400000, guid: b4d8be28b9fa6b94e835ad2f16337698, type: 2}

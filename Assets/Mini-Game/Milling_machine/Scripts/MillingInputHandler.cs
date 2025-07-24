@@ -3,20 +3,17 @@ using Player.Script;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MillingInputHandler : IPlayerInputsControlled
+public class MillingInputHandler : MonoBehaviour, IPlayerInputsControlled
 {
     public MillingMachine millingMachine;
     private Vector2 movementDir = Vector2.zero;
 
     public void ReceiveAInput(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        millingMachine.OnMoveReamer(context);
     }
 
-    public void ReceiveBInput(InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
+    public void ReceiveBInput(InputAction.CallbackContext context){}
 
     public QTEKey pressedKey { get; private set; }
 
@@ -52,10 +49,7 @@ public class MillingInputHandler : IPlayerInputsControlled
         MovementPlayer(context, Vector2.right, QTEKey.Right);
     }
 
-    public void ReceiveSelectInput(InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
+    public void ReceiveSelectInput(InputAction.CallbackContext context){}
 
     private void MovementPlayer(InputAction.CallbackContext context, Vector2 input, QTEKey key)
     {
@@ -69,13 +63,7 @@ public class MillingInputHandler : IPlayerInputsControlled
         SetKeyState(context, key);
     }
 
-    public void ReceiveStartInput(InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
+    public void ReceiveStartInput(InputAction.CallbackContext context){}
 
-    public void ResetInputs()
-    {
-        throw new System.NotImplementedException();
-    }
+    public void ResetInputs(){}
 }

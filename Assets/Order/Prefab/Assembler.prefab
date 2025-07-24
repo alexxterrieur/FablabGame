@@ -81,8 +81,8 @@ GameObject:
   - component: {fileID: 7656298042321249932}
   - component: {fileID: 8182326179297631210}
   - component: {fileID: 491447529680411004}
-  - component: {fileID: 1361213846635586698}
-  - component: {fileID: 4351853045451574389}
+  - component: {fileID: 652280224888292222}
+  - component: {fileID: 3457905723094860529}
   m_Layer: 0
   m_Name: Assembler
   m_TagString: Assembler
@@ -104,6 +104,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 211197268292085779}
+  - {fileID: 8552871757790521440}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &579093714406429833
@@ -194,3 +195,107 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   assemblerMaterial: 0
   assembler: {fileID: 0}
+--- !u!95 &652280224888292222
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7021731898051608501}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a8c5cf29322a274458fd9a4116b8d76b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3457905723094860529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7021731898051608501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c237441ab2851a4784b3c7c78128a58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  craftParticle: {fileID: 3729992234267440828}
+  playerAnimator: {fileID: 0}
+  cameraMovement: {fileID: 0}
+--- !u!1001 &8025088828372867553
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5899501787715740630}
+    m_Modifications:
+    - target: {fileID: 1868765461522280833, guid: a793699f5f48f02449166d0e32d95e53, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868765461522280833, guid: a793699f5f48f02449166d0e32d95e53, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868765461522280833, guid: a793699f5f48f02449166d0e32d95e53, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868765461522280833, guid: a793699f5f48f02449166d0e32d95e53, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868765461522280833, guid: a793699f5f48f02449166d0e32d95e53, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868765461522280833, guid: a793699f5f48f02449166d0e32d95e53, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868765461522280833, guid: a793699f5f48f02449166d0e32d95e53, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868765461522280833, guid: a793699f5f48f02449166d0e32d95e53, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868765461522280833, guid: a793699f5f48f02449166d0e32d95e53, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868765461522280833, guid: a793699f5f48f02449166d0e32d95e53, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5086809224550258906, guid: a793699f5f48f02449166d0e32d95e53, type: 3}
+      propertyPath: m_Name
+      value: Smock craft
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a793699f5f48f02449166d0e32d95e53, type: 3}
+--- !u!198 &3729992234267440828 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6673578089012211549, guid: a793699f5f48f02449166d0e32d95e53, type: 3}
+  m_PrefabInstance: {fileID: 8025088828372867553}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8552871757790521440 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1868765461522280833, guid: a793699f5f48f02449166d0e32d95e53, type: 3}
+  m_PrefabInstance: {fileID: 8025088828372867553}
+  m_PrefabAsset: {fileID: 0}

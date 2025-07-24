@@ -1484,7 +1484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c43f19e76e4a5a4198dbd7159ecc705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 2065112566}
+  animator: {fileID: 0}
   mainCamera: {fileID: 574979236}
   millingCamera: {fileID: 1415000758}
   miniGame: {fileID: 386638401}
@@ -1779,6 +1779,10 @@ PrefabInstance:
       propertyPath: assemblerMaterial
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3457905723094860529, guid: acda3772290f77f439df4c4f30f48613, type: 3}
+      propertyPath: cameraMovement
+      value: 
+      objectReference: {fileID: 574979240}
     - target: {fileID: 4351853045451574389, guid: acda3772290f77f439df4c4f30f48613, type: 3}
       propertyPath: cameraMovement
       value: 
@@ -1832,6 +1836,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acda3772290f77f439df4c4f30f48613, type: 3}
+--- !u!95 &1355303289 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 652280224888292222, guid: acda3772290f77f439df4c4f30f48613, type: 3}
+  m_PrefabInstance: {fileID: 1355303288}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1358828620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2177,6 +2186,10 @@ PrefabInstance:
       propertyPath: assemblerMaterial
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3457905723094860529, guid: acda3772290f77f439df4c4f30f48613, type: 3}
+      propertyPath: cameraMovement
+      value: 
+      objectReference: {fileID: 574979240}
     - target: {fileID: 4351853045451574389, guid: acda3772290f77f439df4c4f30f48613, type: 3}
       propertyPath: cameraMovement
       value: 
@@ -2783,11 +2796,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7143e217cc7b59148b1e5d76a2550611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &1890545533 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1361213846635586698, guid: acda3772290f77f439df4c4f30f48613, type: 3}
-  m_PrefabInstance: {fileID: 1355303288}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1982556213
 GameObject:
   m_ObjectHideFlags: 0
@@ -2929,11 +2937,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &2065112566 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1361213846635586698, guid: acda3772290f77f439df4c4f30f48613, type: 3}
-  m_PrefabInstance: {fileID: 1499726846}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2071048078
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2954,6 +2957,10 @@ PrefabInstance:
       propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3457905723094860529, guid: acda3772290f77f439df4c4f30f48613, type: 3}
+      propertyPath: cameraMovement
+      value: 
+      objectReference: {fileID: 574979240}
     - target: {fileID: 4351853045451574389, guid: acda3772290f77f439df4c4f30f48613, type: 3}
       propertyPath: cameraMovement
       value: 
@@ -3023,11 +3030,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7143e217cc7b59148b1e5d76a2550611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &2071048085 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1361213846635586698, guid: acda3772290f77f439df4c4f30f48613, type: 3}
-  m_PrefabInstance: {fileID: 2071048078}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2075655070
 GameObject:
   m_ObjectHideFlags: 0
@@ -3057,7 +3059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c1b634ec8d95294bbf63bccda6bf103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 2071048085}
+  animator: {fileID: 0}
   inputManager: {fileID: 394113775}
   qteKeyPrefab: {fileID: 3583180208996013117, guid: 299fac9ee7e33f746b498b18ead8d28f, type: 3}
   spawnPoint: {fileID: 1691673907}
@@ -3134,7 +3136,7 @@ PrefabInstance:
     - target: {fileID: 7447623638406655505, guid: 8eaf0c98f23f04d48b90c25f11c11b88, type: 3}
       propertyPath: animator
       value: 
-      objectReference: {fileID: 1890545533}
+      objectReference: {fileID: 1355303289}
     - target: {fileID: 9121378623201887140, guid: 8eaf0c98f23f04d48b90c25f11c11b88, type: 3}
       propertyPath: m_Name
       value: Simon

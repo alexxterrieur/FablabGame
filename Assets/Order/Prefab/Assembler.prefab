@@ -81,6 +81,8 @@ GameObject:
   - component: {fileID: 7656298042321249932}
   - component: {fileID: 8182326179297631210}
   - component: {fileID: 491447529680411004}
+  - component: {fileID: 1361213846635586698}
+  - component: {fileID: 4351853045451574389}
   m_Layer: 0
   m_Name: Assembler
   m_TagString: Assembler

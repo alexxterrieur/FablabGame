@@ -88,6 +88,7 @@ namespace GameManagement
             woodAssembler.SetCurrentOrder(order);
             metalAssembler.SetCurrentOrder(order);
             plasticAssembler.SetCurrentOrder(order);
+            deliveryPointManagement.SetCurrentOrder(order);
         }
         
         public PlayerScore PlayerScore => playerScore;

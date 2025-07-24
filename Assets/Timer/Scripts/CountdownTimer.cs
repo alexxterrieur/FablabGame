@@ -30,6 +30,7 @@ public class CountdownTimer : MonoBehaviour
         remainingTime = totalTime;
         originalFontSize = timerText.fontSize;
         UpdateTimerDisplay();
+        pulseSpeed = 2 * Mathf.PI;
     }
 
     private void Update()
@@ -39,7 +40,7 @@ public class CountdownTimer : MonoBehaviour
         if (remainingTime > 0)
         {
             remainingTime -= Time.deltaTime;
-            UpdateTimerDisplay();
+
 
             if (!isWarningActive && remainingTime <= warningTime)
             {
@@ -50,6 +51,8 @@ public class CountdownTimer : MonoBehaviour
             {
                 PulseEffect();
             }
+            else
+                UpdateTimerDisplay();
 
             if (remainingTime <= 0)
             {
@@ -66,9 +69,18 @@ public class CountdownTimer : MonoBehaviour
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
+    private float nextUpdateTime = 0f;
+
     private void PulseEffect()
     {
         float t = (Mathf.Sin(Time.time * pulseSpeed) + 1f) / 2f;
+
+        if (Time.time >= nextUpdateTime)
+        {
+            UpdateTimerDisplay();
+            nextUpdateTime = Time.time + (Mathf.PI / pulseSpeed); // Un pic toutes les ? / pulseSpeed secondes
+        }
+
         timerText.color = Color.Lerp(normalColor, warningColor, t);
         timerText.fontSize = Mathf.Lerp(42f, 52f, t);
     }

@@ -1159,6 +1159,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 394113775}
     - target: {fileID: 9125393718844719433, guid: 76f3b13c5261e6a4c81eaab0edac447e, type: 3}
+      propertyPath: plasticAssembler
+      value: 
+      objectReference: {fileID: 1096153064}
+    - target: {fileID: 9125393718844719433, guid: 76f3b13c5261e6a4c81eaab0edac447e, type: 3}
       propertyPath: orderChoiceInputHandler
       value: 
       objectReference: {fileID: 286711295}
@@ -1365,6 +1369,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1096153062}
   - component: {fileID: 1096153063}
+  - component: {fileID: 1096153064}
   m_Layer: 0
   m_Name: MillingMachine
   m_TagString: Untagged
@@ -1404,6 +1409,19 @@ MonoBehaviour:
   mainCamera: {fileID: 574979236}
   millingCamera: {fileID: 1415000758}
   miniGame: {fileID: 386638401}
+--- !u!114 &1096153064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096153061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd4ce760d52a3cf4e83099c72a469348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  millingMachine: {fileID: 1669395029}
 --- !u!224 &1184924606 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5632530579807362751, guid: 8b9d2a05e916132488f5c6a29c1a41a8, type: 3}
@@ -1978,7 +1996,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: 0
   m_CullingMask:
@@ -2819,6 +2837,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: MetalAssembler
       objectReference: {fileID: 0}
+    - target: {fileID: 7656298042321249932, guid: acda3772290f77f439df4c4f30f48613, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7656298042321249932, guid: acda3772290f77f439df4c4f30f48613, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2a12a21a5c870194ca52b5ddfc2e7aa4, type: 2}
+    - target: {fileID: 7656298042321249932, guid: acda3772290f77f439df4c4f30f48613, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b5cbe4cb079a6424cad3985ac1b5d296, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shelfItem: {fileID: 0}
+  isDroppedItem: 0
 --- !u!1 &4212169237293122746
 GameObject:
   m_ObjectHideFlags: 0

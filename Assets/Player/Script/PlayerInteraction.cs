@@ -12,10 +12,14 @@ public class PlayerInteraction : MonoBehaviour
     
     public GameObject objectHolding;
     public GameObject dropedObjectPrefab;
+    public GameObject finalItemPrefab;
+
+    [SerializeField] private Animator animator;
 
     private void Start()
     {
-
+        if (animator == null)
+            Debug.LogWarning("Animator not assigned to PlayerInteraction.");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,6 +38,11 @@ public class PlayerInteraction : MonoBehaviour
         {
             deliveryPointManagement = other.transform.parent.GetComponent<DeliveryPointManagement>();
         }
+
+        if(other.gameObject.TryGetComponent(out Highlight hl))
+        {
+            hl.ToggleHighlight(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -50,12 +59,16 @@ public class PlayerInteraction : MonoBehaviour
         {
             deliveryPointManagement = null;
         }
+        if (other.gameObject.TryGetComponent(out Highlight hl))
+        {
+            hl.ToggleHighlight(false);
+        }
     }
     
     public void EquipCraftItem(SO_CollectableItem item)
     {
         if (isCarrying)
-            DropHoldItem();
+            DropHoldItem(dropedObjectPrefab);
 
         EquipItem(item);
 
@@ -63,6 +76,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public void Interact()
     {
+
         if (isCarrying)
         {
             if (collisionAssembler != null)
@@ -74,34 +88,42 @@ public class PlayerInteraction : MonoBehaviour
                     heldItem = null;
                     isCarrying = false;
                     objectHolding.SetActive(false);
+                    //Play interaction animation
+                    animator.SetTrigger("Interact");
                 }
             }
             else if (deliveryPointManagement != null)
             {
-                deliveryPointManagement.DeliverItem();
-
-                heldItem = null;
-                isCarrying = false;
-                objectHolding.SetActive(false);
+                if (deliveryPointManagement.CanDeliver(heldItem))
+                {
+                    //deliveryPointManagement.DeliverItem();
+                    
+                    DropHoldItem(finalItemPrefab).GetComponent<FinalItem>().SetDeliveryPointManagement(deliveryPointManagement);
+                }
             }
             else
             {
-                DropHoldItem();
+                DropHoldItem(dropedObjectPrefab);
             }
         }
         else
         {
             if (collisionShelf != null)
             {
+                //Play interaction animation
+                animator.SetTrigger("Interact");
                 EquipItem(collisionShelf.TakeItem());
             }
-            else if(collisionAssembler != null)
+            else if (collisionAssembler != null)
             {
                 heldItem = collisionAssembler.TryGetCraftItem();
 
-                if(heldItem == null)
+                if (heldItem == null)
                     return;
 
+                //Play interaction animation
+                animator.SetTrigger("Interact");
+                //equip item
                 isCarrying = true;
                 objectHolding.GetComponent<MeshFilter>().mesh = heldItem.itemMesh;
                 objectHolding.SetActive(true);
@@ -117,18 +139,20 @@ public class PlayerInteraction : MonoBehaviour
         objectHolding.SetActive(true);
     }
 
-    private void DropHoldItem()
+    private GameObject DropHoldItem(GameObject itemPrefab)
     {
+        animator.SetTrigger("Drop");
+
         //drop item
         isCarrying = false;
         objectHolding.SetActive(false);
 
-        GameObject dropedItem = Instantiate(dropedObjectPrefab, transform.position, Quaternion.identity);
-        Shelf dropShelf = dropedItem.GetComponent<Shelf>();
-        dropShelf.SetItem(heldItem);
-        dropShelf.isDroppedItem = true;
+        GameObject droppedItem = Instantiate(itemPrefab, transform.position, Quaternion.identity);
+        Shelf dropShelf = droppedItem.GetComponent<Shelf>();
+        dropShelf.SetItem(heldItem, true);
 
         heldItem = null;
+        return droppedItem;
     }
 }
 

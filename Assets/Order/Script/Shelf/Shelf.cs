@@ -15,8 +15,14 @@ public class Shelf : MonoBehaviour
         return shelfItem;
     }
 
-    public void SetItem(SO_CollectableItem item)
+    public void SetItem(SO_CollectableItem item, bool isDropped)
     {
         shelfItem = item;
+        isDroppedItem = isDropped;
+        
+        if (!isDroppedItem)
+            return;
+        
+        GetComponent<MeshFilter>().mesh = item.itemMesh;
     }
 }

@@ -486,6 +486,9 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   characterInputHandler: {fileID: 5806903988838381698}
   orderChoiceInputHandler: {fileID: 0}
+  woodAssembler: {fileID: 0}
+  metalAssembler: {fileID: 0}
+  plasticAssembler: {fileID: 0}
 --- !u!114 &5063624506528668381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,6 +561,7 @@ MonoBehaviour:
   deliveryPointManagement: {fileID: 0}
   objectHolding: {fileID: 199613019211562563}
   dropedObjectPrefab: {fileID: 332438709699883110, guid: bafb47151fcbed5439747b95650dfdcd, type: 3}
+  finalItemPrefab: {fileID: 3479955579394546453, guid: 36ffbe2a99d51564db90c2626528a3b7, type: 3}
 --- !u!114 &5806903988838381698
 MonoBehaviour:
   m_ObjectHideFlags: 0

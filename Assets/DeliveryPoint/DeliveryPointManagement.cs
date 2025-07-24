@@ -6,6 +6,8 @@ namespace DeliveryPoint
 {
     public class DeliveryPointManagement : MonoBehaviour
     {
+        [SerializeField] private Transform entryPoint;
+        
         private SO_Order currentOrder;
         private List<SO_Order> ordersDelivered = new();
         
@@ -14,6 +16,11 @@ namespace DeliveryPoint
         public void SetCurrentOrder(SO_Order order)
         {
             currentOrder = order;
+        }
+
+        public bool CanDeliver(SO_CollectableItem item)
+        {
+            return item == currentOrder.finalItem;
         }
 
         public void DeliverItem()
@@ -26,5 +33,6 @@ namespace DeliveryPoint
         }
         
         public List<SO_Order> OrdersDelivered => ordersDelivered;
+        public Transform EntryPoint => entryPoint;
     }
 }

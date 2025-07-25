@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System;
 
 public class QTEManager : Assembler
 {
@@ -16,6 +17,7 @@ public class QTEManager : Assembler
     [SerializeField] private float spawnInterval = 1.5f;
     [SerializeField] private float moveSpeed = 100f;
     [SerializeField] private int sequenceLength = 2;
+    private int nbrOfValidKey = 0;
 
     [Header("Debug")]
     [SerializeField] private List<QTEKeys> activeKeys = new();
@@ -25,18 +27,18 @@ public class QTEManager : Assembler
 
     private void Start()
     {
+        base.Start();
         OnAssembleurActivityEnd += (bool p, Assembler a) => { inputManager?.OnActivityEnd.Invoke(p, this); };
     }
 
     private IEnumerator QTESequenceRoutine()
     {
+        nbrOfValidKey = 0;
         for (int i = 0; i < sequenceLength; i++)
         {
             SpawnNewQTE();
             yield return new WaitForSeconds(spawnInterval);
         }
-        OnAssembleurActivityEnd?.Invoke(true, this);
-        UnActivate();
     }
 
     private void SpawnNewQTE()
@@ -60,16 +62,29 @@ public class QTEManager : Assembler
     private List<QTEKey> GenerateRandomKeys()
     {
         QTEKey[] allKeys = { QTEKey.Up, QTEKey.Down, QTEKey.Left, QTEKey.Right, QTEKey.A, QTEKey.B };
-        int count = Random.Range(1, 4);
-        return allKeys.OrderBy(x => Random.value).Take(count).ToList();
+        int count = UnityEngine.Random.Range(1, 4);
+        return allKeys.OrderBy(x => UnityEngine.Random.value).Take(count).ToList();
+    }
+
+    private int CountPressedFlags(QTEKey flags)
+    {
+        int count = 0;
+        foreach (QTEKey value in Enum.GetValues(typeof(QTEKey)))
+        {
+            if (flags.HasFlag(value) && Convert.ToInt32(value) != 0)
+                count++;
+        }
+        return count;
     }
 
     private void ValidateKey(QTEKeys key)
     {
-        if (key.RequiredKeys.All(k => inputManager.pressedKey.HasFlag(k)) /*Add Lenght verif*/ )
+        if (key.RequiredKeys.All(k => inputManager.pressedKey.HasFlag(k)) &&
+            CountPressedFlags(inputManager.pressedKey) == key.RequiredKeys.Count)
         {
             Debug.Log("QTE success!");
             key.MarkAsValidated();
+            nbrOfValidKey++;
         }
         else
         {
@@ -77,6 +92,11 @@ public class QTEManager : Assembler
             Debug.Log(key);
             FailKey(key);
             // Let it exit naturally for now
+        }
+        if(nbrOfValidKey >= sequenceLength)
+        {
+            UnActivate();
+            OnAssembleurActivityEnd?.Invoke(true, this);
         }
     }
 

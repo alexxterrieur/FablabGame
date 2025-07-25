@@ -9,6 +9,7 @@ public class AssemblerInteraction : MonoBehaviour
 
     public event Action OnOrderCompleted;
     public Action<SO_CollectableItem> OnOrderCraft;
+    private bool isObjectCraft = false;
 
     private void Start()
     {
@@ -17,8 +18,12 @@ public class AssemblerInteraction : MonoBehaviour
 
     private void EndActivity(bool isSuccess)
     {
+        if (isObjectCraft)
+            return;
+
         if (isSuccess)
         {
+            isObjectCraft = true;
             OnOrderCraft(currentOrder.finalItem);
             return;
         }
@@ -29,6 +34,7 @@ public class AssemblerInteraction : MonoBehaviour
     public void SetCurrentOrder(SO_Order order)
     {
         currentOrder = order;
+        isObjectCraft = false;
     }
 
     public SO_CollectableItem TryGetCraftItem()

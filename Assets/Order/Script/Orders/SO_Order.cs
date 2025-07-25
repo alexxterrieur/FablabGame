@@ -43,6 +43,9 @@ public class SO_Order : ScriptableObject
 
     public void RemoveDeliveredItem()
     {
+        if (!IsOrderComplete())
+            return;
+
         int index = Random.Range(0, items.Count);
         delivered[index] = false;
         OnItemDeliveryStatusChanged?.Invoke(index, false);

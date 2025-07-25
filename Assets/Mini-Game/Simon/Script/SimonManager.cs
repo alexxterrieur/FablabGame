@@ -171,8 +171,8 @@ public class SimonManager : Assembler
         {
             Debug.Log("End MiniGame");
 
-            OnAssembleurActivityEnd?.Invoke(true, this);
             UnActivate();
+            OnAssembleurActivityEnd?.Invoke(true, this);
             //PlayerPrefs.SetInt("Level2Completed", 1);
             //PlayerPrefs.Save();
             //SceneManager.LoadScene("MainMenu");

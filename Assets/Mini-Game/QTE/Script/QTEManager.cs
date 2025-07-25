@@ -25,7 +25,7 @@ public class QTEManager : Assembler
 
     private void Start()
     {
-        OnAssembleurActivityEnd += (bool p) => { inputManager?.OnActivityEnd.Invoke(p); };
+        OnAssembleurActivityEnd += (bool p, Assembler a) => { inputManager?.OnActivityEnd.Invoke(p, this); };
     }
 
     private IEnumerator QTESequenceRoutine()
@@ -35,7 +35,7 @@ public class QTEManager : Assembler
             SpawnNewQTE();
             yield return new WaitForSeconds(spawnInterval);
         }
-        OnAssembleurActivityEnd?.Invoke(true);
+        OnAssembleurActivityEnd?.Invoke(true, this);
         UnActivate();
     }
 
@@ -83,7 +83,7 @@ public class QTEManager : Assembler
     private void FailKey(QTEKeys _)
     {
         Debug.Log("QTE failed (too late)");
-        OnAssembleurActivityEnd?.Invoke(false);
+        OnAssembleurActivityEnd?.Invoke(false, this);
         UnActivate();
     }
 

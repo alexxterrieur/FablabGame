@@ -12,7 +12,7 @@ public class AssemblerInteraction : MonoBehaviour
 
     private void Start()
     {
-        assembler.OnAssembleurActivityEnd += EndActivity;
+        assembler.OnAssembleurActivityExit += EndActivity;
     }
 
     private void EndActivity(bool isSuccess)

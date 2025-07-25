@@ -138,7 +138,7 @@ public class SimonManager : Assembler
         {
             StartCoroutine(FlashButton(buttonIndex, wrongColor));
 
-            OnAssembleurActivityEnd?.Invoke(false);
+            OnAssembleurActivityEnd?.Invoke(false, this);
             UnActivate();
 
             if (!endless && sequence.Count >= targetScore)
@@ -171,7 +171,7 @@ public class SimonManager : Assembler
         {
             Debug.Log("End MiniGame");
 
-            OnAssembleurActivityEnd?.Invoke(true);
+            OnAssembleurActivityEnd?.Invoke(true, this);
             UnActivate();
             //PlayerPrefs.SetInt("Level2Completed", 1);
             //PlayerPrefs.Save();

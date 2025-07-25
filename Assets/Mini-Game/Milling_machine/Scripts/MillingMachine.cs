@@ -103,7 +103,7 @@ public class MillingMachine : MonoBehaviour
 
                 if (nbrOfPerfectForm >= data.forms.Count)
                 {
-                    millingMachineManager.OnAssembleurActivityEnd(true);
+                    millingMachineManager.OnAssembleurActivityEnd(true, millingMachineManager);
                     ResetMillingMachine();
                     millingMachineManager.UnActivate();
                 }
@@ -114,7 +114,7 @@ public class MillingMachine : MonoBehaviour
                 /* Destroy the material end Drilling       */
                 Destroy(millingButton.gameObject);
 
-                millingMachineManager.OnAssembleurActivityEnd(false);
+                millingMachineManager.OnAssembleurActivityEnd(false, millingMachineManager);
                 ResetMillingMachine();
                 millingMachineManager.UnActivate();
 

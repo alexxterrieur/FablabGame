@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CraftAnim : MonoBehaviour
@@ -5,7 +6,7 @@ public class CraftAnim : MonoBehaviour
     [SerializeField] ParticleSystem craftParticle;
     [SerializeField] Animator playerAnimator; //play show item
     [SerializeField] CameraCraftMovement cameraMovement; //play movement
-
+    public Action OnAssembleurAnimExit;
     public void PlayParticleSystem()
     {
         craftParticle.Play();
@@ -17,6 +18,7 @@ public class CraftAnim : MonoBehaviour
     {
         //player anim, regarde la cam et montre lobjet
         //equip object
+        OnAssembleurAnimExit.Invoke();
         //rétablir mouvements joueur
     }
 

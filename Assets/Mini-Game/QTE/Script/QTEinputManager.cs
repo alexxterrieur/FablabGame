@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class QTEInputManager : MonoBehaviour, IPlayerInputsControlled
 {
 
-    public Action<bool> OnActivityEnd;
+    public Action<bool, Assembler> OnActivityEnd;
     public QTEKey pressedKey { get; private set; }
 
     private void SetKeyState(InputAction.CallbackContext context, QTEKey key)

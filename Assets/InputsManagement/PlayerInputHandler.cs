@@ -1,5 +1,6 @@
 ﻿using GameManagement;
 using OrderChoice;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,9 +18,9 @@ namespace InputsManagement
         [SerializeField] private OrderChoiceManager orderChoiceInputHandler;
 
         [Header("Assemblers Reference")]
-        [SerializeField] private SimonInputManager woodAssembler;
+        [SerializeField] private SimonInputManager plasticAssembler;
         [SerializeField] private QTEInputManager metalAssembler;
-        [SerializeField] private MillingInputHandler plasticAssembler;
+        [SerializeField] private MillingInputHandler woodAssembler;
         
         
         private IPlayerInputsControlled currentInputHandler;
@@ -142,16 +143,29 @@ namespace InputsManagement
             currentInputHandler = woodAssembler;
             hasChangedInputHandler = true;
 
-            woodAssembler.SimonManager.OnAssembleurActivityEnd += ReceiveAssemblerActivityEnd;
+            woodAssembler.millingMachine.millingMachineManager.OnAssembleurActivityEnd += ReceiveAssemblerActivityEnd;
         }
 
-        private void ReceiveAssemblerActivityEnd(bool _)
+        private void ReceiveAssemblerActivityEnd(bool _, Assembler assembler)
         {
             //woodAssembler.SimonManager.OnAssembleurActivityEnd -= ReceiveWoodAssemblerActivityEnd;
 
             currentInputHandler.ResetInputs();
-            currentInputHandler = characterInputHandler;
+            currentInputHandler = null;
             hasChangedInputHandler = true;
+
+            StartCoroutine(WaitForCraft(assembler));
+
+        }
+
+        private IEnumerator WaitForCraft(Assembler assembler)
+        {
+            yield return new WaitForSeconds(4f);
+            currentInputHandler = characterInputHandler;
+            currentInputHandler.ResetInputs();
+            hasChangedInputHandler = true;
+            assembler.OnAssembleurActivityExit(true);
+
         }
 
         private void ReceiveMetalAssemblerOrderCompleted()
@@ -164,7 +178,7 @@ namespace InputsManagement
 
         private void ReceivePlasticAssemblerOrderCompleted()
         {
-            plasticAssembler.millingMachine.millingMachineManager.OnAssembleurActivityEnd += ReceiveAssemblerActivityEnd;
+            plasticAssembler.SimonManager.OnAssembleurActivityEnd += ReceiveAssemblerActivityEnd;
             currentInputHandler.ResetInputs();
             currentInputHandler = plasticAssembler;
             hasChangedInputHandler = true;

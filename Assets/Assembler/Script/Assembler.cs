@@ -3,7 +3,8 @@ using UnityEngine;
 
 public abstract class Assembler : MonoBehaviour
 {
-    public Action<bool> OnAssembleurActivityEnd;
+    public Action<bool, Assembler> OnAssembleurActivityEnd;
+    public Action<bool> OnAssembleurActivityExit;
     public abstract void Activate();
     public abstract void UnActivate();
 
@@ -12,9 +13,10 @@ public abstract class Assembler : MonoBehaviour
     private void Start()
     {
         OnAssembleurActivityEnd += HandleAssemblerActivityEnd;
+        animator.GetComponent<CraftAnim>().OnAssembleurAnimExit = () => OnAssembleurActivityExit.Invoke(true);
     }
 
-    private void HandleAssemblerActivityEnd(bool isSuccessful)
+    private void HandleAssemblerActivityEnd(bool isSuccessful, Assembler assembler)
     {
         if (isSuccessful)
         {

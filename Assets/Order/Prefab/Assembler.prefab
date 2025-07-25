@@ -284,6 +284,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Smock craft
       objectReference: {fileID: 0}
+    - target: {fileID: 6673578089012211549, guid: a793699f5f48f02449166d0e32d95e53, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

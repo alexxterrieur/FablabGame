@@ -11,6 +11,7 @@ namespace Player.Script
         private Vector2 moveInput;
         private Vector3 direction;
         private Rigidbody rb;
+        private float currentSpeed;
 
         [SerializeField] private Animator animator;
         [SerializeField] private PlayerInteraction interaction;
@@ -18,6 +19,8 @@ namespace Player.Script
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
+            
+            currentSpeed = moveSpeed;
         }
 
         public void SetDirection(Vector2 input)
@@ -41,8 +44,13 @@ namespace Player.Script
                 Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
                 transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, rotationSpeed * Time.fixedDeltaTime);
 
-                rb.MovePosition(rb.position + direction.normalized * (moveSpeed * Time.fixedDeltaTime));
+                rb.MovePosition(rb.position + direction.normalized * (currentSpeed * Time.fixedDeltaTime));
             }
+        }
+        
+        public void SlowDownMovement(float slowdownFactor)
+        {
+            currentSpeed = moveSpeed * slowdownFactor;
         }
 
         private void Update()

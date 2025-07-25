@@ -15,3 +15,4 @@ MonoBehaviour:
   itemName: Chair
   itemIcon: {fileID: 0}
   itemMesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  slowdownMovementFactor: 0.5

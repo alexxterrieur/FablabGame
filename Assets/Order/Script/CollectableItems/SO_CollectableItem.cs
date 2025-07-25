@@ -6,4 +6,5 @@ public class SO_CollectableItem : ScriptableObject
     public string itemName;
     public Sprite itemIcon;
     public Mesh itemMesh;
+    [Range(0, 1)] public float slowdownMovementFactor = 1;
 }

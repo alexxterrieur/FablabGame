@@ -1,3 +1,4 @@
+using System;
 using DeliveryPoint;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ public class PlayerInteraction : MonoBehaviour
     public GameObject finalItemPrefab;
 
     [SerializeField] private Animator animator;
+    
+    public event Action<SO_CollectableItem> OnItemEquipped; 
 
     private void Start()
     {
@@ -70,7 +73,6 @@ public class PlayerInteraction : MonoBehaviour
             DropHoldItem(dropedObjectPrefab);
 
         EquipItem(item);
-
     }
 
     public void Interact()
@@ -89,14 +91,13 @@ public class PlayerInteraction : MonoBehaviour
                     objectHolding.SetActive(false);
                     //Play interaction animation
                     animator.SetTrigger("Interact");
+                    OnItemEquipped?.Invoke(null);
                 }
             }
             else if (deliveryPointManagement != null)
             {
                 if (deliveryPointManagement.CanDeliver(heldItem))
                 {
-                    //deliveryPointManagement.DeliverItem();
-                    
                     DropHoldItem(finalItemPrefab).GetComponent<FinalItem>().SetDeliveryPointManagement(deliveryPointManagement);
                 }
             }
@@ -136,6 +137,8 @@ public class PlayerInteraction : MonoBehaviour
         isCarrying = true;
         objectHolding.GetComponent<MeshFilter>().mesh = heldItem.itemMesh;
         objectHolding.SetActive(true);
+        
+        OnItemEquipped?.Invoke(item);
     }
 
     private GameObject DropHoldItem(GameObject itemPrefab)
@@ -150,6 +153,7 @@ public class PlayerInteraction : MonoBehaviour
         droppedItem.GetComponent<Shelf>()?.SetItem(heldItem, true);
 
         heldItem = null;
+        OnItemEquipped?.Invoke(null);
         return droppedItem;
     }
 }

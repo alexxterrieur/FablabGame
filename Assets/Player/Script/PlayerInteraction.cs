@@ -1,5 +1,4 @@
 using DeliveryPoint;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
@@ -148,8 +147,7 @@ public class PlayerInteraction : MonoBehaviour
         objectHolding.SetActive(false);
 
         GameObject droppedItem = Instantiate(itemPrefab, transform.position, Quaternion.identity);
-        Shelf dropShelf = droppedItem.GetComponent<Shelf>();
-        dropShelf.SetItem(heldItem, true);
+        droppedItem.GetComponent<Shelf>()?.SetItem(heldItem, true);
 
         heldItem = null;
         return droppedItem;

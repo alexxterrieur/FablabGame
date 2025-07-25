@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: ab46414ec62057b4fbbc9f748e05c9ee, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 4199596b204e3b948a6d8a5a75b86c0a, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -259,7 +259,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 9125393718844719433}
-        m_TargetAssemblyTypeName: Player.Script.PlayerInputHandler, Assembly-CSharp
+        m_TargetAssemblyTypeName: InputsManagement.PlayerInputHandler, Assembly-CSharp
         m_MethodName: ReceiveBInput
         m_Mode: 0
         m_Arguments:
@@ -324,9 +324,9 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   characterInputHandler: {fileID: 5806903988838381698}
   orderChoiceInputHandler: {fileID: 0}
-  woodAssembler: {fileID: 0}
-  metalAssembler: {fileID: 0}
   plasticAssembler: {fileID: 0}
+  metalAssembler: {fileID: 0}
+  woodAssembler: {fileID: 0}
 --- !u!114 &5063624506528668381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,7 +401,8 @@ MonoBehaviour:
   deliveryPointManagement: {fileID: 0}
   objectHolding: {fileID: 199613019211562563}
   dropedObjectPrefab: {fileID: 332438709699883110, guid: bafb47151fcbed5439747b95650dfdcd, type: 3}
-  finalItemPrefab: {fileID: 3479955579394546453, guid: 36ffbe2a99d51564db90c2626528a3b7, type: 3}
+  finalItemPrefab: {fileID: 332438709699883110, guid: 628f92648d4194143bf117556d24308e, type: 3}
+  animator: {fileID: 8552045178051550853}
 --- !u!114 &5806903988838381698
 MonoBehaviour:
   m_ObjectHideFlags: 0

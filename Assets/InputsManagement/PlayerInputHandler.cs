@@ -146,15 +146,23 @@ namespace InputsManagement
             woodAssembler.millingMachine.millingMachineManager.OnAssembleurActivityEnd += ReceiveAssemblerActivityEnd;
         }
 
-        private void ReceiveAssemblerActivityEnd(bool _, Assembler assembler)
+        private void ReceiveAssemblerActivityEnd(bool value, Assembler assembler)
         {
             //woodAssembler.SimonManager.OnAssembleurActivityEnd -= ReceiveWoodAssemblerActivityEnd;
 
-            currentInputHandler.ResetInputs();
-            currentInputHandler = null;
+            currentInputHandler?.ResetInputs();
             hasChangedInputHandler = true;
 
-            StartCoroutine(WaitForCraft(assembler));
+            if (value)
+            {
+                currentInputHandler = null;
+                StartCoroutine(WaitForCraft(assembler));
+            }
+            else
+            {
+                currentInputHandler = characterInputHandler;
+                assembler.OnAssembleurActivityExit(false);
+            }
 
         }
 
@@ -165,7 +173,6 @@ namespace InputsManagement
             currentInputHandler.ResetInputs();
             hasChangedInputHandler = true;
             assembler.OnAssembleurActivityExit(true);
-
         }
 
         private void ReceiveMetalAssemblerOrderCompleted()

@@ -10,7 +10,7 @@ public abstract class Assembler : MonoBehaviour
 
     [SerializeField] private Animator animator;
 
-    private void Start()
+    protected void Start()
     {
         OnAssembleurActivityEnd += HandleAssemblerActivityEnd;
         animator.GetComponent<CraftAnim>().OnAssembleurAnimExit = () => OnAssembleurActivityExit.Invoke(true);

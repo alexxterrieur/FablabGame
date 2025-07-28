@@ -43,6 +43,9 @@ public class CameraCraftMovement : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, originalPosition, Time.deltaTime * transitionbackSpeed);
             transform.rotation = Quaternion.Lerp(transform.rotation, originalRotation, Time.deltaTime * transitionbackSpeed);
 
+            if(Vector3.Distance(transform.position, originalPosition) < 3f)
+                camera.orthographic = true;
+
             if (Vector3.Distance(transform.position, originalPosition) < 0.05f)
                 returning = false;
         }
@@ -70,8 +73,6 @@ public class CameraCraftMovement : MonoBehaviour
 
     public void ReturnToOriginalView()
     {
-        camera.orthographic = true;
-
         returning = true;
         movingToCraft = false;
     }

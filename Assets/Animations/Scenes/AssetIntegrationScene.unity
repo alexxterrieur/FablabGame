@@ -2905,6 +2905,14 @@ PrefabInstance:
       propertyPath: assembler
       value: 
       objectReference: {fileID: 880056022}
+    - target: {fileID: 1855135398033680880, guid: 78f7b0efafaec1141a1c364efe908a13, type: 3}
+      propertyPath: m_Size.z
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6777254776505175869, guid: 78f7b0efafaec1141a1c364efe908a13, type: 3}
+      propertyPath: m_Size.z
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6900383428880585670, guid: 78f7b0efafaec1141a1c364efe908a13, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.39

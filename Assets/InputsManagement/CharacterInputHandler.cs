@@ -51,6 +51,8 @@ namespace InputsManagement
 
         public void ReceiveBInput(InputAction.CallbackContext context)
         {
+            if (context.started)
+                playerInteraction.ThrowItem();
         }
 
         public void ReceiveStartInput(InputAction.CallbackContext context)

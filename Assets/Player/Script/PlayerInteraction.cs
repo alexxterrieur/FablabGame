@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    [Header("Item")]
     public bool isCarrying;
     public SO_CollectableItem heldItem;
+    [SerializeField] private float throwForce;
+    
+    [Header("Collision References")]
     public Shelf collisionShelf;
     public AssemblerInteraction collisionAssembler;
     public DeliveryPointManagement deliveryPointManagement;
+    public DroppedItem collisionDroppedItem;
     
+    [Header("Prefabs References")]
     public GameObject objectHolding;
     public GameObject dropedObjectPrefab;
     public GameObject finalItemPrefab;
@@ -40,6 +46,10 @@ public class PlayerInteraction : MonoBehaviour
         {
             deliveryPointManagement = other.transform.parent.GetComponent<DeliveryPointManagement>();
         }
+        else if (other.transform.parent.CompareTag("DroppedItem"))
+        {
+            collisionDroppedItem = other.transform.parent.GetComponent<DroppedItem>();
+        }
 
         if(other.gameObject.TryGetComponent(out Highlight hl))
         {
@@ -61,6 +71,11 @@ public class PlayerInteraction : MonoBehaviour
         {
             deliveryPointManagement = null;
         }
+        else if (other.transform.parent.CompareTag("DroppedItem"))
+        {
+            collisionDroppedItem = null;
+        }
+        
         if (other.gameObject.TryGetComponent(out Highlight hl))
         {
             hl.ToggleHighlight(false);
@@ -86,12 +101,9 @@ public class PlayerInteraction : MonoBehaviour
 
                 if (delivered)
                 {
-                    heldItem = null;
-                    isCarrying = false;
-                    objectHolding.SetActive(false);
-                    //Play interaction animation
                     animator.SetTrigger("Interact");
-                    OnItemEquipped?.Invoke(null);
+
+                    UnequipItem(null);
                 }
             }
             else if (deliveryPointManagement != null)
@@ -113,6 +125,12 @@ public class PlayerInteraction : MonoBehaviour
                 //Play interaction animation
                 animator.SetTrigger("Interact");
                 EquipItem(collisionShelf.TakeItem());
+            }
+            else if (collisionDroppedItem != null)
+            {
+                //Play interaction animation
+                animator.SetTrigger("Interact");
+                EquipItem(collisionDroppedItem.TakeItem());
             }
             else if (collisionAssembler != null)
             {
@@ -140,21 +158,47 @@ public class PlayerInteraction : MonoBehaviour
         
         OnItemEquipped?.Invoke(item);
     }
+    
+    private GameObject UnequipItem(GameObject itemPrefab)
+    {
+        if (!isCarrying) return null;
+
+        isCarrying = false;
+        objectHolding.SetActive(false);
+
+        GameObject unequippedItem = null;
+        
+        if (itemPrefab)
+        {
+            unequippedItem = Instantiate(itemPrefab, objectHolding.transform.position, Quaternion.identity);
+            unequippedItem.GetComponent<DroppedItem>()?.SetItem(heldItem);
+        }
+
+        heldItem = null;
+        OnItemEquipped?.Invoke(null);
+        return unequippedItem;
+    }
 
     private GameObject DropHoldItem(GameObject itemPrefab)
     {
         animator.SetTrigger("Drop");
+        
+        return UnequipItem(itemPrefab);
+    }
 
-        //drop item
-        isCarrying = false;
-        objectHolding.SetActive(false);
+    public void ThrowItem()
+    {
+        if (!isCarrying) return;
+        
+        animator.SetTrigger("Throw");
+        
+        SO_CollectableItem formerHeldItem = heldItem;
 
-        GameObject droppedItem = Instantiate(itemPrefab, transform.position, Quaternion.identity);
-        droppedItem.GetComponent<Shelf>()?.SetItem(heldItem, true);
-
-        heldItem = null;
-        OnItemEquipped?.Invoke(null);
-        return droppedItem;
+        if (UnequipItem(dropedObjectPrefab).GetComponent<DroppedItem>() is {} droppedItemComponent)
+        {
+            droppedItemComponent.SetItem(formerHeldItem);
+            droppedItemComponent.ThrowItem(transform.forward + Vector3.up * 0.5f, throwForce);
+        }
     }
 }
 

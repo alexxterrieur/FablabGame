@@ -397,9 +397,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCarrying: 0
   heldItem: {fileID: 0}
+  throwForce: 7
   collisionShelf: {fileID: 0}
   collisionAssembler: {fileID: 0}
   deliveryPointManagement: {fileID: 0}
+  collisionDroppedItem: {fileID: 0}
   objectHolding: {fileID: 199613019211562563}
   dropedObjectPrefab: {fileID: 332438709699883110, guid: bafb47151fcbed5439747b95650dfdcd, type: 3}
   finalItemPrefab: {fileID: 332438709699883110, guid: 628f92648d4194143bf117556d24308e, type: 3}

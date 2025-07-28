@@ -27,6 +27,20 @@ public class DroppedItem : MonoBehaviour
         item = newItem;
         GetComponent<MeshFilter>().mesh = item.itemMesh;
     }
+    
+    public void DropItem()
+    {
+        if (GetComponent<Rigidbody>() is { } rbody)
+        {
+            rb = rbody;
+            rb.mass = 1000;
+            rb.isKinematic = false;
+        }
+        else
+            Debug.LogError($"Rigidbody component is missing on the dropped item {gameObject.name}.");
+        
+        StartCoroutine(CheckGround());
+    }
 
     public void ThrowItem(Vector3 throwDirection, float throwForce)
     {

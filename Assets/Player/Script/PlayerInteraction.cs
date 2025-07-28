@@ -182,8 +182,15 @@ public class PlayerInteraction : MonoBehaviour
     private GameObject DropHoldItem(GameObject itemPrefab)
     {
         animator.SetTrigger("Drop");
-        
-        return UnequipItem(itemPrefab);
+
+        if (UnequipItem(itemPrefab) is {} item)
+        {
+            if (item.GetComponent<DroppedItem>() is { } droppedItemComponent)
+                droppedItemComponent.DropItem();
+            
+            return item;
+        }
+        return null;
     }
 
     public void ThrowItem()

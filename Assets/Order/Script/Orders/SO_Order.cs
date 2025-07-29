@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,57 +10,77 @@ public class SO_Order : ScriptableObject
     public string orderName;
     public Sprite orderIcon;
     public Materials mainMaterial;
-    public List<SO_CollectableItem> items = new List<SO_CollectableItem>();
     public SO_CollectableItem finalItem;
     public int orderPoints;
-
-    [HideInInspector]
-    public List<bool> delivered = new List<bool>();
     
-    public event Action<int, bool> OnItemDeliveryStatusChanged;
+    [SerializeField] private List<MaterialAmount> materials = new();
+    private Dictionary<SO_CollectableItem, int> itemDeliveryCount = new();
+    public event Action<SO_CollectableItem, int, int> OnMaterialAmountChanged; 
 
     public void InitDeliveryStatus()
     {
-        delivered.Clear();
-        for (int i = 0; i < items.Count; i++)
-        {
-            delivered.Add(false);
-        }
+        itemDeliveryCount.Clear();
     }
 
-    public bool MarkItemDelivered(SO_CollectableItem item)
+    public bool TryAddItem(SO_CollectableItem item)
     {
-        for (int i = 0; i < items.Count; i++)
-        {
-            if (items[i] == item && !delivered[i])
-            {
-                delivered[i] = true;
-                OnItemDeliveryStatusChanged?.Invoke(i, true);
-                return true;
-            }
-        }
-        return false;
+        if (GetItemCount(item) >= GetItemMaxAmount(item))
+            return false;
+
+        itemDeliveryCount.TryAdd(item, 0);
+        itemDeliveryCount[item]++;
+        
+        NotifyItemAmountChanged(item);
+        return true;
     }
 
     public void RemoveDeliveredItem()
     {
         if (!IsOrderComplete())
             return;
-
-        int index = Random.Range(0, items.Count);
-        delivered[index] = false;
-        OnItemDeliveryStatusChanged?.Invoke(index, false);
+        
+        int index = Random.Range(0, materials.Count);
+        SO_CollectableItem item = materials[index].item;
+        if (itemDeliveryCount.TryGetValue(item, out int itemCount) && itemCount > 0)
+        {
+            itemDeliveryCount[item]--;
+            NotifyItemAmountChanged(item);
+        }
     }
 
     public bool IsOrderComplete()
     {
-        foreach (bool isDelivered in delivered)
-        {
-            if (!isDelivered)
-                return false;
-        }
-        return true;
+        return materials.All(material => material.amount == itemDeliveryCount[material.item]);
     }
+    
+    private void NotifyItemAmountChanged(SO_CollectableItem item)
+    {
+        OnMaterialAmountChanged?.Invoke(item, GetItemCount(item), GetItemMaxAmount(item));
+    }
+    
+    private int GetItemCount(SO_CollectableItem item)
+    {
+        return itemDeliveryCount.GetValueOrDefault(item, 0);
+    }
+    
+    private int GetItemMaxAmount(SO_CollectableItem item)
+    {
+        foreach (MaterialAmount material in materials)
+        {
+            if (material.item == item)
+            {
+                return material.amount;
+            }
+        }
+        return 0;
+    }
+    
+    public int GetAllNeededMaterialsCount()
+    {
+        return materials.Sum(material => material.amount);
+    }
+    
+    public List<MaterialAmount> Materials => materials;
 }
 
 

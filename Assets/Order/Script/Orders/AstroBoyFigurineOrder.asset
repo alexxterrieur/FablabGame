@@ -15,10 +15,8 @@ MonoBehaviour:
   orderName: Astro Boy Figurine
   orderIcon: {fileID: 0}
   mainMaterial: 1
-  items:
-  - {fileID: 11400000, guid: a5f3f296058344d419b706aa108fa509, type: 2}
-  - {fileID: 11400000, guid: a5f3f296058344d419b706aa108fa509, type: 2}
-  - {fileID: 11400000, guid: a5f3f296058344d419b706aa108fa509, type: 2}
   finalItem: {fileID: 11400000, guid: c3abbec09c27e5241a1439abc8d5235e, type: 2}
   orderPoints: 4
-  delivered: 000000
+  materials:
+  - item: {fileID: 11400000, guid: a5f3f296058344d419b706aa108fa509, type: 2}
+    amount: 3

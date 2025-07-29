@@ -15,9 +15,8 @@ MonoBehaviour:
   orderName: Table
   orderIcon: {fileID: 0}
   mainMaterial: 0
-  items:
-  - {fileID: 11400000, guid: 53c1f22a71aade44aa568126c90c0a0a, type: 2}
-  - {fileID: 11400000, guid: 53c1f22a71aade44aa568126c90c0a0a, type: 2}
   finalItem: {fileID: 11400000, guid: 65896dd8f9f4bb9439902df3874982e4, type: 2}
   orderPoints: 5
-  delivered: 0000
+  materials:
+  - item: {fileID: 11400000, guid: 53c1f22a71aade44aa568126c90c0a0a, type: 2}
+    amount: 5

@@ -37,7 +37,7 @@ namespace OrderChoice
             orderNameText.text = order.orderName;
             orderScoreText.text = $"Points: {order.orderPoints}";
             orderMainMaterialText.text = $"Main Material: {order.mainMaterial}";
-            orderNbItemsRequiredText.text = $"Items Required: {order.items.Count}";
+            orderNbItemsRequiredText.text = $"Items Required: {order.GetAllNeededMaterialsCount()}";
         }
     }
 }

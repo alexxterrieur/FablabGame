@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bf2fbe9c8595b54eb1e89b299fe206e, type: 3}
   m_Name: SO_Order_Boite a bijou
   m_EditorClassIdentifier: 
-  orderName: "Boite \xE0 bijoux"
+  orderName: Boite a bijoux
   orderIcon: {fileID: 21300000, guid: 5804b6d62686c554bbff56a5479daaee, type: 3}
   mainMaterial: 0
   finalItem: {fileID: 11400000, guid: 3d4c1377bf0b2d4478f8408ed7c79972, type: 2}

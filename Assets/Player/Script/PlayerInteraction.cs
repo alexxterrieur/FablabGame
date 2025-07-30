@@ -56,10 +56,10 @@ public class PlayerInteraction : MonoBehaviour
                 collisionCustom = parent.GetComponent<CustomManager>();
                 break;
 
-        }
-        else if (other.transform.parent.CompareTag("DroppedItem"))
-        {
-            collisionDroppedItem = other.transform.parent.GetComponent<DroppedItem>();
+            case "DroppedItem":
+                collisionDroppedItem = other.transform.parent.GetComponent<DroppedItem>();
+                break;
+
         }
 
         if (other.gameObject.TryGetComponent(out Highlight hl))
@@ -92,10 +92,9 @@ public class PlayerInteraction : MonoBehaviour
                 collisionCustom = null;
                 break;
 
-        }
-        else if (other.transform.parent.CompareTag("DroppedItem"))
-        {
-            collisionDroppedItem = null;
+            case "DroppedItem":
+                collisionDroppedItem = null;
+                break;
         }
         
 

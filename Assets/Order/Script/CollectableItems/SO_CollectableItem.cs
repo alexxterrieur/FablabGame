@@ -6,6 +6,6 @@ public class SO_CollectableItem : ScriptableObject
     public string itemName;
     public Sprite itemIcon;
     public Color itemColor;
-    public Mesh itemMesh;
+    public Mesh itemMesh; //Gameobjets pour gerer taille + material
     [Range(0, 1)] public float slowdownMovementFactor = 1;
 }

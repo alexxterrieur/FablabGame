@@ -15,5 +15,5 @@ MonoBehaviour:
   itemName: Metal
   itemIcon: {fileID: 21300000, guid: 3be935822c7cee34db00418af66e7a90, type: 3}
   itemColor: {r: 0.7254902, g: 0.7254902, b: 0.7254902, a: 1}
-  itemMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  itemMesh: {fileID: -1749924378875658031, guid: 56cf948128eb52b41b898afb4418eab1, type: 3}
   slowdownMovementFactor: 0.5

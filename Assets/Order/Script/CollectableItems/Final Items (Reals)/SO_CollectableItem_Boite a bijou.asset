@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a69aa6d1eab1f84fa2a36d0c26d2342, type: 3}
-  m_Name: PlasticItem
+  m_Name: SO_CollectableItem_Boite a bijou
   m_EditorClassIdentifier: 
-  itemName: Plastique
-  itemIcon: {fileID: 21300000, guid: 1103f605249601f43a7dff752baaeed3, type: 3}
-  itemColor: {r: 0.3882353, g: 0.8039216, b: 0.6784314, a: 1}
-  itemMesh: {fileID: 4583407886439279732, guid: 2f6c9f43984bd4d4889af09a4f5f99de, type: 3}
-  slowdownMovementFactor: 0.85
+  itemName: "Boite \xE0 bijou"
+  itemIcon: {fileID: 21300000, guid: 5804b6d62686c554bbff56a5479daaee, type: 3}
+  itemColor: {r: 0, g: 0, b: 0, a: 0}
+  itemMesh: {fileID: -4453806867672132484, guid: 45f1c6a124bc5b9409433f79ac51d598, type: 3}
+  slowdownMovementFactor: 1

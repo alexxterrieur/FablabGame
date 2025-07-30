@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bf2fbe9c8595b54eb1e89b299fe206e, type: 3}
+  m_Name: SO_Order_Jeu en bois
+  m_EditorClassIdentifier: 
+  orderName: "\xC9chiquier"
+  orderIcon: {fileID: 21300000, guid: 56b5b5f403e9db149b24170e4c4576cc, type: 3}
+  mainMaterial: 0
+  finalItem: {fileID: 11400000, guid: ba13ffb011e34b3498a28b45789694b7, type: 2}
+  orderPoints: 175
+  materials:
+  - item: {fileID: 11400000, guid: 53c1f22a71aade44aa568126c90c0a0a, type: 2}
+    amount: 4

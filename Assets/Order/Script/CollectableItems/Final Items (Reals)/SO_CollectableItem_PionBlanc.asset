@@ -15,5 +15,5 @@ MonoBehaviour:
   itemName: Pion Blanc
   itemIcon: {fileID: 21300000, guid: 4805326d7445f8341b2254c10dec187c, type: 3}
   itemColor: {r: 0, g: 0, b: 0, a: 0}
-  itemMesh: {fileID: 3525479140033381557, guid: adc9dfecfefb2b64b856a556b41c90fa, type: 3}
+  itemMesh: {fileID: 3390558720134950976, guid: 3cc038eb274e21f40947305a24f3e205, type: 3}
   slowdownMovementFactor: 1

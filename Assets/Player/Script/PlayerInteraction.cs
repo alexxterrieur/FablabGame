@@ -14,6 +14,7 @@ public class PlayerInteraction : MonoBehaviour
     public AssemblerInteraction collisionAssembler;
     public DeliveryPointManagement deliveryPointManagement;
     public DroppedItem collisionDroppedItem;
+    public CustomManager collisionCustom;
     
     [Header("Prefabs References")]
     public GameObject objectHolding;
@@ -32,26 +33,36 @@ public class PlayerInteraction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.parent.CompareTag("Shelf"))
+        Transform parent = other.transform.parent;
+        if (parent == null) return;
+
+        switch (parent.tag)
         {
-            collisionShelf = other.transform.parent.GetComponent<Shelf>();
-        }
-        else if (other.transform.parent.CompareTag("Assembler"))
-        {
-            collisionAssembler = other.transform.parent.GetComponent<AssemblerInteraction>();
-            collisionAssembler.OnOrderCraft = null;
-            collisionAssembler.OnOrderCraft += EquipCraftItem;
-        }
-        else if (other.transform.parent.CompareTag("DeliveryPoint"))
-        {
-            deliveryPointManagement = other.transform.parent.GetComponent<DeliveryPointManagement>();
+            case "Shelf":
+                collisionShelf = parent.GetComponent<Shelf>();
+                break;
+
+            case "Assembler":
+                collisionAssembler = parent.GetComponent<AssemblerInteraction>();
+                collisionAssembler.OnOrderCraft = null;
+                collisionAssembler.OnOrderCraft += EquipCraftItem;
+                break;
+
+            case "DeliveryPoint":
+                deliveryPointManagement = parent.GetComponent<DeliveryPointManagement>();
+                break;
+
+            case "Custom":
+                collisionCustom = parent.GetComponent<CustomManager>();
+                break;
+
         }
         else if (other.transform.parent.CompareTag("DroppedItem"))
         {
             collisionDroppedItem = other.transform.parent.GetComponent<DroppedItem>();
         }
 
-        if(other.gameObject.TryGetComponent(out Highlight hl))
+        if (other.gameObject.TryGetComponent(out Highlight hl))
         {
             hl.ToggleHighlight(true);
         }
@@ -59,23 +70,35 @@ public class PlayerInteraction : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.transform.parent.CompareTag("Shelf"))
+
+        Transform parent = other.transform.parent;
+        if (parent == null) return;
+
+        switch (parent.tag)
         {
-            collisionShelf = null;
-        }
-        else if (other.transform.parent.CompareTag("Assembler"))
-        {
-            collisionAssembler = null;
-        }
-        else if (other.transform.parent.CompareTag("DeliveryPoint"))
-        {
-            deliveryPointManagement = null;
+            case "Shelf":
+                collisionShelf = null;
+                break;
+
+            case "Assembler":
+                collisionAssembler = null;
+                break;
+
+            case "DeliveryPoint":
+                deliveryPointManagement = null;
+                break;
+
+            case "Custom":
+                collisionCustom = null;
+                break;
+
         }
         else if (other.transform.parent.CompareTag("DroppedItem"))
         {
             collisionDroppedItem = null;
         }
         
+
         if (other.gameObject.TryGetComponent(out Highlight hl))
         {
             hl.ToggleHighlight(false);
@@ -113,6 +136,12 @@ public class PlayerInteraction : MonoBehaviour
                     DropHoldItem(finalItemPrefab).GetComponent<FinalItem>().SetDeliveryPointManagement(deliveryPointManagement);
                 }
             }
+
+            else if(collisionCustom != null && heldItem.IsFinalItem)
+            {
+                collisionCustom.Interact(heldItem);
+            }
+
             else
             {
                 DropHoldItem(dropedObjectPrefab);

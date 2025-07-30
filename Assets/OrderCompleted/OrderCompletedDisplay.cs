@@ -7,9 +7,12 @@ namespace OrderCompleted
     {
         [SerializeField] private Image orderImage;
 
-        public void DisplayOrder(SO_Order order)
+        public void DisplayOrder(FinalObject order)
         {
-            orderImage.sprite = order.orderIcon;
+            if(order.customTex == null)
+                orderImage.sprite = order.order.orderIcon;
+            else
+                orderImage.sprite = Utils.ConvertToSprite(order.customTex);
         }
     }
 }

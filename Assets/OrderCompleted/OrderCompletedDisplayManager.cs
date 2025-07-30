@@ -31,8 +31,9 @@ namespace OrderCompleted
         {
             gameObject.SetActive(true);
             
-            foreach (SO_Order order in deliveryPointManagement.OrdersDelivered)
+            foreach (FinalObject order in deliveryPointManagement.OrdersDelivered)
                 Instantiate(orderCompletedDisplayPrefab, orderCompletedDisplayContainer).DisplayOrder(order);
+
         }
 
         private void OnDestroy()

@@ -9,6 +9,7 @@ TagManager:
   - DeliveryPoint
   - DroppedItem
   - Ground
+  - Custom
   layers:
   - Default
   - TransparentFX

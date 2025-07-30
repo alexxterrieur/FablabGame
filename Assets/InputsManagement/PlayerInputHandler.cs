@@ -45,6 +45,7 @@ namespace InputsManagement
                 gameManager.WoodAssembler.OnOrderCompleted += ReceiveWoodAssemblerOrderCompleted;
                 gameManager.MetalAssembler.OnOrderCompleted += ReceiveMetalAssemblerOrderCompleted;
                 gameManager.PlasticAssembler.OnOrderCompleted += ReceivePlasticAssemblerOrderCompleted;
+                gameManager.CustomManager.OnEnter += EnterCustom;
             }
             else Debug.LogError("GameManager is not assigned in the inspector");
         }
@@ -189,6 +190,21 @@ namespace InputsManagement
             currentInputHandler.ResetInputs();
             currentInputHandler = plasticAssembler;
             hasChangedInputHandler = true;
+        }
+
+        private void EnterCustom(Mesh _)
+        {
+            gameManager.CustomManager.OnExit += ExitCustom;
+            currentInputHandler.ResetInputs();
+            currentInputHandler = gameManager.CustomManager.customInput;
+            hasChangedInputHandler = true;
+        }
+
+        private void ExitCustom()
+        {
+            currentInputHandler?.ResetInputs();
+            hasChangedInputHandler = true;
+            currentInputHandler = characterInputHandler;
         }
 
         private void OnDestroy()

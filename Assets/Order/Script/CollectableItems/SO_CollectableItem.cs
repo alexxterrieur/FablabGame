@@ -8,4 +8,7 @@ public class SO_CollectableItem : ScriptableObject
     public Color itemColor;
     public Mesh itemMesh;
     [Range(0, 1)] public float slowdownMovementFactor = 1;
+
+    public bool IsFinalItem = false;
+
 }

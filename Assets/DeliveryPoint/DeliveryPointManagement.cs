@@ -7,15 +7,17 @@ namespace DeliveryPoint
     public class DeliveryPointManagement : MonoBehaviour
     {
         [SerializeField] private Transform entryPoint;
+        [SerializeField] private ObjectCapture capture;
         
         private SO_Order currentOrder;
-        private List<SO_Order> ordersDelivered = new();
+        private List<FinalObject> ordersDelivered = new();
         
         public event Action<int> OnItemDelivered;
 
         public void SetCurrentOrder(SO_Order order)
         {
             currentOrder = order;
+            capture.capturedTexture = null;
         }
 
         public bool CanDeliver(SO_CollectableItem item)
@@ -28,11 +30,23 @@ namespace DeliveryPoint
             // Logic for delivering an item
             Debug.Log("Item delivered successfully!");
 
-            ordersDelivered.Add(currentOrder);
+            ordersDelivered.Add(new FinalObject(currentOrder, capture.capturedTexture)) ;
             OnItemDelivered?.Invoke(currentOrder.orderPoints);
         }
         
-        public List<SO_Order> OrdersDelivered => ordersDelivered;
+        public List<FinalObject> OrdersDelivered => ordersDelivered;
         public Transform EntryPoint => entryPoint;
+    }
+}
+
+public struct FinalObject
+{
+    public SO_Order order;
+    public Texture2D customTex;
+
+    public FinalObject(SO_Order _order, Texture2D _customTex)
+    {
+        order = _order;
+        customTex = _customTex;
     }
 }

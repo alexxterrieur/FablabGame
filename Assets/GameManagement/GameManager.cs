@@ -18,6 +18,7 @@ namespace GameManagement
         [SerializeField] private AssemblerInteraction woodAssembler;
         [SerializeField] private AssemblerInteraction metalAssembler;
         [SerializeField] private AssemblerInteraction plasticAssembler;
+        [SerializeField] private CustomManager customManager;
         
         public event Action<bool> OnGameFinished;
         public event Action<bool> OnGamePaused;
@@ -36,6 +37,7 @@ namespace GameManagement
             if (!woodAssembler)    Debug.LogError("woodAssembler is not assigned in the inspector");
             if (!metalAssembler)   Debug.LogError("metalAssembler is not assigned in the inspector");
             if (!plasticAssembler) Debug.LogError("plasticAssembler is not assigned in the inspector");
+            if (!customManager) Debug.LogError("custom interaction is not assigned in the inspector");
         }
 
         public void PauseGame()
@@ -96,6 +98,7 @@ namespace GameManagement
         public AssemblerInteraction WoodAssembler => woodAssembler;
         public AssemblerInteraction MetalAssembler => metalAssembler;
         public AssemblerInteraction PlasticAssembler => plasticAssembler;
+        public CustomManager CustomManager => customManager;
 
         private void OnDestroy()
         {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +12,8 @@ namespace OrderChoice
         [SerializeField] private TMP_Text orderNameText;
         [SerializeField] private TMP_Text orderScoreText;
         [SerializeField] private TMP_Text orderMainMaterialText;
-        [SerializeField] private TMP_Text orderNbItemsRequiredText;
+        
+        [SerializeField] private List<OrderChoiceMaterialDisplay> materialDisplays;
         
         [SerializeField] private Image selectionIndicator;
 
@@ -35,9 +37,31 @@ namespace OrderChoice
 
             orderIcon.sprite = order.orderIcon;
             orderNameText.text = order.orderName;
-            orderScoreText.text = $"Points: {order.orderPoints}";
-            orderMainMaterialText.text = $"Main Material: {order.mainMaterial}";
-            orderNbItemsRequiredText.text = $"Items Required: {order.GetAllNeededMaterialsCount()}";
+            orderScoreText.text = $"+{order.orderPoints}";
+            orderMainMaterialText.text = order.mainMaterial switch 
+            {
+                Materials.Wood => "Fraiseuse",
+                Materials.Plastic => "Imprimante 3D",
+                Materials.Metal => "Decoupeuse Laser",
+                _ => "Unknown Machine"
+            };
+            
+            
+            for (int i = 0; i < materialDisplays.Count; i++)
+            {
+                var currentDisplay = materialDisplays[i];
+                
+                if (i < order.Materials.Count)
+                {
+                    var material = order.Materials[i];
+                    currentDisplay.SetMaterial(material.item.itemIcon, material.amount);
+                    currentDisplay.SetVisibility(true);
+                }
+                else
+                {
+                    currentDisplay.SetVisibility(false);
+                }
+            }
         }
     }
 }

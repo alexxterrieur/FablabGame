@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a69aa6d1eab1f84fa2a36d0c26d2342, type: 3}
-  m_Name: PlasticItem
+  m_Name: SO_CollectableItem_Echequier
   m_EditorClassIdentifier: 
-  itemName: Plastique
-  itemIcon: {fileID: 21300000, guid: 1103f605249601f43a7dff752baaeed3, type: 3}
-  itemColor: {r: 0.3882353, g: 0.8039216, b: 0.6784314, a: 1}
-  itemMesh: {fileID: 4583407886439279732, guid: 2f6c9f43984bd4d4889af09a4f5f99de, type: 3}
-  slowdownMovementFactor: 0.85
+  itemName: "\xC9chiquier"
+  itemIcon: {fileID: 21300000, guid: 956669beb6cbab644ba379787a3770ec, type: 3}
+  itemColor: {r: 0, g: 0, b: 0, a: 0}
+  itemMesh: {fileID: -636475418258505028, guid: 5dcc0472255fb424ab8f1fa537fd21f8, type: 3}
+  slowdownMovementFactor: 1

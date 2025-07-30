@@ -15,10 +15,8 @@ MonoBehaviour:
   orderName: "Etag\xE8re en m\xE9tal"
   orderIcon: {fileID: 0}
   mainMaterial: 2
-  items:
-  - {fileID: 11400000, guid: 27d9766982214a04da10a33e6c6916db, type: 2}
-  - {fileID: 11400000, guid: 27d9766982214a04da10a33e6c6916db, type: 2}
-  - {fileID: 11400000, guid: 27d9766982214a04da10a33e6c6916db, type: 2}
   finalItem: {fileID: 11400000, guid: dd2696997edb0d147a1dfbe4a747ed82, type: 2}
   orderPoints: 6
-  delivered: 000000
+  materials:
+  - item: {fileID: 11400000, guid: 27d9766982214a04da10a33e6c6916db, type: 2}
+    amount: 3

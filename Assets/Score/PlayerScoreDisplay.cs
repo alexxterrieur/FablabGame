@@ -1,4 +1,3 @@
-using System;
 using Player.Script;
 using TMPro;
 using UnityEngine;
@@ -9,8 +8,6 @@ namespace Score
     {
         [SerializeField] private PlayerScore playerScore;
         [SerializeField] private TMP_Text scoreText;
-
-        private string scoreTextFormat = "Score: {0}";
         
         private void Awake()
         {
@@ -24,7 +21,7 @@ namespace Score
         private void UpdateScoreDisplay(int newScore)
         {
             if (scoreText)
-                scoreText.text = string.Format(scoreTextFormat, newScore);
+                scoreText.text = newScore.ToString();
         }
 
         private void OnDestroy()

@@ -1,7 +1,7 @@
-using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace OrderProgression
@@ -16,28 +16,29 @@ namespace OrderProgression
         [SerializeField] private TMP_Text orderNameText;
         [SerializeField] private TMP_Text orderScoreText;
         
+        [FormerlySerializedAs("orderItemDisplay")]
         [Header("Item Display Prefab")]
-        [SerializeField] private OrderProgressionItemDisplay orderItemDisplay;
+        [SerializeField] private OrderMaterialProgressionDisplay orderMaterialDisplay;
         [SerializeField] private Transform itemDisplayContainer;
         
         private SO_Order currentOrder;
-        private List<OrderProgressionItemDisplay> itemDisplays = new();
+        private List<OrderMaterialProgressionDisplay> materialDisplays = new();
 
         private void Awake()
         {
             if (orderManager) orderManager.OnOrderChanged += ManageNewOrder;
             else Debug.LogError("OrderManager reference is missing in OrderProgressionDisplay.");
             
-            if (!orderItemDisplay) Debug.LogError("OrderItemDisplay reference is missing in OrderProgressionDisplay.");
+            if (!orderMaterialDisplay) Debug.LogError("OrderItemDisplay reference is missing in OrderProgressionDisplay.");
         }
         
         private void ManageNewOrder(SO_Order newOrder)
         {
-            if (currentOrder) currentOrder.OnItemDeliveryStatusChanged -= ReceiveItemDeliveryStatusChanged;
+            if (currentOrder) currentOrder.OnMaterialAmountChanged -= ReceiveMaterialAmountChanged;
             
             currentOrder = newOrder;
             
-            if (currentOrder) currentOrder.OnItemDeliveryStatusChanged += ReceiveItemDeliveryStatusChanged;
+            if (currentOrder) currentOrder.OnMaterialAmountChanged += ReceiveMaterialAmountChanged;
             
             ManageAmountDisplay(currentOrder);
             SetNewOrderDetails(currentOrder);
@@ -49,57 +50,57 @@ namespace OrderProgression
 
             orderIcon.sprite = order.orderIcon;
             orderNameText.text = order.orderName;
-            orderScoreText.text = $"Score: {order.orderPoints}";
+            orderScoreText.text = $"+{order.orderPoints}";
             
-            for (int i = 0; i < order.items.Count; i++)
-                itemDisplays[i].SetItemDetails(order.items[i]);
+            for (int i = 0; i < order.Materials.Count; i++)
+                materialDisplays[i].SetMaterialDetails(order.Materials[i]);
         }
         
         private void ManageAmountDisplay(SO_Order order)
         {
             if (!order) return;
             
-            int itemCountInOrder = order.items.Count;
+            int nbDifferentMaterials = order.Materials.Count;
             
-            if (itemCountInOrder < itemDisplays.Count)
+            if (nbDifferentMaterials < materialDisplays.Count)
             {
-                for (int i = itemDisplays.Count - 1; i >= itemCountInOrder; i--)
-                {
-                    itemDisplays[i].SetVisibility(false);
-                }
+                for (int i = materialDisplays.Count - 1; i >= nbDifferentMaterials; i--)
+                    materialDisplays[i].SetVisibility(false);
             }
-            else if (itemCountInOrder > itemDisplays.Count)
+            else if (nbDifferentMaterials > materialDisplays.Count)
             {
-                foreach (var itemDisplay in itemDisplays)
-                    itemDisplay.SetVisibility(true);
+                foreach (var materialDisplay in materialDisplays)
+                    materialDisplay.SetVisibility(true);
 
-                for (int i = itemDisplays.Count; i < itemCountInOrder; i++)
-                {
-                    var newItemDisplay = Instantiate(orderItemDisplay, itemDisplayContainer);
-                    itemDisplays.Add(newItemDisplay);
-                }
+                for (int i = materialDisplays.Count; i < nbDifferentMaterials; i++)
+                    materialDisplays.Add(Instantiate(orderMaterialDisplay, itemDisplayContainer.position, Quaternion.identity, itemDisplayContainer));
             }
             else
             {
-                foreach (var itemDisplay in itemDisplays)
-                {
+                foreach (var itemDisplay in materialDisplays)
                     itemDisplay.SetVisibility(true);
-                }
             }
         }
         
-        private void ReceiveItemDeliveryStatusChanged(int index, bool isDelivered)
+        private void ReceiveMaterialAmountChanged(SO_CollectableItem material, int currentAmount, int maxAmount)
         {
             if (!currentOrder) return;
-            
-            itemDisplays[index].UpdateItemStatus(isDelivered);
+
+            foreach (var materialDisplay in materialDisplays)
+            {
+                if (materialDisplay.MaterialDisplay == material)
+                {
+                    materialDisplay.UpdateMaterialAmount(currentAmount, maxAmount);
+                    return;
+                }
+            }
         }
         
         private void OnDestroy()
         {
             if (orderManager) orderManager.OnOrderChanged -= ManageNewOrder;
             
-            if (currentOrder) currentOrder.OnItemDeliveryStatusChanged -= ReceiveItemDeliveryStatusChanged;
+            if (currentOrder) currentOrder.OnMaterialAmountChanged -= ReceiveMaterialAmountChanged;
         }
     }
 }

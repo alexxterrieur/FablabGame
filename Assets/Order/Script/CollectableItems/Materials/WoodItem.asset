@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a69aa6d1eab1f84fa2a36d0c26d2342, type: 3}
   m_Name: WoodItem
   m_EditorClassIdentifier: 
-  itemName: Wood
-  itemIcon: {fileID: 0}
+  itemName: Bois
+  itemIcon: {fileID: 21300000, guid: c374c3a2e90300c42a9e6b764e72f05a, type: 3}
+  itemColor: {r: 0.5921569, g: 0.3764706, b: 0.2901961, a: 1}
   itemMesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
   slowdownMovementFactor: 0.7

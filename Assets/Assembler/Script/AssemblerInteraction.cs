@@ -49,9 +49,7 @@ public class AssemblerInteraction : MonoBehaviour
             return false;
         }
 
-        bool valid = currentOrder.MarkItemDelivered(item);
-
-        if (valid)
+        if (currentOrder.TryAddItem(item))
         {
             if (currentOrder.IsOrderComplete())
             {

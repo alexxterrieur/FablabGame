@@ -21,6 +21,7 @@ namespace OrderChoice
         private int selectedOrderIndex;
         
         public event Action OnOrderSelected;
+        public PlayerInteraction playerInteraction;
 
         private void Start()
         {
@@ -63,6 +64,8 @@ namespace OrderChoice
             availableOrders.RemoveAt(selectedOrderIndex);
             SetVisibility(false);
             OnOrderSelected?.Invoke();
+
+            playerInteraction.ShowShelfFeedbacksForCurrentOrder(selectedOrders[selectedOrderIndex]);
         }
         
         public void SetVisibility(bool isVisible)

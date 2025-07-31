@@ -11,9 +11,12 @@ public class AssemblerInteraction : MonoBehaviour, IHighlight
     public Action<SO_CollectableItem> OnOrderCraft;
     private bool isObjectCraft = false;
 
+    [SerializeField] private GameObject feedbackCircle;
+
     private void Start()
     {
         assembler.OnAssembleurActivityExit += EndActivity;
+        AssemblerRegistry.Register(assemblerMaterial, this);
     }
 
     private void EndActivity(bool isSuccess)
@@ -74,5 +77,11 @@ public class AssemblerInteraction : MonoBehaviour, IHighlight
         }
 
         return Highlight.HighlightState.Interactable;
+    }
+
+    public void ToggleFeedback(bool isOn)
+    {
+        if (feedbackCircle != null)
+            feedbackCircle.SetActive(isOn);
     }
 }

@@ -23,7 +23,10 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField] private Animator animator;
     
-    public event Action<SO_CollectableItem> OnItemEquipped; 
+    public event Action<SO_CollectableItem> OnItemEquipped;
+
+    public OrderManager orderManager;
+    public GameObject deliveryCircleFeedback;
 
     private void Start()
     {
@@ -194,8 +197,33 @@ public class PlayerInteraction : MonoBehaviour
         objectHolding.SetActive(true);
         
         OnItemEquipped?.Invoke(item);
+
+        // Active feedback de livraison si c'est un item final
+        SO_Order currentOrder = orderManager.currentOrder;
+
+        if (heldItem.IsFinalItem)
+        {
+            // Désactive le feedback de l'assembleur
+            var assembler = AssemblerRegistry.GetAssembler(currentOrder.mainMaterial);
+            if (assembler != null)
+                assembler.ToggleFeedback(false);
+
+            // Active le cercle de feedback de livraison
+            if (deliveryCircleFeedback != null)
+                deliveryCircleFeedback.SetActive(true);
+        }
+        else
+        {
+            // Active les feedbacks pour l'assembleur de la commande en cours
+            ShowAssemblerFeedbackForCurrentOrder(currentOrder);
+
+            // Désactive le cercle de livraison si ce n'est pas un objet final
+            if (deliveryCircleFeedback != null)
+                deliveryCircleFeedback.SetActive(false);
+        }
+
     }
-    
+
     private GameObject UnequipItem(GameObject itemPrefab)
     {
         if (!isCarrying) return null;
@@ -213,6 +241,16 @@ public class PlayerInteraction : MonoBehaviour
 
         heldItem = null;
         OnItemEquipped?.Invoke(null);
+
+        SO_Order currentOrder = orderManager.currentOrder;
+        ShowShelfFeedbacksForCurrentOrder(currentOrder);
+
+        if (deliveryCircleFeedback != null)
+        {
+            deliveryCircleFeedback.SetActive(false);
+        }
+
+
         return unequippedItem;
     }
 
@@ -243,6 +281,46 @@ public class PlayerInteraction : MonoBehaviour
             droppedItemComponent.SetItem(formerHeldItem);
             droppedItemComponent.ThrowItem(transform.forward + Vector3.up * 0.5f, throwForce);
         }
+    }
+
+    public void ShowShelfFeedbacksForCurrentOrder(SO_Order order)
+    {
+        foreach (var material in order.Materials)
+        {
+            if (order.CanAddItem(material.item))
+            {
+                foreach (var shelf in ShelfRegistry.GetShelves(material.item))
+                {
+                    shelf.ToggleFeedback(true);
+                }
+            }
+        }
+
+        // Désactive assembleur
+        var assembler = AssemblerRegistry.GetAssembler(order.mainMaterial);
+        if (assembler != null)
+            assembler.ToggleFeedback(false);
+    }
+
+    public void ShowAssemblerFeedbackForCurrentOrder(SO_Order order)
+    {
+        // Désactive tous les shelfs
+        foreach (var material in order.Materials)
+        {
+            foreach (var shelf in ShelfRegistry.GetShelves(material.item))
+            {
+                shelf.ToggleFeedback(false);
+            }
+        }
+
+        var assembler = AssemblerRegistry.GetAssembler(order.mainMaterial);
+        if (assembler != null)
+            assembler.ToggleFeedback(true);
+    }
+
+    public void ShowDeliveryFeedback()
+    {
+        
     }
 }
 

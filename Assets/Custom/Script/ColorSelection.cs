@@ -18,6 +18,7 @@ public class ColorSelection : MonoBehaviour
 
     [SerializeField] private CustomManager manager;
     [SerializeField] private MeshRenderer finalItem;
+    [SerializeField] private MeshRenderer holdingItem;
 
     private void Start()
     {
@@ -47,15 +48,16 @@ public class ColorSelection : MonoBehaviour
     {
         currentSelectColor = 0;
         DecalSelected(new Vector2Int(0, 0));
-        menuImage.material = null;
-        finalItem.material = null;
+        menuImage.material = materials[0];
+        finalItem.material = materials[0];
+        holdingItem.material = materials[0];
 
     }
     private void Select()
     {
         menuImage.material = materials[currentSelectColor];
         finalItem.material = materials[currentSelectColor];
-
+        holdingItem.material = materials[currentSelectColor];
     }
 
     public void DecalSelected(Vector2Int selectionMovement)

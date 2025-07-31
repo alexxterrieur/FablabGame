@@ -51,9 +51,9 @@ public class StickersSelection : MonoBehaviour
     private void ResetValues()
     {
         currentSelectSticker = 0;
-        SetProjectorTexture(null);
+        SetProjectorTexture(textures[0]);
         DecalSelection(0, 0, grid.constraintCount);
-        menuImage.sprite = null;
+        menuImage.sprite = Utils.ConvertToSprite(textures[0]);
         projector.transform.localPosition = Vector3.zero;
     }
 

@@ -9,6 +9,7 @@ public class CustomManager : MonoBehaviour
 {
     [Header("Canvas")]
     [SerializeField] private GameObject customCanvas;
+    [SerializeField] private GameObject GlobalCanvas;
     [SerializeField] private GameObject custom3DObjects;
     [SerializeField] private GameObject mainCustom;
     [SerializeField] private GameObject ColorsCustom;
@@ -17,6 +18,7 @@ public class CustomManager : MonoBehaviour
 
     [SerializeField] private MeshFilter finalItem;
     [SerializeField] private DeliveryPointManagement delivery;
+
 
     [Header("Input")]
     public CustomInput customInput;
@@ -27,7 +29,7 @@ public class CustomManager : MonoBehaviour
     [SerializeField] Button confirmBtn;
     private int indexBtn = 0;
 
-    public Action<Mesh> OnEnter;
+    public Action<SO_CollectableItem> OnEnter;
     public Action OnExit;
     public Action OnReset;  
 
@@ -42,18 +44,23 @@ public class CustomManager : MonoBehaviour
         OnExit += CloseMenuCustom;
     }
 
-    private void OpenMenuCustom(Mesh obj)
+    private void OpenMenuCustom(SO_CollectableItem obj)
     {
-        finalItem.mesh = obj;
+        finalItem.mesh = obj.itemMesh;
+        finalItem.transform.localPosition = obj.customPosition;
+        finalItem.transform.localRotation = Quaternion.Euler(obj.customRotation);
+        finalItem.transform.localScale = obj.customScale;
         customCanvas.SetActive(true);
         custom3DObjects.SetActive(true);
+        GlobalCanvas.SetActive(false);
         Activate();
     }
 
     private void CloseMenuCustom() 
     {
         customCanvas.SetActive(false);
-        custom3DObjects.SetActive(false);   
+        custom3DObjects.SetActive(false);
+        GlobalCanvas.SetActive(true);
         capture.CaptureObjectImage();
         Deactivate();
 
@@ -128,7 +135,7 @@ public class CustomManager : MonoBehaviour
             return;
 
         customCanvas.SetActive(true);
-        OnEnter?.Invoke(item.itemMesh);
+        OnEnter?.Invoke(item);
     }
 
     public void Return()

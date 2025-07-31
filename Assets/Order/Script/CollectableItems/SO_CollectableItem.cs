@@ -11,4 +11,7 @@ public class SO_CollectableItem : ScriptableObject
 
     public bool IsFinalItem = false;
 
+    public Vector3 customPosition = Vector3.zero;
+    public Vector3 customRotation = Vector3.zero;
+    public Vector3 customScale = Vector3.zero;
 }

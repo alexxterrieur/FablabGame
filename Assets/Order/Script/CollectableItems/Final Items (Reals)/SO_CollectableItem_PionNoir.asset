@@ -18,3 +18,6 @@ MonoBehaviour:
   itemMesh: {fileID: 3525479140033381557, guid: adc9dfecfefb2b64b856a556b41c90fa, type: 3}
   slowdownMovementFactor: 1
   IsFinalItem: 1
+  customPosition: {x: 0, y: -3.76, z: 7}
+  customRotation: {x: 270, y: 0, z: 0}
+  customScale: {x: 15, y: 15, z: 15}

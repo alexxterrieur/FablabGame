@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class PulseOnce : MonoBehaviour
 {
@@ -7,36 +6,33 @@ public class PulseOnce : MonoBehaviour
     [SerializeField] private float pulseSize = 1.2f;
 
     private Vector3 originalScale;
-    private Coroutine pulseCoroutine;
+    private float pulseTime;
+    private bool isPulsing;
 
     private void Start()
     {
         originalScale = transform.localScale;
     }
 
-    public void TriggerPulse()
+    private void Update()
     {
-        if (pulseCoroutine != null)
-            StopCoroutine(pulseCoroutine);
+        if (!isPulsing) return;
 
-        pulseCoroutine = StartCoroutine(PulseRoutine());
+        pulseTime += Time.deltaTime * pulseSpeed;
+        float t = Mathf.Sin(pulseTime * Mathf.PI); // one full pulse
+        float scaleMultiplier = Mathf.Lerp(1f, pulseSize, t);
+        transform.localScale = originalScale * scaleMultiplier;
+
+        if (pulseTime >= 1f) // end of pulse
+        {
+            isPulsing = false;
+            transform.localScale = originalScale;
+        }
     }
 
-    private IEnumerator PulseRoutine()
+    public void TriggerPulse()
     {
-        float time = 0f;
-        float duration = 1f / pulseSpeed;
-
-        while (time < duration)
-        {
-            time += Time.deltaTime;
-            float t = Mathf.Sin((time / duration) * Mathf.PI);
-            float scaleMultiplier = Mathf.Lerp(1f, pulseSize, t);
-            transform.localScale = originalScale * scaleMultiplier;
-            yield return null;
-        }
-
-        transform.localScale = originalScale;
-        pulseCoroutine = null;
+        pulseTime = 0f;
+        isPulsing = true;
     }
 }

@@ -1303,22 +1303,22 @@ MonoBehaviour:
   animator: {fileID: 0}
   simonButtons:
   - button: {fileID: 7540587960475470487}
-    buttonColor: {r: 0.004714012, g: 1, b: 0, a: 1}
+    buttonColor: {r: 1, g: 1, b: 1, a: 1}
     sound: {fileID: 0}
   - button: {fileID: 121169232196172530}
-    buttonColor: {r: 1, g: 0, b: 0, a: 1}
-    sound: {fileID: 0}
-  - button: {fileID: 4384779483625777052}
-    buttonColor: {r: 0, g: 0.09661269, b: 1, a: 1}
+    buttonColor: {r: 1, g: 1, b: 1, a: 1}
     sound: {fileID: 0}
   - button: {fileID: 6182578379098895333}
-    buttonColor: {r: 1, g: 0.9216272, b: 0, a: 1}
+    buttonColor: {r: 1, g: 1, b: 1, a: 1}
+    sound: {fileID: 0}
+  - button: {fileID: 4384779483625777052}
+    buttonColor: {r: 1, g: 1, b: 1, a: 1}
     sound: {fileID: 0}
   - button: {fileID: 7249061256097829818}
-    buttonColor: {r: 1, g: 0.5008964, b: 0, a: 1}
+    buttonColor: {r: 1, g: 1, b: 1, a: 1}
     sound: {fileID: 0}
   - button: {fileID: 6178341152720599591}
-    buttonColor: {r: 1, g: 0, b: 0.89150095, a: 1}
+    buttonColor: {r: 1, g: 1, b: 1, a: 1}
     sound: {fileID: 0}
   neutralColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   wrongColor: {r: 1, g: 0, b: 0, a: 1}

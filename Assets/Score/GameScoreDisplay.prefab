@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: Score
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0adc35bdead4f7e4e8ca2ebc6f6e201d, type: 2}
   m_sharedMaterial: {fileID: 2129742150273687413, guid: 0adc35bdead4f7e4e8ca2ebc6f6e201d, type: 2}
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 105.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

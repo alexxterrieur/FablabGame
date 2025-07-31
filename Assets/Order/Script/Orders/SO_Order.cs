@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -22,9 +23,16 @@ public class SO_Order : ScriptableObject
         itemDeliveryCount.Clear();
     }
 
-    public bool TryAddItem(SO_CollectableItem item)
+    public bool CanAddItem(SO_CollectableItem item)
     {
         if (GetItemCount(item) >= GetItemMaxAmount(item))
+            return false;
+        return true;
+    }
+
+    public bool TryAddItem(SO_CollectableItem item)
+    {
+        if (!CanAddItem(item))
             return false;
 
         itemDeliveryCount.TryAdd(item, 0);

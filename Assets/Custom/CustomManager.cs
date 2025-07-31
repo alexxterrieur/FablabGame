@@ -159,5 +159,4 @@ public class CustomManager : MonoBehaviour
         StickersCustom.SetActive(true);
         Deactivate();
     }
-
 }

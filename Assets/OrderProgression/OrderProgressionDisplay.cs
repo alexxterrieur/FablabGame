@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using DeliveryPoint;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace OrderProgression
@@ -16,9 +15,9 @@ namespace OrderProgression
         [Header("UI References")]
         [SerializeField] private Image orderIcon;
         [SerializeField] private TMP_Text orderNameText;
+        [SerializeField] private TMP_Text orderMachineText;
         [SerializeField] private TMP_Text orderScoreText;
         
-        [FormerlySerializedAs("orderItemDisplay")]
         [Header("Item Display Prefab")]
         [SerializeField] private OrderMaterialProgressionDisplay orderMaterialDisplay;
         [SerializeField] private Transform itemDisplayContainer;
@@ -66,6 +65,15 @@ namespace OrderProgression
             orderIcon.sprite = order.orderIcon;
             orderNameText.text = order.orderName;
             orderScoreText.text = $"+{order.orderPoints}";
+            
+            orderMachineText.text = order.mainMaterial switch 
+            {
+                Materials.Wood => "Fraiseuse",
+                Materials.Plastic => "Imprimante 3D",
+                Materials.Metal => "Decoupeuse Laser",
+                _ => "Unknown Machine"
+            };
+
             
             for (int i = 0; i < order.Materials.Count; i++)
                 materialDisplays[i].SetMaterialDetails(order.Materials[i]);

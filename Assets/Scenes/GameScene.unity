@@ -1614,7 +1614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ef482e8ba1e3640b392c8c9f7143e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1634545026}
   distanceToPlayer: 5
   transitionSpeed: 0.7
   transitionbackSpeed: 1.7
@@ -4085,6 +4085,11 @@ RectTransform:
   m_AnchoredPosition: {x: 350, y: 0}
   m_SizeDelta: {x: 700, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!4 &1634545026 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8478681347373268029, guid: 76f3b13c5261e6a4c81eaab0edac447e, type: 3}
+  m_PrefabInstance: {fileID: 905340638}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1723064294 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9188886044664016459, guid: 28bd45a6faa2b504a8d0f61d7903655f, type: 3}

@@ -1,4 +1,3 @@
-using System;
 using DeliveryPoint;
 using GameManagement;
 using UnityEngine;
@@ -13,7 +12,6 @@ namespace OrderCompleted
         
         [Header("UI Reference")]
         [SerializeField] private OrderCompletedDisplay orderCompletedDisplayPrefab;
-        [SerializeField] private Transform orderCompletedDisplayContainer;
 
         private void Awake()
         {
@@ -23,8 +21,6 @@ namespace OrderCompleted
             if (!deliveryPointManagement) Debug.LogError("DeliveryPointManagement is not assigned in the inspector");
             
             if (!orderCompletedDisplayPrefab) Debug.LogError("OrderCompletedDisplayPrefab is not assigned in the inspector");
-            
-            gameObject.SetActive(false);
         }
         
         private void DisplayOrdersCompleted(bool _)
@@ -32,8 +28,7 @@ namespace OrderCompleted
             gameObject.SetActive(true);
             
             foreach (FinalObject order in deliveryPointManagement.OrdersDelivered)
-                Instantiate(orderCompletedDisplayPrefab, orderCompletedDisplayContainer).DisplayOrder(order);
-
+                Instantiate(orderCompletedDisplayPrefab, transform).DisplayOrder(order);
         }
 
         private void OnDestroy()

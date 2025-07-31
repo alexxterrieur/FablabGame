@@ -50,7 +50,14 @@ public class SO_Order : ScriptableObject
 
     public bool IsOrderComplete()
     {
-        return materials.All(material => material.amount == itemDeliveryCount[material.item]);
+        bool isComplete = true;
+        
+        foreach (var material in materials)
+            if (itemDeliveryCount.TryGetValue(material.item, out int count))
+                if (count < material.amount)
+                    isComplete = false;
+
+        return isComplete;
     }
     
     private void NotifyItemAmountChanged(SO_CollectableItem item)

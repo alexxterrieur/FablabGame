@@ -146,6 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1458520668106831918}
   - component: {fileID: 6865896890151811067}
+  - component: {fileID: 8425655941726147279}
   m_Layer: 5
   m_Name: GameScoreDisplay
   m_TagString: Untagged
@@ -187,3 +188,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerScore: {fileID: 0}
   scoreText: {fileID: 7876561431868673036}
+  pulseEffect: {fileID: 8425655941726147279}
+--- !u!114 &8425655941726147279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5488897522421127093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd8c6f3913d7c142a26d25b259fff16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pulseSpeed: 2
+  pulseSize: 1.5

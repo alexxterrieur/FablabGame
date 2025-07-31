@@ -115,8 +115,8 @@ namespace OrderProgression
         {
             SetVisibility(false);
         }
-        
-        private void SetVisibility(bool isVisible)
+
+        public void SetVisibility(bool isVisible)
         {
             gameObject.SetActive(isVisible);
         }

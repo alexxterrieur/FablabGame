@@ -23,6 +23,11 @@ namespace Score
             if (scoreText)
                 scoreText.text = newScore.ToString();
         }
+        
+        public void SetVisibility(bool isVisible)
+        {
+            gameObject.SetActive(isVisible);
+        }
 
         private void OnDestroy()
         {

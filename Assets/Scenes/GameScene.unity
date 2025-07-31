@@ -4855,6 +4855,10 @@ PrefabInstance:
       propertyPath: playerScore
       value: 
       objectReference: {fileID: 905340639}
+    - target: {fileID: 1153993005985414747, guid: 479b5ea10e10e3a42b6d9f644f5c791d, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1723064294}
     - target: {fileID: 1158495364553911326, guid: 479b5ea10e10e3a42b6d9f644f5c791d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bf2fbe9c8595b54eb1e89b299fe206e, type: 3}
   m_Name: SO_Order_Jeu en bois
   m_EditorClassIdentifier: 
-  orderName: "\xC9chiquier"
+  orderName: Echiquier
   orderIcon: {fileID: 21300000, guid: 56b5b5f403e9db149b24170e4c4576cc, type: 3}
   mainMaterial: 0
   finalItem: {fileID: 11400000, guid: ba13ffb011e34b3498a28b45789694b7, type: 2}

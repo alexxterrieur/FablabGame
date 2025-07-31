@@ -147,7 +147,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  movementDuration: 5
+  movementDuration: 1
   normalizedStartScaleTime: 0.75
 --- !u!1 &4212169237293122746
 GameObject:

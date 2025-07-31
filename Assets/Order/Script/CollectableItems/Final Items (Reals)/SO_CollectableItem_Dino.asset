@@ -17,3 +17,4 @@ MonoBehaviour:
   itemColor: {r: 0, g: 0, b: 0, a: 0}
   itemMesh: {fileID: 6894428203817054813, guid: 78cf0cd456d87ae44b2b966b4f29373b, type: 3}
   slowdownMovementFactor: 1
+  IsFinalItem: 1

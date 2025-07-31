@@ -80,12 +80,12 @@ public class CustomManager : MonoBehaviour
         if (!inMenu)
             return;
 
-        indexBtn += move.y;
+        indexBtn -= move.y;
 
         if (indexBtn >= 3)
             indexBtn = 0;
         else if (indexBtn < 0)
-            indexBtn = 3;
+            indexBtn = 2;
 
         switch (indexBtn) 
         {

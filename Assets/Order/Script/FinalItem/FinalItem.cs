@@ -56,7 +56,7 @@ public class FinalItem : MonoBehaviour
             transform.localScale = Vector3.Lerp(startScale, endScale, scaleT);
         }
         
-        if (Vector3.Distance(transform.position, endPosition) < 0.1f)
+        if (Vector3.Distance(transform.position, endPosition) < 0.5f)
         {
             deliveryPointManagement.DeliverItem();
             Destroy(gameObject);

@@ -201,7 +201,7 @@ namespace InputsManagement
             hasChangedInputHandler = true;
         }
 
-        private void EnterCustom(Mesh _)
+        private void EnterCustom(SO_CollectableItem _)
         {
             gameManager.CustomManager.OnExit += ExitCustom;
             currentInputHandler.ResetInputs();

@@ -13,6 +13,9 @@ public class SimonManager : Assembler
         public Button button;
         public Color buttonColor;
         public AudioClip sound;
+
+        [Range(.5f, 5f)]
+        public float weight = 1f;
     }
 
     [Header("Simon Buttons")]
@@ -71,16 +74,15 @@ public class SimonManager : Assembler
 
         currentText.text = "Current: " + currentScore;
 
-
         yield return new WaitForSeconds(1f);
         yield return AddAndShowSequence();
     }
 
     IEnumerator AddAndShowSequence()
     {
-        int newIndex = Random.Range(0, simonButtons.Length);
+        int newIndex = GetWeightedRandomButtonIndex();
         sequence.Add(newIndex);
-        Debug.Log("Nouvelle s�quence longueur: " + sequence.Count);
+        Debug.Log("Nouvelle séquence longueur: " + sequence.Count);
 
         // Calcul de la vitesse
         int speedStep = sequence.Count / 5;
@@ -108,10 +110,31 @@ public class SimonManager : Assembler
         inputEnabled = true;
     }
 
+    private int GetWeightedRandomButtonIndex()
+    {
+        float totalWeight = 0f;
+        foreach (var btn in simonButtons)
+        {
+            totalWeight += btn.weight;
+        }
+
+        float randomValue = Random.Range(0f, totalWeight);
+        float cumulativeWeight = 0f;
+
+        for (int i = 0; i < simonButtons.Length; i++)
+        {
+            cumulativeWeight += simonButtons[i].weight;
+            if (randomValue <= cumulativeWeight)
+            {
+                return i;
+            }
+        }
+
+        return simonButtons.Length - 1; // fallback
+    }
+
     public void OnButtonPressed(int buttonIndex)
     {
-        /*if (sequence.Count <= 0)
-            return;*/
         if (!inputEnabled)
             return;
 
@@ -173,9 +196,6 @@ public class SimonManager : Assembler
 
             UnActivate();
             OnAssembleurActivityEnd?.Invoke(true, this);
-            //PlayerPrefs.SetInt("Level2Completed", 1);
-            //PlayerPrefs.Save();
-            //SceneManager.LoadScene("MainMenu");
         }
         else
         {
@@ -191,8 +211,6 @@ public class SimonManager : Assembler
     private IEnumerator Activation()
     {
         inputEnabled = false;
-        //yield return new WaitForSeconds(2f);
-
         canvas.SetActive(true);
         this.StopAllCoroutines();
         ResetButtons();

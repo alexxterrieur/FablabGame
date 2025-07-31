@@ -3416,6 +3416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1733081895}
   color: {r: 0.043137256, g: 0.043137256, b: 0.043137256, a: 1}
+  wrongColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!65 &1268683044
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4208,6 +4209,30 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 1741451893}
+    - target: {fileID: 7447623638406655505, guid: 8eaf0c98f23f04d48b90c25f11c11b88, type: 3}
+      propertyPath: simonButtons.Array.data[0].weight
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7447623638406655505, guid: 8eaf0c98f23f04d48b90c25f11c11b88, type: 3}
+      propertyPath: simonButtons.Array.data[1].weight
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7447623638406655505, guid: 8eaf0c98f23f04d48b90c25f11c11b88, type: 3}
+      propertyPath: simonButtons.Array.data[2].weight
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7447623638406655505, guid: 8eaf0c98f23f04d48b90c25f11c11b88, type: 3}
+      propertyPath: simonButtons.Array.data[3].weight
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7447623638406655505, guid: 8eaf0c98f23f04d48b90c25f11c11b88, type: 3}
+      propertyPath: simonButtons.Array.data[4].weight
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7447623638406655505, guid: 8eaf0c98f23f04d48b90c25f11c11b88, type: 3}
+      propertyPath: simonButtons.Array.data[5].weight
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 9121378623201887140, guid: 8eaf0c98f23f04d48b90c25f11c11b88, type: 3}
       propertyPath: m_Name
       value: Simon

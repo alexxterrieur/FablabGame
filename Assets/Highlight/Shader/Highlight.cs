@@ -10,6 +10,8 @@ public class Highlight : MonoBehaviour
     [SerializeField]
     private Color color = Color.white;
 
+    [SerializeField] Color wrongColor = Color.red;
+
     //helper list to cache all the materials ofd this object
     private Material material;
 
@@ -21,25 +23,32 @@ public class Highlight : MonoBehaviour
         material = renderer.material;
     }
 
-    public void ToggleHighlight(bool val)
+    public void ToggleHighlight(HighlightState state)
     {
-        if (val)
+        switch(state)
         {
-
+            case HighlightState.Interactable :
                 //We need to enable the EMISSION
                 material.EnableKeyword("_EMISSION");
                 //before we can set the color
                 material.SetColor("_EmissionColor", color);
+                break;
 
-        }
-        else
-        {
+            case HighlightState.NotInteractable :
+                material.EnableKeyword("_EMISSION");
+                material.SetColor("_EmissionColor", wrongColor);
+                break;
 
-
+            default:
                 //we can just disable the EMISSION
                 //if we don't use emission color anywhere else
                 material.DisableKeyword("_EMISSION");
-
+                break;
         }
+    }
+
+    public enum HighlightState
+    {
+        Disabled, Interactable, NotInteractable
     }
 }

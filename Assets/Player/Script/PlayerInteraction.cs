@@ -36,24 +36,33 @@ public class PlayerInteraction : MonoBehaviour
         Transform parent = other.transform.parent;
         if (parent == null) return;
 
+        Highlight.HighlightState state = Highlight.HighlightState.Disabled;
+
         switch (parent.tag)
         {
             case "Shelf":
                 collisionShelf = parent.GetComponent<Shelf>();
+                state = collisionShelf.CanBeUse(heldItem);
                 break;
 
             case "Assembler":
                 collisionAssembler = parent.GetComponent<AssemblerInteraction>();
                 collisionAssembler.OnOrderCraft = null;
                 collisionAssembler.OnOrderCraft += EquipCraftItem;
+                state = collisionAssembler.CanBeUse(heldItem);
                 break;
 
             case "DeliveryPoint":
                 deliveryPointManagement = parent.GetComponent<DeliveryPointManagement>();
+                state = deliveryPointManagement.CanBeUse(heldItem);
                 break;
 
             case "Custom":
                 collisionCustom = parent.GetComponent<CustomManager>();
+                if(heldItem == null)
+                    state = Highlight.HighlightState.NotInteractable;
+                else
+                    state = heldItem.IsFinalItem ? Highlight.HighlightState.Interactable : Highlight.HighlightState.NotInteractable;
                 break;
 
             case "DroppedItem":
@@ -64,7 +73,7 @@ public class PlayerInteraction : MonoBehaviour
 
         if (other.gameObject.TryGetComponent(out Highlight hl))
         {
-            hl.ToggleHighlight(true);
+            hl.ToggleHighlight(state);
         }
     }
 
@@ -100,7 +109,7 @@ public class PlayerInteraction : MonoBehaviour
 
         if (other.gameObject.TryGetComponent(out Highlight hl))
         {
-            hl.ToggleHighlight(false);
+            hl.ToggleHighlight(Highlight.HighlightState.Disabled);
         }
     }
     

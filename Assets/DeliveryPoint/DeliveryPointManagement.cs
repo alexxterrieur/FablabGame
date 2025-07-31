@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace DeliveryPoint
 {
-    public class DeliveryPointManagement : MonoBehaviour
+    public class DeliveryPointManagement : MonoBehaviour, IHighlight
     {
         [SerializeField] private Transform entryPoint;
         [SerializeField] private ObjectCapture capture;
@@ -33,7 +33,12 @@ namespace DeliveryPoint
             ordersDelivered.Add(new FinalObject(currentOrder, capture.capturedTexture)) ;
             OnItemDelivered?.Invoke(currentOrder.orderPoints);
         }
-        
+
+        public Highlight.HighlightState CanBeUse(SO_CollectableItem item)
+        {
+            return CanDeliver(item) ? Highlight.HighlightState.Interactable : Highlight.HighlightState.NotInteractable;
+        }
+
         public List<FinalObject> OrdersDelivered => ordersDelivered;
         public Transform EntryPoint => entryPoint;
     }

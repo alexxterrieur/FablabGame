@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class AssemblerInteraction : MonoBehaviour
+public class AssemblerInteraction : MonoBehaviour, IHighlight
 {
     public Materials assemblerMaterial;
     public Assembler assembler;
@@ -61,5 +61,18 @@ public class AssemblerInteraction : MonoBehaviour
         }
 
         return false;
+    }
+
+    public Highlight.HighlightState CanBeUse(SO_CollectableItem item)
+    {
+        if(item == null)
+            return Highlight.HighlightState.NotInteractable;
+
+        if (currentOrder.mainMaterial != assemblerMaterial || !currentOrder.CanAddItem(item))
+        {
+            return Highlight.HighlightState.NotInteractable;
+        }
+
+        return Highlight.HighlightState.Interactable;
     }
 }

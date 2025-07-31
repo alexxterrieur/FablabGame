@@ -130,6 +130,7 @@ namespace InputsManagement
 
         private void ReceiveGameFinished(bool _)
         {
+            currentInputHandler?.ResetInputs();
             currentInputHandler = endMenuInputHandler;
         }
 

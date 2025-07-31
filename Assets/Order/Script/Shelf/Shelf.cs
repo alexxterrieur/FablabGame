@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Shelf : MonoBehaviour
+public class Shelf : MonoBehaviour, IHighlight
 {
     [SerializeField] private SO_CollectableItem shelfItem;
     public bool isDroppedItem;
@@ -14,4 +14,14 @@ public class Shelf : MonoBehaviour
 
         return shelfItem;
     }
+
+    public Highlight.HighlightState CanBeUse(SO_CollectableItem item)
+    {
+        return Highlight.HighlightState.Interactable;
+    }
+}
+
+public interface IHighlight
+{
+    public Highlight.HighlightState CanBeUse(SO_CollectableItem item);
 }

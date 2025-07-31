@@ -24,7 +24,11 @@ namespace OrderChoice
 
         private void Start()
         {
-            if (gameManager) gameManager.DeliveryPoint.OnItemDelivered += ReceiveItemDelivered;
+            if (gameManager)
+            {
+                gameManager.OnGameFinished += ReceiveGameFinished;
+                gameManager.DeliveryPoint.OnItemDelivered += ReceiveItemDelivered;
+            }
             else Debug.LogError("GameManager is not assigned in the inspector");
             
             ResetAvailableOrders();
@@ -68,6 +72,11 @@ namespace OrderChoice
         public void SetVisibility(bool isVisible)
         {
             gameObject.SetActive(isVisible);
+        }
+        
+        private void ReceiveGameFinished(bool _)
+        {
+            SetVisibility(false);
         }
 
         public void ReceiveMovementLeftInput(InputAction.CallbackContext context)

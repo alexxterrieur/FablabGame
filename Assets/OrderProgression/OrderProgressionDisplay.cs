@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DeliveryPoint;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -10,6 +11,7 @@ namespace OrderProgression
     {
         [Header("Gameplay References")]
         [SerializeField] private OrderManager orderManager;
+        [SerializeField] private DeliveryPointManagement deliveryPointManagement;
         
         [Header("UI References")]
         [SerializeField] private Image orderIcon;
@@ -29,17 +31,30 @@ namespace OrderProgression
             if (orderManager) orderManager.OnOrderChanged += ManageNewOrder;
             else Debug.LogError("OrderManager reference is missing in OrderProgressionDisplay.");
             
+            if (deliveryPointManagement) deliveryPointManagement.OnItemDelivered += ReceiveItemDelivered;
+            else Debug.LogError("DeliveryPointManagement reference is missing in OrderProgressionDisplay.");
+            
             if (!orderMaterialDisplay) Debug.LogError("OrderItemDisplay reference is missing in OrderProgressionDisplay.");
+            
+            SetVisibility(false);
         }
         
         private void ManageNewOrder(SO_Order newOrder)
         {
             if (currentOrder) currentOrder.OnMaterialAmountChanged -= ReceiveMaterialAmountChanged;
             
+            if (!newOrder)
+            {
+                SetVisibility(false);
+                Debug.LogError("New order is null in OrderProgressionDisplay.");
+                return;
+            }
+            
             currentOrder = newOrder;
             
             if (currentOrder) currentOrder.OnMaterialAmountChanged += ReceiveMaterialAmountChanged;
             
+            SetVisibility(true);
             ManageAmountDisplay(currentOrder);
             SetNewOrderDetails(currentOrder);
         }
@@ -94,6 +109,16 @@ namespace OrderProgression
                     return;
                 }
             }
+        }
+
+        private void ReceiveItemDelivered(int _)
+        {
+            SetVisibility(false);
+        }
+
+        public void SetVisibility(bool isVisible)
+        {
+            gameObject.SetActive(isVisible);
         }
         
         private void OnDestroy()

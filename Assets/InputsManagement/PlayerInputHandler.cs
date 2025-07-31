@@ -16,6 +16,7 @@ namespace InputsManagement
         
         [Header("Input Handlers")]
         [SerializeField] private OrderChoiceManager orderChoiceInputHandler;
+        [SerializeField] private EndMenuManager endMenuInputHandler;
 
         [Header("Assemblers Reference")]
         [SerializeField] private SimonInputManager plasticAssembler;
@@ -39,7 +40,9 @@ namespace InputsManagement
             if (!characterInputHandler) Debug.LogError("CharacterInputHandler is not assigned in the inspector");
 
             if (gameManager)
-            { 
+            {
+                gameManager.OnGameFinished += ReceiveGameFinished;
+                
                 gameManager.DeliveryPoint.OnItemDelivered += ReceiveItemDelivered;
 
                 gameManager.WoodAssembler.OnOrderCompleted += ReceiveWoodAssemblerOrderCompleted;
@@ -123,6 +126,12 @@ namespace InputsManagement
             hasChangedInputHandler = false;
             
             gameManager.PauseGame();
+        }
+
+        private void ReceiveGameFinished(bool _)
+        {
+            currentInputHandler?.ResetInputs();
+            currentInputHandler = endMenuInputHandler;
         }
 
         private void ReceiveItemDelivered(int _)

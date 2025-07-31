@@ -31,6 +31,11 @@ namespace Score
             }
                 
         }
+        
+        public void SetVisibility(bool isVisible)
+        {
+            gameObject.SetActive(isVisible);
+        }
 
         private void OnDestroy()
         {

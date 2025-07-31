@@ -94,4 +94,9 @@ public class CountdownTimer : MonoBehaviour
         timerText.fontSize = originalFontSize;
         onTimerFinished?.Invoke();
     }
+
+    public void SetVisibility(bool isVisible)
+    {
+        gameObject.SetActive(isVisible);
+    }
 }

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SO_CollectableItem_Echequier
   m_EditorClassIdentifier: 
   itemName: "\xC9chiquier"
-  itemIcon: {fileID: 21300000, guid: 956669beb6cbab644ba379787a3770ec, type: 3}
+  itemIcon: {fileID: 21300000, guid: 56b5b5f403e9db149b24170e4c4576cc, type: 3}
   itemColor: {r: 0, g: 0, b: 0, a: 0}
-  itemMesh: {fileID: -636475418258505028, guid: 5dcc0472255fb424ab8f1fa537fd21f8, type: 3}
+  itemMesh: {fileID: 3925360246919112806, guid: 057161f7a3808b94588eb9c0f0eec70a, type: 3}
   slowdownMovementFactor: 1
   IsFinalItem: 1

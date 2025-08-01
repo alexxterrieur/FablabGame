@@ -18,9 +18,7 @@ MonoBehaviour:
   finalItem: {fileID: 11400000, guid: 135773612444dbf498a2ee25e4568132, type: 2}
   orderPoints: 375
   materials:
-  - item: {fileID: 11400000, guid: 53c1f22a71aade44aa568126c90c0a0a, type: 2}
-    amount: 1
   - item: {fileID: 11400000, guid: a5f3f296058344d419b706aa108fa509, type: 2}
-    amount: 2
+    amount: 1
   - item: {fileID: 11400000, guid: 27d9766982214a04da10a33e6c6916db, type: 2}
-    amount: 4
+    amount: 3

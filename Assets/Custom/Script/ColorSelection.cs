@@ -23,8 +23,6 @@ public class ColorSelection : MonoBehaviour
     private void Start()
     {
         manager.OnReset+=ResetValues;
-        input.OnMove += DecalSelected;
-        input.OnSelect += Select;
         btnList = new List<ColorBtn>();
         foreach (var color in materials)
         {
@@ -44,6 +42,24 @@ public class ColorSelection : MonoBehaviour
         DecalSelected(new Vector2Int(0, 0));
     }
 
+    private void OnEnable()
+    {
+        OpenSelectionColor();
+    }
+
+    public void OpenSelectionColor()
+    {
+        RemoveSelectionColor();
+        input.OnMove += DecalSelected;
+        input.OnSelect += Select;
+    }
+
+    private void RemoveSelectionColor()
+    {
+        input.OnMove -= DecalSelected;
+        input.OnSelect -= Select;
+    }
+
     private void ResetValues()
     {
         currentSelectColor = 0;
@@ -58,6 +74,7 @@ public class ColorSelection : MonoBehaviour
         menuImage.material = materials[currentSelectColor];
         finalItem.material = materials[currentSelectColor];
         holdingItem.material = materials[currentSelectColor];
+        RemoveSelectionColor();
     }
 
     public void DecalSelected(Vector2Int selectionMovement)

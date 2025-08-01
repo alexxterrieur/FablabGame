@@ -77,6 +77,14 @@ public class StickersSelection : MonoBehaviour
         SetProjectorTexture(textures[currentSelectSticker]);
         input.OnMove -= DecalSelected;
         input.OnSelect -= Select;
+
+        if (currentSelectSticker == 0)
+        {
+            projector.gameObject.SetActive(false);
+            SelectPosition();
+            return;
+        }
+        projector.gameObject.SetActive(true);
         SetUpProjectorMovement();
     }
     

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mini_Game.Simon.Script;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -44,6 +45,7 @@ public class SimonManager : Assembler
     public AudioSource audioSource;
 
     [Header("UI")]
+    [SerializeField] private List<SimonRoundDisplay> roundDisplays = new();
     public TMP_Text targetText;
     public TMP_Text currentText;
 
@@ -65,7 +67,14 @@ public class SimonManager : Assembler
         currentScore = 0;
 
         if (!endless)
-            targetText.text = "Target: " + targetScore;
+        {
+            //targetText.text = "Target: " + targetScore;
+
+            foreach (var roundDisplay in roundDisplays)
+            {
+                roundDisplay.SetValid(false);
+            }
+        }
         else
             targetText.text = "";
 
@@ -165,6 +174,9 @@ public class SimonManager : Assembler
     IEnumerator HandleEndOfSequence(int buttonIndex)
     {
         yield return FlashButton(buttonIndex, simonButtons[buttonIndex].buttonColor);
+        
+        ActivateValidation(sequence.Count - 1);
+        
         yield return new WaitForSeconds(delayAfterSequence);
 
         if (!endless && sequence.Count >= targetScore)
@@ -179,8 +191,20 @@ public class SimonManager : Assembler
         }
         else
         {
+            
             yield return AddAndShowSequence();
         }
+    }
+    
+    private void ActivateValidation(int index)
+    {
+        if (index < 0 || index >= roundDisplays.Count)
+        {
+            Debug.LogError("Index out of range for roundDisplays.");
+            return;
+        }
+
+        roundDisplays[index].SetValid(true);
     }
 
     public override void Activate()

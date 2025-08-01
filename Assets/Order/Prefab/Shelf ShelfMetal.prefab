@@ -68,6 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 6887653454743958197}
   color: {r: 0.043137256, g: 0.043137256, b: 0.043137256, a: 1}
+  wrongColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &8244129264583227530
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,7 +97,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5, y: 0.5, z: 2.02}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1807232056709566149}
@@ -123,7 +124,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1.5, y: 1, z: 3}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &3840539355986496239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,11 +153,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28c37533aade66542a973be22baf5bb9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.010925293
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28c37533aade66542a973be22baf5bb9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.00013102032
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28c37533aade66542a973be22baf5bb9, type: 3}
       propertyPath: m_LocalRotation.w

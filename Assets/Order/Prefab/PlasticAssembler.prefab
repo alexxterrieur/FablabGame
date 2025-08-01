@@ -68,6 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 8963759049679691133}
   color: {r: 0.043137256, g: 0.043137256, b: 0.043137256, a: 1}
+  wrongColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &8596041783952515279
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,7 +99,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.39, y: 0.5, z: 8.27}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5817949143552211972}

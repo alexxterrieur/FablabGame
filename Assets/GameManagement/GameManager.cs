@@ -78,6 +78,7 @@ namespace GameManagement
         private void ReceiveItemDelivered(int orderPoints)
         {
             playerScore.IncreaseScore(orderPoints);
+            countdownTimer.SetRunning(false);
         }
         
         private void ReceiveOrderChanged(SO_Order order)
@@ -91,6 +92,8 @@ namespace GameManagement
             metalAssembler.SetCurrentOrder(order);
             plasticAssembler.SetCurrentOrder(order);
             deliveryPointManagement.SetCurrentOrder(order);
+            
+            countdownTimer.SetRunning(true);
         }
         
         public PlayerScore PlayerScore => playerScore;

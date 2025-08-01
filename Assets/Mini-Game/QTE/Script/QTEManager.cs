@@ -10,8 +10,12 @@ public class QTEManager : Assembler
     [Header("Dependencies")]
     [SerializeField] private QTEInputManager inputManager;
     [SerializeField] private GameObject qteKeyPrefab;
-    [SerializeField] private RectTransform spawnPoint;
+    [SerializeField] private RectTransform spawnPointA;
+    [SerializeField] private RectTransform spawnPointB;
     [SerializeField] private RectTransform targetZone;
+
+    private static QTEKey[] PlayerAKeys = { QTEKey.Up, QTEKey.Down, QTEKey.Left, QTEKey.Right};
+    private static QTEKey[] PlayerBKeys = { QTEKey.A, QTEKey.B };
 
     [Header("Parameters")]
     [SerializeField] private float spawnInterval = 1.5f;
@@ -43,13 +47,34 @@ public class QTEManager : Assembler
 
     private void SpawnNewQTE()
     {
+        int count = UnityEngine.Random.Range(0, 3);
+        Transform spawnPoint;
+        List<QTEKey> keyList = new List<QTEKey>();
+        switch (count)
+        {
+            case 0:
+                keyList.Add(PlayerAKeys[UnityEngine.Random.Range(0, PlayerAKeys.Length)]);
+                spawnPoint = spawnPointA;
+                break;
+
+            case 1:
+                keyList.Add(PlayerBKeys[UnityEngine.Random.Range(0, PlayerBKeys.Length)]);
+                spawnPoint = spawnPointB;
+                break;
+
+            default:
+                keyList.Add(PlayerAKeys[UnityEngine.Random.Range(0, PlayerAKeys.Length)]);
+                keyList.Add(PlayerBKeys[UnityEngine.Random.Range(0, PlayerBKeys.Length)]);
+                spawnPoint = spawnPointA;
+                break;
+        }
+
         GameObject go = Instantiate(qteKeyPrefab, spawnPoint.position, Quaternion.identity, spawnPoint.parent);
         QTEKeys qte = go.GetComponent<QTEKeys>();
 
-        List<QTEKey> keys = GenerateRandomKeys();
         float limitX = targetZone.anchoredPosition.x;
 
-        qte.Initialize(keys, moveSpeed, limitX);
+        qte.Initialize(keyList, moveSpeed, limitX);
         qte.OnEnterZone += ValidateKey;
         qte.OnExitZone += FailKey;
 
@@ -59,12 +84,11 @@ public class QTEManager : Assembler
         // go.GetComponentInChildren<Text>().text = string.Join(" + ", keys);
     }
 
-    private List<QTEKey> GenerateRandomKeys()
-    {
-        QTEKey[] allKeys = { QTEKey.Up, QTEKey.Down, QTEKey.Left, QTEKey.Right, QTEKey.A, QTEKey.B };
-        int count = UnityEngine.Random.Range(1, 4);
-        return allKeys.OrderBy(x => UnityEngine.Random.value).Take(count).ToList();
-    }
+    //private List<QTEKey> GenerateRandomKeys()
+    //{
+
+    //    return keyList;
+    //}
 
     private int CountPressedFlags(QTEKey flags)
     {

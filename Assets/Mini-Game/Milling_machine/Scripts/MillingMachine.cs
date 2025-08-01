@@ -1,10 +1,7 @@
-using InputsManagement;
+using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class MillingMachine : MonoBehaviour
 {
@@ -21,12 +18,18 @@ public class MillingMachine : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private (float, float) miMaxReamerYPos = (0f, 5f);
+    [SerializeField] private float normalDrillSize = 1f;
+    [SerializeField] private float minimalDrillSize = 0.2f;
+    [SerializeField] private float waitTimeBeforeValidate = 1f;
+    
     private Vector2 moveInput;
     private bool useReamer = false;
     private bool lockMovement = false;
     private Transform _transform;
 
     private int nbrOfPerfectForm = 0;
+    
+    private Vector3 currentScale = Vector3.one;
 
 
     private void OnEnable()
@@ -75,10 +78,22 @@ public class MillingMachine : MonoBehaviour
             _transform.localPosition = new Vector3(_transform.localPosition.x + moveInput.x * Time.fixedDeltaTime * moveSpeed, _transform.localPosition.y, _transform.localPosition.z + moveInput.y * Time.fixedDeltaTime * moveSpeed);
 
         if (!useReamer && transform.localPosition.y < miMaxReamerYPos.Item2)
+        {
             _transform.position = new Vector3(_transform.position.x, _transform.position.y + Time.fixedDeltaTime * moveSpeed, _transform.position.z);
-
+        }
         else if (useReamer && transform.localPosition.y > miMaxReamerYPos.Item1)
+        {
             _transform.localPosition = new Vector3(_transform.localPosition.x, _transform.localPosition.y + Time.fixedDeltaTime * -moveSpeed, _transform.localPosition.z);
+        }
+        else if(useReamer && transform.localPosition.y < miMaxReamerYPos.Item1)
+        {
+            _transform.localPosition = new Vector3(_transform.localPosition.x, miMaxReamerYPos.Item1, _transform.localPosition.z);
+        }
+        
+        
+        float scale = Mathf.Lerp(minimalDrillSize, normalDrillSize, _transform.localPosition.y / miMaxReamerYPos.Item2);
+        currentScale.Set(scale, scale, scale);
+        _transform.localScale = currentScale;
     }
 
     private void CheckIfCanMove()
@@ -103,9 +118,7 @@ public class MillingMachine : MonoBehaviour
 
                 if (nbrOfPerfectForm >= data.forms.Count)
                 {
-                    millingMachineManager.OnAssembleurActivityEnd(true, millingMachineManager);
-                    ResetMillingMachine();
-                    millingMachineManager.UnActivate();
+                    StartCoroutine(WaitBeforeValidate());
                 }
 
                 break;
@@ -125,6 +138,14 @@ public class MillingMachine : MonoBehaviour
                 Debug.Log("Need More Drill");
                 break;
         }  
+    }
+    
+    private IEnumerator WaitBeforeValidate()
+    {
+        yield return new WaitForSeconds(waitTimeBeforeValidate);
+        millingMachineManager.OnAssembleurActivityEnd(true, millingMachineManager);
+        ResetMillingMachine();
+        millingMachineManager.UnActivate();
     }
 
     private void ResetMillingMachine()

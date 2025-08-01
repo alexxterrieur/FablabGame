@@ -24,6 +24,8 @@ public class CountdownTimer : MonoBehaviour
     private bool isWarningActive = false;
     private bool hasEnded = false;
     private float originalFontSize;
+    
+    private bool isRunning = true;
 
     private void Start()
     {
@@ -31,11 +33,13 @@ public class CountdownTimer : MonoBehaviour
         originalFontSize = timerText.fontSize;
         UpdateTimerDisplay();
         pulseSpeed = 2 * Mathf.PI;
+        
+        SetRunning(false);
     }
 
     private void Update()
     {
-        if (hasEnded) return;
+        if (hasEnded || !isRunning) return;
 
         if (remainingTime > 0)
         {
@@ -98,5 +102,10 @@ public class CountdownTimer : MonoBehaviour
     public void SetVisibility(bool isVisible)
     {
         gameObject.SetActive(isVisible);
+    }
+
+    public void SetRunning(bool inIsRunning)
+    {
+        isRunning = inIsRunning;
     }
 }

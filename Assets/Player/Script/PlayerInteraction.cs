@@ -144,7 +144,11 @@ public class PlayerInteraction : MonoBehaviour
             {
                 if (deliveryPointManagement.CanDeliver(heldItem))
                 {
-                    DropHoldItem(finalItemPrefab).GetComponent<FinalItem>().SetDeliveryPointManagement(deliveryPointManagement);
+                    SO_CollectableItem formerHeldItem = heldItem;
+                    GameObject finalItem = DropHoldItem(finalItemPrefab);
+                    FinalItem finalItemComponent = finalItem.GetComponent<FinalItem>();
+                    finalItemComponent.SetDeliveryPointManagement(deliveryPointManagement);
+                    finalItemComponent.SetMesh(formerHeldItem.itemMesh);
                 }
             }
 

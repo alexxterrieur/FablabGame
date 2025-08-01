@@ -31,6 +31,13 @@ public class FinalItem : MonoBehaviour
         deliveryPointManagement = inDeliveryPointManagement;
         endPosition = deliveryPointManagement.EntryPoint.position;
     }
+    
+    public void SetMesh(Mesh mesh)
+    {
+        if (GetComponent<MeshFilter>() is { } meshFilter) 
+            meshFilter.mesh = mesh;
+        else Debug.LogError("MeshFilter component is missing on the FinalItem GameObject.");
+    }
 
     private void Update()
     {

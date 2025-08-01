@@ -364,6 +364,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 574979236}
+    - target: {fileID: 1258368036182326257, guid: 12bf50340aba3504a838b7365e0a2776, type: 3}
+      propertyPath: playerInteraction
+      value: 
+      objectReference: {fileID: 905340640}
     - target: {fileID: 3488493438687431242, guid: 12bf50340aba3504a838b7365e0a2776, type: 3}
       propertyPath: m_Name
       value: MillingMachine
@@ -766,6 +770,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e99dc63067da3bf478c6e16594294755, type: 3}
+--- !u!1 &411682038 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3454458205214358806, guid: e99dc63067da3bf478c6e16594294755, type: 3}
+  m_PrefabInstance: {fileID: 411682037}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &419123308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2323,6 +2332,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2784942574676848876, guid: 76f3b13c5261e6a4c81eaab0edac447e, type: 3}
+      propertyPath: orderManager
+      value: 
+      objectReference: {fileID: 1567847453}
+    - target: {fileID: -2784942574676848876, guid: 76f3b13c5261e6a4c81eaab0edac447e, type: 3}
+      propertyPath: deliveryCircleFeedback
+      value: 
+      objectReference: {fileID: 411682038}
+    - target: {fileID: 1743420244272153613, guid: 76f3b13c5261e6a4c81eaab0edac447e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -8056718885330383686, guid: 87a2a6bd85b253841b88b2c1cf5da843, type: 3}
     - target: {fileID: 5172113431821167111, guid: 76f3b13c5261e6a4c81eaab0edac447e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2417,6 +2438,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a1f5c497be64eacb5761549dbfacc2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &905340640 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -2784942574676848876, guid: 76f3b13c5261e6a4c81eaab0edac447e, type: 3}
+  m_PrefabInstance: {fileID: 905340638}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 269a47bc98decf546b272aff599879b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &931538821 stripped
@@ -4023,10 +4055,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c1b634ec8d95294bbf63bccda6bf103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInteraction: {fileID: 905340640}
   animator: {fileID: 1255130789}
   inputManager: {fileID: 2113237141}
   qteKeyPrefab: {fileID: 3583180208996013117, guid: 299fac9ee7e33f746b498b18ead8d28f, type: 3}
-  spawnPoint: {fileID: 1078439735}
+  spawnPointA: {fileID: 0}
+  spawnPointB: {fileID: 0}
   targetZone: {fileID: 600107146}
   spawnInterval: 5
   moveSpeed: 20
@@ -4538,6 +4572,10 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 1741451893}
+    - target: {fileID: 7447623638406655505, guid: 8eaf0c98f23f04d48b90c25f11c11b88, type: 3}
+      propertyPath: playerInteraction
+      value: 
+      objectReference: {fileID: 905340640}
     - target: {fileID: 9121378623201887140, guid: 8eaf0c98f23f04d48b90c25f11c11b88, type: 3}
       propertyPath: m_Name
       value: Simon
@@ -6011,6 +6049,10 @@ PrefabInstance:
       propertyPath: orderManager
       value: 
       objectReference: {fileID: 1567847453}
+    - target: {fileID: 1297325375426504080, guid: 479b5ea10e10e3a42b6d9f644f5c791d, type: 3}
+      propertyPath: playerInteraction
+      value: 
+      objectReference: {fileID: 905340640}
     - target: {fileID: 1482891244991829660, guid: 479b5ea10e10e3a42b6d9f644f5c791d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

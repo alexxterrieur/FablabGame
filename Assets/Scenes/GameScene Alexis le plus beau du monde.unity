@@ -769,6 +769,10 @@ PrefabInstance:
       propertyPath: orderManager
       value: 
       objectReference: {fileID: 1567847453}
+    - target: {fileID: 5693592769818842181, guid: 37f0312882788674daf40a0d4e1407fe, type: 3}
+      propertyPath: deliveryPointManagement
+      value: 
+      objectReference: {fileID: 1762848111}
     - target: {fileID: 6258161034398743009, guid: 37f0312882788674daf40a0d4e1407fe, type: 3}
       propertyPath: m_Name
       value: OrderProgression
@@ -1102,7 +1106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7472255427650913389, guid: e99dc63067da3bf478c6e16594294755, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7472255427650913389, guid: e99dc63067da3bf478c6e16594294755, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2309,7 +2313,7 @@ PrefabInstance:
     - target: {fileID: -2784942574676848876, guid: 76f3b13c5261e6a4c81eaab0edac447e, type: 3}
       propertyPath: deliveryCircleFeedback
       value: 
-      objectReference: {fileID: 1799576138}
+      objectReference: {fileID: 1461957699}
     - target: {fileID: 199613019211562563, guid: 76f3b13c5261e6a4c81eaab0edac447e, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2808,7 +2812,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7704828846156431791, guid: 02f6b1d340c34df40823e6725724e514, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.49999952
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7704828846156431791, guid: 02f6b1d340c34df40823e6725724e514, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3933,6 +3937,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd4ce760d52a3cf4e83099c72a469348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1461957699 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3454458205214358806, guid: e99dc63067da3bf478c6e16594294755, type: 3}
+  m_PrefabInstance: {fileID: 411682037}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1473623965
 GameObject:
   m_ObjectHideFlags: 0
@@ -3982,7 +3991,8 @@ MonoBehaviour:
   animator: {fileID: 1255130789}
   inputManager: {fileID: 2113237141}
   qteKeyPrefab: {fileID: 3583180208996013117, guid: 299fac9ee7e33f746b498b18ead8d28f, type: 3}
-  spawnPoint: {fileID: 1078439735}
+  spawnPointA: {fileID: 0}
+  spawnPointB: {fileID: 0}
   targetZone: {fileID: 600107146}
   spawnInterval: 5
   moveSpeed: 20
@@ -4442,11 +4452,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5ced8217844625469462f2244b8c8e3, type: 3}
---- !u!1 &1799576138 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3420594611464984284, guid: e99dc63067da3bf478c6e16594294755, type: 3}
-  m_PrefabInstance: {fileID: 411682037}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1838563734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5493,6 +5498,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1273608328}
     m_Modifications:
+    - target: {fileID: 444600126333578807, guid: 78f7b0efafaec1141a1c364efe908a13, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 953018010889767894, guid: 78f7b0efafaec1141a1c364efe908a13, type: 3}
       propertyPath: assembler
       value: 

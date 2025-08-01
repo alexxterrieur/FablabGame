@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customCanvas: {fileID: 830259430711013913}
+  GlobalCanvas: {fileID: 0}
   custom3DObjects: {fileID: 0}
   mainCustom: {fileID: 5580585476427217228}
   ColorsCustom: {fileID: 7951657456046360765}
@@ -1605,7 +1606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materials:
-  - {fileID: 2100000, guid: 2a12a21a5c870194ca52b5ddfc2e7aa4, type: 2}
+  - {fileID: -8056718885330383686, guid: 56cf948128eb52b41b898afb4418eab1, type: 3}
   - {fileID: 2100000, guid: 2a12a21a5c870194ca52b5ddfc2e7aa4, type: 2}
   - {fileID: 2100000, guid: 2a12a21a5c870194ca52b5ddfc2e7aa4, type: 2}
   - {fileID: 2100000, guid: 2a12a21a5c870194ca52b5ddfc2e7aa4, type: 2}
@@ -1620,6 +1621,7 @@ MonoBehaviour:
   menuImage: {fileID: 4062618485670564128}
   manager: {fileID: 8943656881275775511}
   finalItem: {fileID: 0}
+  holdingItem: {fileID: 0}
 --- !u!1 &8431285260156743904
 GameObject:
   m_ObjectHideFlags: 0
@@ -1711,7 +1713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textures:
-  - {fileID: 2800000, guid: 6e1ff25b069df6c41b40032ae785da03, type: 3}
+  - {fileID: 0}
   - {fileID: 2800000, guid: 6e1ff25b069df6c41b40032ae785da03, type: 3}
   - {fileID: 2800000, guid: 6e1ff25b069df6c41b40032ae785da03, type: 3}
   - {fileID: 2800000, guid: 6e1ff25b069df6c41b40032ae785da03, type: 3}

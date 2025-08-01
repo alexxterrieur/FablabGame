@@ -34,6 +34,6 @@ public class ProjectorMovement : MonoBehaviour
         {
             nextPos.y = _transform.localPosition.y;
         }
-        _transform.localPosition = nextPos;
+        _transform.localPosition = nextPos;  
     }
 }

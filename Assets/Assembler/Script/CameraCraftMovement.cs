@@ -1,79 +1,73 @@
+using System.Collections;
 using UnityEngine;
 
 public class CameraCraftMovement : MonoBehaviour
 {
-    [Header("Références")]
+    [Header("Camera Settings")]
+    public Camera mainCam;
     public Transform player;
-    private Camera camera;
+    public float zoomDuration = 1.5f;
+    public float zoomedInFOV = 40f;
+    public float zoomedOutFOV = 5f;
+    public float distanceFromPlayer = 3f;
+    public Vector3 zoomOffset = Vector3.up * 1f; // Permet un léger décalage
 
-    [Header("Paramètres")]
-    public float distanceToPlayer;
-    public float transitionSpeed;
-    public float transitionbackSpeed;
+    private bool isZooming = false;
 
     private Vector3 originalPosition;
     private Quaternion originalRotation;
+    private float originalFOV;
 
-    private bool movingToCraft = false;
-    private bool returning = false;
-
-    private Vector3 targetPosition;
-    private Quaternion targetRotation;
-
-    void Start()
+    private void Start()
     {
-        camera = GetComponent<Camera>();
-
-        originalPosition = transform.position;
-        originalRotation = transform.rotation;
+        originalPosition = mainCam.transform.position;
+        originalRotation = mainCam.transform.rotation;
+        originalFOV = mainCam.fieldOfView;
     }
 
-    void Update()
+    public void ZoomToPlayer()
     {
-        if (movingToCraft)
+        if (!isZooming)
         {
-            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * transitionSpeed);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * transitionSpeed);
-
-            if (Vector3.Distance(transform.position, targetPosition) < 0.05f)
-                movingToCraft = false;
-        }
-        else if (returning)
-        {
-            transform.position = Vector3.Lerp(transform.position, originalPosition, Time.deltaTime * transitionbackSpeed);
-            transform.rotation = Quaternion.Lerp(transform.rotation, originalRotation, Time.deltaTime * transitionbackSpeed);
-
-            if(Vector3.Distance(transform.position, originalPosition) < 3f)
-                camera.orthographic = true;
-
-            if (Vector3.Distance(transform.position, originalPosition) < 0.05f)
-                returning = false;
+            Vector3 direction = (mainCam.transform.position - player.position).normalized;
+            Vector3 targetPos = player.position + direction * distanceFromPlayer + zoomOffset;
+            StartCoroutine(ZoomCoroutine(targetPos, originalRotation, zoomedInFOV));
         }
     }
 
-    public void MoveToCraftView()
+    public void ZoomOut()
     {
-        if (player == null)
-            return;
-        
-
-        camera.orthographic = false;
-
-        Vector3 flatForward = new Vector3(transform.forward.x, 0, transform.forward.z).normalized;
-
-        targetPosition = player.position - flatForward * distanceToPlayer;
-
-        Vector3 newEuler = new Vector3(0, transform.rotation.eulerAngles.y, 0);
-        targetRotation = Quaternion.Euler(newEuler);
-
-        movingToCraft = true;
-        returning = false;
+        if (!isZooming)
+        {
+            StartCoroutine(ZoomCoroutine(originalPosition, originalRotation, originalFOV));
+        }
     }
 
-
-    public void ReturnToOriginalView()
+    private IEnumerator ZoomCoroutine(Vector3 targetPos, Quaternion fixedRot, float targetFOV)
     {
-        returning = true;
-        movingToCraft = false;
+        isZooming = true;
+
+        Vector3 startPos = mainCam.transform.position;
+        float startFOV = mainCam.fieldOfView;
+
+        float time = 0f;
+
+        while (time < zoomDuration)
+        {
+            float t = time / zoomDuration;
+
+            mainCam.transform.position = Vector3.Lerp(startPos, targetPos, t);
+            mainCam.transform.rotation = fixedRot;
+            mainCam.fieldOfView = Mathf.Lerp(startFOV, targetFOV, t);
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        mainCam.transform.position = targetPos;
+        mainCam.transform.rotation = fixedRot;
+        mainCam.fieldOfView = targetFOV;
+
+        isZooming = false;
     }
 }

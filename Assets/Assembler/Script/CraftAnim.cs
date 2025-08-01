@@ -10,7 +10,7 @@ public class CraftAnim : MonoBehaviour
     public void PlayParticleSystem()
     {
         craftParticle.Play();
-        cameraMovement.MoveToCraftView();
+        cameraMovement.ZoomToPlayer();
         //bloquer movement joeuur
     }
 
@@ -24,6 +24,6 @@ public class CraftAnim : MonoBehaviour
 
     public void MoveBackCamera()
     {
-        cameraMovement.ReturnToOriginalView();
+        cameraMovement.ZoomOut();
     }
 }

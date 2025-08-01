@@ -272,6 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customCanvas: {fileID: 1202225225}
+  GlobalCanvas: {fileID: 0}
   custom3DObjects: {fileID: 77050507}
   mainCustom: {fileID: 908542894}
   ColorsCustom: {fileID: 1584470151}
@@ -2811,10 +2812,18 @@ PrefabInstance:
       propertyPath: deliveryCircleFeedback
       value: 
       objectReference: {fileID: 1799576138}
+    - target: {fileID: 199613019211562563, guid: 76f3b13c5261e6a4c81eaab0edac447e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5172113431821167111, guid: 76f3b13c5261e6a4c81eaab0edac447e, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8013797340910454395, guid: 76f3b13c5261e6a4c81eaab0edac447e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 8478681347373268029, guid: 76f3b13c5261e6a4c81eaab0edac447e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4661,6 +4670,7 @@ MonoBehaviour:
   menuImage: {fileID: 522217419}
   manager: {fileID: 25863659}
   finalItem: {fileID: 1211845249}
+  holdingItem: {fileID: 0}
 --- !u!114 &1584470153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6946,6 +6956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  MaxMove: 7.3
 --- !u!1 &2113237139
 GameObject:
   m_ObjectHideFlags: 0

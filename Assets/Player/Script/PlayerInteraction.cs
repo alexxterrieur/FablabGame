@@ -235,7 +235,7 @@ public class PlayerInteraction : MonoBehaviour
         
         if (itemPrefab)
         {
-            unequippedItem = Instantiate(itemPrefab, objectHolding.transform.position, Quaternion.identity);
+            unequippedItem = Instantiate(itemPrefab, objectHolding.transform.position, objectHolding.transform.rotation);
             unequippedItem.GetComponent<DroppedItem>()?.SetItem(heldItem);
         }
 

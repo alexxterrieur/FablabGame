@@ -61,9 +61,15 @@ public class SO_Order : ScriptableObject
         bool isComplete = true;
         
         foreach (var material in materials)
+        {
             if (itemDeliveryCount.TryGetValue(material.item, out int count))
+            {
                 if (count < material.amount)
                     isComplete = false;
+            }
+            else
+                isComplete = false;
+        }
 
         return isComplete;
     }

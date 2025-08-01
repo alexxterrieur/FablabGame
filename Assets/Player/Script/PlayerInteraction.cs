@@ -283,6 +283,14 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    public void BreakPiece(bool val)
+    {
+        if (val) return;
+
+        SO_Order currentOrder = orderManager.currentOrder;
+        ShowShelfFeedbacksForCurrentOrder(currentOrder);
+    }
+
     public void ShowShelfFeedbacksForCurrentOrder(SO_Order order)
     {
         foreach (var material in order.Materials)

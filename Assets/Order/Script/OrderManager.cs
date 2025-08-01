@@ -6,7 +6,7 @@ public class OrderManager : MonoBehaviour
 {
     [SerializeField] private List<SO_Order> orders = new();
     
-    private SO_Order currentOrder;
+    public SO_Order currentOrder;
     
     public event Action<SO_Order> OnOrderChanged; 
 

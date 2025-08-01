@@ -16,7 +16,7 @@ MonoBehaviour:
   orderIcon: {fileID: 21300000, guid: 8e489fb56f250c04db3dc3cabe5ad732, type: 3}
   mainMaterial: 1
   finalItem: {fileID: 11400000, guid: aedf93cb810a7144f931198752660783, type: 2}
-  orderPoints: 175
+  orderPoints: 150
   materials:
   - item: {fileID: 11400000, guid: a5f3f296058344d419b706aa108fa509, type: 2}
-    amount: 5
+    amount: 2

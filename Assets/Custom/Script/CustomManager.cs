@@ -73,10 +73,10 @@ public class CustomManager : MonoBehaviour
 
     private void CloseMenuCustom() 
     {
+        capture.CaptureObjectImage();
         customCanvas.SetActive(false);
         custom3DObjects.SetActive(false);
         GlobalCanvas.SetActive(true);
-        capture.CaptureObjectImage();
         orderTextScore.text = "+" + (orderManager.currentOrder.orderPoints + additionalScore.colorScore + additionalScore.stickerScore);
 
         Deactivate();

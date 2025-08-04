@@ -11,7 +11,6 @@ public class ObjectCapture : MonoBehaviour
     [Header("Memory")]
     public Texture2D capturedTexture;  // Liste des captures
     public List<Texture2D> allCreatedTextures;
-
     /// <summary>
     /// Capture l'objet visible par la cam�ra et stocke le r�sultat dans la liste.
     /// </summary>
@@ -29,7 +28,7 @@ public class ObjectCapture : MonoBehaviour
 
         // Nettoyage
         RenderTexture.active = null;
-        captureCamera.targetTexture = null;
+        //captureCamera.targetTexture = null;
 
         // Stocke la texture dans la liste
         capturedTexture = tex;

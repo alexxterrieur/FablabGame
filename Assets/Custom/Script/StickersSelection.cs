@@ -49,6 +49,7 @@ public class StickersSelection : MonoBehaviour
 
     private void ResetValues()
     {
+        btnList[currentSelectSticker].Unselect();
         currentSelectSticker = 0;
         SetProjectorTexture(textures[0]);
         DecalSelection(0, 0, grid.constraintCount);
@@ -81,8 +82,11 @@ public class StickersSelection : MonoBehaviour
         {
             projector.gameObject.SetActive(false);
             SelectPosition();
+            customManager.additionalScore.Item2 = 0;
             return;
         }
+
+        customManager.additionalScore.Item2 = 50;
         projector.gameObject.SetActive(true);
         SetUpProjectorMovement();
     }

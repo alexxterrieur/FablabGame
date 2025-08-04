@@ -8,6 +8,7 @@ namespace DeliveryPoint
     {
         [SerializeField] private Transform entryPoint;
         [SerializeField] private ObjectCapture capture;
+        [SerializeField] private CustomManager customManager;
         
         private SO_Order currentOrder;
         private List<FinalObject> ordersDelivered = new();
@@ -31,7 +32,7 @@ namespace DeliveryPoint
             Debug.Log("Item delivered successfully!");
 
             ordersDelivered.Add(new FinalObject(currentOrder, capture.capturedTexture)) ;
-            OnItemDelivered?.Invoke(currentOrder.orderPoints);
+            OnItemDelivered?.Invoke(currentOrder.orderPoints + customManager.additionalScore.colorScore + customManager.additionalScore.stickerScore);
         }
 
         public Highlight.HighlightState CanBeUse(SO_CollectableItem item)

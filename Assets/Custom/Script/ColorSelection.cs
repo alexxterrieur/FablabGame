@@ -37,6 +37,7 @@ public class ColorSelection : MonoBehaviour
                 return;
             image.material = color;
         }
+        ResetValues();
         DecalSelected(new Vector2Int(0, 0));
     }
 
@@ -60,6 +61,7 @@ public class ColorSelection : MonoBehaviour
 
     private void ResetValues()
     {
+        btnList[currentSelectColor].Unselect();
         currentSelectColor = 0;
         DecalSelected(new Vector2Int(0, 0));
         menuImage.material = materials[0];
@@ -72,6 +74,12 @@ public class ColorSelection : MonoBehaviour
         menuImage.material = materials[currentSelectColor];
         finalItem.material = materials[currentSelectColor];
         holdingItem.material = materials[currentSelectColor];
+
+        if (currentSelectColor != 0)
+            manager.additionalScore.Item1 = 50;
+        else
+            manager.additionalScore.Item1 = 0;
+
         RemoveSelectionColor();
     }
 

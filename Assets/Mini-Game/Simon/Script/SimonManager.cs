@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Mini_Game.Simon.Script;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SimonManager : Assembler

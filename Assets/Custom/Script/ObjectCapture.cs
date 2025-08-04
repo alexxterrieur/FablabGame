@@ -1,12 +1,11 @@
 using UnityEngine;
 
 using System.Collections.Generic;
-using UnityEngine;
 
 public class ObjectCapture : MonoBehaviour
 {
     [Header("Capture Settings")]
-    public Camera captureCamera;              // Une caméra dédiée, non activée dans l'inspecteur
+    public Camera captureCamera;              // Une camï¿½ra dï¿½diï¿½e, non activï¿½e dans l'inspecteur
     public RenderTexture renderTexture;       // Une RenderTexture (ex: 512x512)
 
     [Header("Memory")]
@@ -14,11 +13,11 @@ public class ObjectCapture : MonoBehaviour
     public List<Texture2D> allCreatedTextures;
 
     /// <summary>
-    /// Capture l'objet visible par la caméra et stocke le résultat dans la liste.
+    /// Capture l'objet visible par la camï¿½ra et stocke le rï¿½sultat dans la liste.
     /// </summary>
     public Texture2D CaptureObjectImage()
     {
-        // Affecte la RenderTexture à la caméra
+        // Affecte la RenderTexture ï¿½ la camï¿½ra
         captureCamera.targetTexture = renderTexture;
         captureCamera.Render();
 
@@ -44,7 +43,7 @@ public class ObjectCapture : MonoBehaviour
     }
 
     /// <summary>
-    /// Supprime toutes les textures enregistrées (libération mémoire).
+    /// Supprime toutes les textures enregistrï¿½es (libï¿½ration mï¿½moire).
     /// </summary>
     public void ClearCapturedTextures()
     {

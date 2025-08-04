@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using DeliveryPoint;
 using Player.Script;
@@ -65,16 +66,24 @@ namespace GameManagement
 
         private void ReceiveTimerFinished()
         {
+            StartCoroutine(ReceiveTimerFinishedCoroutine());
+        }
+
+        private IEnumerator ReceiveTimerFinishedCoroutine()
+        {
+            yield return new WaitForEndOfFrame();
+
             int highScore = PlayerPrefs.GetInt(PlayerPrefsKeys.HighScoreKey);
             int currentScore = playerScore.Score;
             bool betterScore = currentScore > highScore;
 
             if (betterScore)
                 PlayerPrefs.SetInt(PlayerPrefsKeys.HighScoreKey, currentScore);
-            
+
             OnGameFinished?.Invoke(betterScore);
         }
-        
+
+
         private void ReceiveItemDelivered(int orderPoints)
         {
             playerScore.IncreaseScore(orderPoints);

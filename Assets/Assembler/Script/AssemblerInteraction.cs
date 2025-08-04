@@ -58,7 +58,7 @@ public class AssemblerInteraction : MonoBehaviour, IHighlight
         {
             if (currentOrder.IsOrderComplete())
             {
-                assembler.Activate();
+                assembler?.Activate();
                 OnOrderCompleted?.Invoke();
             }
 

@@ -17,7 +17,9 @@ namespace DeliveryPoint
         public void SetCurrentOrder(SO_Order order)
         {
             currentOrder = order;
-            capture.capturedTexture = null;
+            
+            if (capture)
+                capture.capturedTexture = null;
         }
 
         public bool CanDeliver(SO_CollectableItem item)

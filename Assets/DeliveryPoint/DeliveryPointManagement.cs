@@ -8,6 +8,7 @@ namespace DeliveryPoint
     {
         [SerializeField] private Transform entryPoint;
         [SerializeField] private ObjectCapture capture;
+        [SerializeField] private Animator animator;
         [SerializeField] private CustomManager customManager;
         
         private SO_Order currentOrder;
@@ -30,6 +31,8 @@ namespace DeliveryPoint
         {
             // Logic for delivering an item
             Debug.Log("Item delivered successfully!");
+
+            animator.SetTrigger("OpenBox");
 
             ordersDelivered.Add(new FinalObject(currentOrder, capture.capturedTexture)) ;
             OnItemDelivered?.Invoke(currentOrder.orderPoints + customManager.additionalScore.colorScore + customManager.additionalScore.stickerScore);

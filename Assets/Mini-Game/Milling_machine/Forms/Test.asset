@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   forms:
-  - position: {x: 0, y: 0.07, z: 0}
+  - position: {x: 2, y: 0.07, z: 2}
     radius: 10
     form: {fileID: 2800000, guid: 8e97c4d20503e4c45b4e83de26d0b527, type: 3}
-  - position: {x: 2, y: 0.07, z: 0}
+  - position: {x: -2, y: 0.07, z: 2}
     radius: 10
     form: {fileID: 2800000, guid: d195af55e494530448b6d5a76c926314, type: 3}
-  - position: {x: 0, y: 0.07, z: 2}
+  - position: {x: 2, y: 0.07, z: -2}
     radius: 10
     form: {fileID: 2800000, guid: 4a6255ecacf61804dad3d7dd402fe42b, type: 3}
-  - position: {x: 2, y: 0.07, z: 2}
+  - position: {x: -2, y: 0.07, z: -2}
     radius: 10
     form: {fileID: 2800000, guid: 6ef3f035d29f13c488227f5c28b72784, type: 3}

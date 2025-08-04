@@ -258,6 +258,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 864032573}
     m_Modifications:
+    - target: {fileID: 1034453529701383115, guid: 12bf50340aba3504a838b7365e0a2776, type: 3}
+      propertyPath: minimalDrillSize
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 1258368036182326257, guid: 12bf50340aba3504a838b7365e0a2776, type: 3}
       propertyPath: animator
       value: 

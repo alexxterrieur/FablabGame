@@ -27,7 +27,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public OrderManager orderManager;
     public GameObject deliveryCircleFeedback;
-
+    
     private void Start()
     {
         if (animator == null)
@@ -207,7 +207,7 @@ public class PlayerInteraction : MonoBehaviour
 
         if (heldItem.IsFinalItem)
         {
-            // Désactive le feedback de l'assembleur
+            // Desactive le feedback de l'assembleur
             var assembler = AssemblerRegistry.GetAssembler(currentOrder.mainMaterial);
             if (assembler != null)
                 assembler.ToggleFeedback(false);
@@ -221,7 +221,7 @@ public class PlayerInteraction : MonoBehaviour
             // Active les feedbacks pour l'assembleur de la commande en cours
             ShowAssemblerFeedbackForCurrentOrder(currentOrder);
 
-            // Désactive le cercle de livraison si ce n'est pas un objet final
+            // Desactive le cercle de livraison si ce n'est pas un objet final
             if (deliveryCircleFeedback != null)
                 deliveryCircleFeedback.SetActive(false);
         }
@@ -308,7 +308,7 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
 
-        // Désactive assembleur
+        // Desactive assembleur
         var assembler = AssemblerRegistry.GetAssembler(order.mainMaterial);
         if (assembler != null)
             assembler.ToggleFeedback(false);
@@ -316,7 +316,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public void ShowAssemblerFeedbackForCurrentOrder(SO_Order order)
     {
-        // Désactive tous les shelfs
+        // Desactive tous les shelfs
         foreach (var material in order.Materials)
         {
             foreach (var shelf in ShelfRegistry.GetShelves(material.item))

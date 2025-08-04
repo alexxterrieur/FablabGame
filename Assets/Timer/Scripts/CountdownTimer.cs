@@ -34,6 +34,7 @@ public class CountdownTimer : MonoBehaviour
         pulseSpeed = 2 * Mathf.PI;
         
         SetRunning(false);
+        SetVisibility(false);
     }
 
     private void Update()

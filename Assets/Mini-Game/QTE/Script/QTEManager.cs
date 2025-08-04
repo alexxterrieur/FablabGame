@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using GameManagement;
 
 public class QTEManager : Assembler
 {
@@ -27,6 +28,8 @@ public class QTEManager : Assembler
 
     [Header("Canvas")]
     [SerializeField] private GameObject canvas;
+
+
 
     private void Start()
     {

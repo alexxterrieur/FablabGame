@@ -1,6 +1,9 @@
 using DeliveryPoint;
 using System;
+using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class CustomManager : MonoBehaviour
@@ -13,6 +16,7 @@ public class CustomManager : MonoBehaviour
     [SerializeField] private GameObject ColorsCustom;
     [SerializeField] private GameObject StickersCustom;
     [SerializeField] private ObjectCapture capture;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
     [SerializeField] private MeshFilter finalItem;
     [SerializeField] private DeliveryPointManagement delivery;
@@ -20,6 +24,7 @@ public class CustomManager : MonoBehaviour
 
     [Header("Input")]
     public CustomInput customInput;
+    public (int colorScore, int stickerScore) additionalScore = (0, 0);
 
     [Header("Button")]
     [SerializeField] Button colorsBtn;
@@ -29,15 +34,27 @@ public class CustomManager : MonoBehaviour
 
     public Action<SO_CollectableItem> OnEnter;
     public Action OnExit;
-    public Action OnReset;  
+    public Action OnReset;
+
+    [SerializeField] OrderManager orderManager;
+    [SerializeField] TextMeshProUGUI orderTextScore;
 
     private bool inMenu = true;
+
+    [SerializeField] private CountdownTimer countdownTimer;
+
+    private IEnumerator SetScoreText()
+    {
+        yield return new WaitForEndOfFrame();
+        scoreText.text = "+" + (additionalScore.colorScore + additionalScore.stickerScore);
+    }
 
     private void Start()
     {
         delivery.OnItemDelivered += (int _) => OnReset?.Invoke();
+        OnReset += () => additionalScore = (0, 0);
         ChangeBtn(new Vector2Int(0, 0));
-
+        countdownTimer.onTimerFinished.AddListener(CloseMenuCustom);
         OnEnter += OpenMenuCustom;
         OnExit += CloseMenuCustom;
     }
@@ -60,6 +77,8 @@ public class CustomManager : MonoBehaviour
         custom3DObjects.SetActive(false);
         GlobalCanvas.SetActive(true);
         capture.CaptureObjectImage();
+        orderTextScore.text = "+" + (orderManager.currentOrder.orderPoints + additionalScore.colorScore + additionalScore.stickerScore);
+
         Deactivate();
 
     }
@@ -71,6 +90,7 @@ public class CustomManager : MonoBehaviour
         mainCustom.SetActive(true);
         customInput.OnMove += ChangeBtn;
         customInput.OnSelect += Select;
+        StartCoroutine(SetScoreText());
     }
 
     private void Deactivate()

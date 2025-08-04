@@ -12,12 +12,14 @@ public abstract class Assembler : MonoBehaviour
     public abstract void UnActivate();
 
     [SerializeField] private Animator animator;
+    [SerializeField] private CountdownTimer countdownTimer;
 
     protected void Start()
     {
         OnAssembleurActivityEnd += HandleAssemblerActivityEnd;
         animator.GetComponent<CraftAnim>().OnAssembleurAnimExit = () => OnAssembleurActivityExit.Invoke(true);
         OnAssembleurActivityExit += playerInteraction.BreakPiece;
+        countdownTimer.onTimerFinished.AddListener(UnActivate);
     }
 
     private void HandleAssemblerActivityEnd(bool isSuccessful, Assembler assembler)

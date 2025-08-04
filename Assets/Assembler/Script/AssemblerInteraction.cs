@@ -15,7 +15,9 @@ public class AssemblerInteraction : MonoBehaviour, IHighlight
 
     private void Start()
     {
-        assembler.OnAssembleurActivityExit += EndActivity;
+        if (assembler)
+            assembler.OnAssembleurActivityExit += EndActivity;
+        
         AssemblerRegistry.Register(assemblerMaterial, this);
     }
 

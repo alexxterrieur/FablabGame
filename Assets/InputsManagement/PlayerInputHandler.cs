@@ -16,6 +16,7 @@ namespace InputsManagement
         
         [Header("Input Handlers")]
         [SerializeField] private OrderChoiceManager orderChoiceInputHandler;
+        [SerializeField] private StartMenuManager startMenuInputHandler;
         [SerializeField] private EndMenuManager endMenuInputHandler;
 
         [Header("Assemblers Reference")]
@@ -23,33 +24,45 @@ namespace InputsManagement
         [SerializeField] private QTEInputManager metalAssembler;
         [SerializeField] private MillingInputHandler woodAssembler;
         
+        [Header("Start Menu")]
+        [SerializeField] private bool isStartMenu = false;
+        
         private IPlayerInputsControlled currentInputHandler;
         private bool hasChangedInputHandler;
 
         private void Start()
         {
-            if (orderChoiceInputHandler)
+            if (isStartMenu)
             {
-                orderChoiceInputHandler.OnOrderSelected += ReceiveOrderSelected;
-                
-                currentInputHandler = orderChoiceInputHandler;
+                if (startMenuInputHandler)
+                    currentInputHandler = startMenuInputHandler;
+                else Debug.LogError("StartMenuManager is not assigned in the inspector");
             }
-            else Debug.LogError("OrderChoiceManager is not assigned in the inspector");
-            
-            if (!characterInputHandler) Debug.LogError("CharacterInputHandler is not assigned in the inspector");
-
-            if (gameManager)
+            else
             {
-                gameManager.OnGameFinished += ReceiveGameFinished;
-                
-                gameManager.DeliveryPoint.OnItemDelivered += ReceiveItemDelivered;
+                if (orderChoiceInputHandler)
+                {
+                    orderChoiceInputHandler.OnOrderSelected += ReceiveOrderSelected;
 
-                gameManager.WoodAssembler.OnOrderCompleted += ReceiveWoodAssemblerOrderCompleted;
-                gameManager.MetalAssembler.OnOrderCompleted += ReceiveMetalAssemblerOrderCompleted;
-                gameManager.PlasticAssembler.OnOrderCompleted += ReceivePlasticAssemblerOrderCompleted;
-                gameManager.CustomManager.OnEnter += EnterCustom;
+                    currentInputHandler = orderChoiceInputHandler;
+                }
+                else Debug.LogError("OrderChoiceManager is not assigned in the inspector");
+
+                if (!characterInputHandler) Debug.LogError("CharacterInputHandler is not assigned in the inspector");
+
+                if (gameManager)
+                {
+                    gameManager.OnGameFinished += ReceiveGameFinished;
+
+                    gameManager.DeliveryPoint.OnItemDelivered += ReceiveItemDelivered;
+
+                    gameManager.WoodAssembler.OnOrderCompleted += ReceiveWoodAssemblerOrderCompleted;
+                    gameManager.MetalAssembler.OnOrderCompleted += ReceiveMetalAssemblerOrderCompleted;
+                    gameManager.PlasticAssembler.OnOrderCompleted += ReceivePlasticAssemblerOrderCompleted;
+                    gameManager.CustomManager.OnEnter += EnterCustom;
+                }
+                else Debug.LogError("GameManager is not assigned in the inspector");
             }
-            else Debug.LogError("GameManager is not assigned in the inspector");
         }
 
         public void ReceiveMovementUpInput(InputAction.CallbackContext context)

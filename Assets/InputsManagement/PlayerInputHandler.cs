@@ -23,7 +23,6 @@ namespace InputsManagement
         [SerializeField] private QTEInputManager metalAssembler;
         [SerializeField] private MillingInputHandler woodAssembler;
         
-        
         private IPlayerInputsControlled currentInputHandler;
         private bool hasChangedInputHandler;
 
@@ -58,7 +57,7 @@ namespace InputsManagement
             if (!context.started && hasChangedInputHandler) return;
             
             hasChangedInputHandler = false;
-            currentInputHandler.ReceiveMovementUpInput(context);
+            currentInputHandler?.ReceiveMovementUpInput(context);
         }
         
         public void ReceiveMovementDownInput(InputAction.CallbackContext context)
@@ -66,7 +65,7 @@ namespace InputsManagement
             if (!context.started && hasChangedInputHandler) return;
             
             hasChangedInputHandler = false;
-            currentInputHandler.ReceiveMovementDownInput(context);
+            currentInputHandler?.ReceiveMovementDownInput(context);
         }
         
         public void ReceiveMovementLeftInput(InputAction.CallbackContext context)
@@ -74,7 +73,7 @@ namespace InputsManagement
             if (!context.started && hasChangedInputHandler) return;
             
             hasChangedInputHandler = false;
-            currentInputHandler.ReceiveMovementLeftInput(context);
+            currentInputHandler?.ReceiveMovementLeftInput(context);
         }
         
         public void ReceiveMovementRightInput(InputAction.CallbackContext context)
@@ -82,7 +81,7 @@ namespace InputsManagement
             if (!context.started && hasChangedInputHandler) return;
             
             hasChangedInputHandler = false;
-            currentInputHandler.ReceiveMovementRightInput(context);
+            currentInputHandler?.ReceiveMovementRightInput(context);
         }
         
         public void ReceiveAInput(InputAction.CallbackContext context)
@@ -91,10 +90,7 @@ namespace InputsManagement
             
             hasChangedInputHandler = false;
             
-            if (gameManager.IsGamePaused())
-                gameManager.ResumeGame();
-            else
-                currentInputHandler.ReceiveAInput(context);
+            currentInputHandler?.ReceiveAInput(context);
         }
         
         public void ReceiveBInput(InputAction.CallbackContext context)
@@ -103,10 +99,7 @@ namespace InputsManagement
                 
             hasChangedInputHandler = false;
             
-            if (gameManager.IsGamePaused())
-                gameManager.RestartGame();
-            else
-                currentInputHandler.ReceiveBInput(context);
+            currentInputHandler?.ReceiveBInput(context);
         }
         
         public void ReceiveStartInput(InputAction.CallbackContext context)
@@ -114,9 +107,8 @@ namespace InputsManagement
             if (!context.started && hasChangedInputHandler) return;
                 
             hasChangedInputHandler = false;
-            
-            // Handle X button pressed logic here
-            Debug.Log("X button pressed");
+
+            currentInputHandler?.ReceiveStartInput(context);
         }
         
         public void ReceiveSelectInput(InputAction.CallbackContext context)
@@ -125,7 +117,7 @@ namespace InputsManagement
                 
             hasChangedInputHandler = false;
             
-            gameManager.PauseGame();
+            currentInputHandler?.ReceiveSelectInput(context);
         }
 
         private void ReceiveGameFinished(bool _)

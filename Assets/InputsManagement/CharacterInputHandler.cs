@@ -1,3 +1,4 @@
+using GameManagement;
 using Player.Script;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,6 +9,14 @@ namespace InputsManagement
     {
         [SerializeField] private PlayerMovement playerMovement;
         [SerializeField] private PlayerInteraction playerInteraction;
+        [SerializeField] private GameManager gameManager;
+
+        private void Awake()
+        {
+            if (!playerMovement) Debug.LogError("PlayerMovement is not assigned in the inspector");
+            if (!playerInteraction) Debug.LogError("PlayerInteraction is not assigned in the inspector");
+            if (!gameManager) Debug.LogError("GameManager is not assigned in the inspector");
+        }
 
         public QTEKey pressedKey { get; private set; }
 
@@ -46,13 +55,24 @@ namespace InputsManagement
         public void ReceiveAInput(InputAction.CallbackContext context)
         { 
             if (context.started)
-                playerInteraction.Interact();
+            {
+                if (gameManager.IsGamePaused())
+                    gameManager.ResumeGame();
+                else
+                    playerInteraction.Interact();
+            }
+
         }
 
         public void ReceiveBInput(InputAction.CallbackContext context)
         {
             if (context.started)
-                playerInteraction.ThrowItem();
+            {
+                if (gameManager.IsGamePaused())
+                    gameManager.RestartGame();
+                else
+                    playerInteraction.ThrowItem();
+            }
         }
 
         public void ReceiveStartInput(InputAction.CallbackContext context)
@@ -61,6 +81,7 @@ namespace InputsManagement
 
         public void ReceiveSelectInput(InputAction.CallbackContext context)
         {
+            gameManager.PauseGame();
         }
 
         private void MovementPlayer(InputAction.CallbackContext context, Vector2 input, QTEKey key)

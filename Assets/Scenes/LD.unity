@@ -1288,10 +1288,10 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 200
-  field of view: 60
-  orthographic: 1
+  near clip plane: 0.01
+  far clip plane: 300
+  field of view: 5
+  orthographic: 0
   orthographic size: 10
   m_Depth: -1
   m_CullingMask:
@@ -1317,7 +1317,7 @@ Transform:
   m_GameObject: {fileID: 574979234}
   serializedVersion: 2
   m_LocalRotation: {x: 0.30070576, y: 0, z: 0, w: 0.953717}
-  m_LocalPosition: {x: 0, y: 13.26, z: -15.7}
+  m_LocalPosition: {x: 0, y: 137.71156, z: -193.48271}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1380,10 +1380,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ef482e8ba1e3640b392c8c9f7143e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCam: {fileID: 574979236}
   player: {fileID: 1634545026}
-  distanceToPlayer: 5
-  transitionSpeed: 0.7
-  transitionbackSpeed: 1.7
+  zoomDuration: 2
+  zoomedInFOV: 40
+  zoomedOutFOV: 5
+  distanceFromPlayer: 6
+  zoomOffset: {x: 0, y: 1, z: 0}
 --- !u!1 &600107145
 GameObject:
   m_ObjectHideFlags: 0
@@ -2348,6 +2351,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5806903988838381698, guid: 76f3b13c5261e6a4c81eaab0edac447e, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1723064294}
     - target: {fileID: 8478681347373268029, guid: 76f3b13c5261e6a4c81eaab0edac447e, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
@@ -2451,6 +2458,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 269a47bc98decf546b272aff599879b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!23 &905340641 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1743420244272153613, guid: 76f3b13c5261e6a4c81eaab0edac447e, type: 3}
+  m_PrefabInstance: {fileID: 905340638}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &931538821 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2028498710060810567, guid: 646a1cf8e95ecb841a06257f773c2aa4, type: 3}
@@ -3038,6 +3050,10 @@ PrefabInstance:
     - target: {fileID: 332438709699883110, guid: 02f6b1d340c34df40823e6725724e514, type: 3}
       propertyPath: m_Name
       value: Shelf Plastic
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810354041272991473, guid: 02f6b1d340c34df40823e6725724e514, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7704828846156431791, guid: 02f6b1d340c34df40823e6725724e514, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4738,6 +4754,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3491764820709341132, guid: c5ced8217844625469462f2244b8c8e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8244129264583227530, guid: c5ced8217844625469462f2244b8c8e3, type: 3}
       propertyPath: m_Name
       value: Shelf ShelfMetal
@@ -5327,6 +5347,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shelf Wood
       objectReference: {fileID: 0}
+    - target: {fileID: 7395863902692811737, guid: 646a1cf8e95ecb841a06257f773c2aa4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8152581435144795736, guid: 646a1cf8e95ecb841a06257f773c2aa4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5460,7 +5488,7 @@ MonoBehaviour:
   m_StopNaN: 0
   m_Dithering: 0
   m_ClearDepth: 1
-  m_AllowXRRendering: 1
+  m_AllowXRRendering: 0
   m_AllowHDROutput: 1
   m_UseScreenCoordOverride: 0
   m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -5964,6 +5992,10 @@ PrefabInstance:
       propertyPath: finalItem
       value: 
       objectReference: {fileID: 1211845249}
+    - target: {fileID: 8428444790439187917, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: holdingItem
+      value: 
+      objectReference: {fileID: 905340641}
     - target: {fileID: 8935953106995052664, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
       propertyPath: projector
       value: 
@@ -5984,6 +6016,10 @@ PrefabInstance:
       propertyPath: finalItem
       value: 
       objectReference: {fileID: 1211845250}
+    - target: {fileID: 8943656881275775511, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: GlobalCanvas
+      value: 
+      objectReference: {fileID: 775610965}
     - target: {fileID: 8943656881275775511, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
       propertyPath: custom3DObjects
       value: 
@@ -6025,6 +6061,14 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1723064294}
+    - target: {fileID: 1153993005985414747, guid: 479b5ea10e10e3a42b6d9f644f5c791d, type: 3}
+      propertyPath: orderManager
+      value: 
+      objectReference: {fileID: 1567847453}
+    - target: {fileID: 1153993005985414747, guid: 479b5ea10e10e3a42b6d9f644f5c791d, type: 3}
+      propertyPath: deliveryPointManagement
+      value: 
+      objectReference: {fileID: 1762848111}
     - target: {fileID: 1158495364553911326, guid: 479b5ea10e10e3a42b6d9f644f5c791d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

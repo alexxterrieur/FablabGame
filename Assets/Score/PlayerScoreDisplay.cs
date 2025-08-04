@@ -19,6 +19,11 @@ namespace Score
             else Debug.LogError("Score Text is not assigned in the inspector");
         }
 
+        private void Start()
+        {
+            SetVisibility(false);
+        }
+
         private void UpdateScoreDisplay(int newScore)
         {
             if (scoreText)
@@ -29,7 +34,6 @@ namespace Score
                     pulseEffect.TriggerPulse();
                 }
             }
-                
         }
         
         public void SetVisibility(bool isVisible)

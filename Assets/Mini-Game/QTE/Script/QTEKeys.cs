@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class QTEKeys : MonoBehaviour
@@ -10,6 +12,12 @@ public class QTEKeys : MonoBehaviour
     public event Action<QTEKeys> OnEnterZone;
     public event Action<QTEKeys> OnExitZone;
     public GameObject imagePrefab;
+    public float distanceBeforeLoose = 1000f;
+
+    List<ImageBtn> sprites = new List<ImageBtn>();
+    List<Image> images = new List<Image>();
+
+    public QTEKeys nextKey;
 
     public List<QTEKey> RequiredKeys { get; private set; }
 
@@ -22,7 +30,7 @@ public class QTEKeys : MonoBehaviour
 
     private Coroutine moveRoutine;
 
-    public void Initialize(List<QTEKey> keys, List<Sprite> sprites ,float speed, float zoneX)
+    public void Initialize(List<QTEKey> keys, List<ImageBtn> sprites ,float speed, float zoneX)
     {
         RequiredKeys = keys;
         moveSpeed = speed;
@@ -33,16 +41,66 @@ public class QTEKeys : MonoBehaviour
         moveRoutine = StartCoroutine(MoveRoutine());
     }
 
-    public void SetRequiredKeysImage(List<Sprite> sprites)
+    public void CheckInputs(QTEKey pressedKey)
     {
-        foreach (Sprite sprite in sprites)
+        // Check 1 : Trop d'inputs (plus que nécessaire)
+        bool tooManyInputs = Utils.CountPressedFlags(pressedKey) > RequiredKeys.Count;
+
+        // Check 2 : Tous les inputs actuels sont bons (même s'il en manque)
+        bool allInputsAreValid = Enum.GetValues(typeof(QTEKey))
+            .Cast<QTEKey>()
+            .Where(k => k != QTEKey.None && pressedKey.HasFlag(k))
+            .All(k => RequiredKeys.Contains(k));
+
+        // Check 3 : Il y a au moins un input invalide
+        bool hasWrongInput = !allInputsAreValid || tooManyInputs;
+
+        if (hasWrongInput)
+        {
+            Debug.Log("Trop d'inputs ou certains inputs sont incorrects ! !");
+
+            for (int i = 0; i<images.Count; i++)
+            {
+                images[i].sprite = sprites[i].red;
+            }
+        }
+        else
+        {
+            Debug.Log("Pas assez d'inputs, mais tous sont bons.");
+            for (int i = 0; i < images.Count; i++)
+            {
+                if (pressedKey.HasFlag(RequiredKeys[i]))
+                {
+                    images[i].sprite = sprites[i].green;
+                }
+                else
+                    images[i].sprite = sprites[i].red;
+            }
+        }
+        //else
+        //{
+        //    Debug.Log("Inputs parfaits !");
+        //    for (int i = 0; i < images.Count; i++)
+        //    {
+        //        images[i].sprite = sprites[i].green;
+        //    }
+        //}
+
+    }
+
+    public void SetRequiredKeysImage(List<ImageBtn> _sprites)
+    {
+        sprites = _sprites;
+        foreach (ImageBtn sprite in _sprites)
         {
             GameObject go = Instantiate(imagePrefab, transform);
             Image img = go.GetComponent<Image>();
 
+            images.Add(img);
+
             if (img != null)
             {
-                img.sprite = sprite;
+                img.sprite = sprite.red;
             }
         }
     }
@@ -63,7 +121,7 @@ public class QTEKeys : MonoBehaviour
                 OnEnterZone?.Invoke(this);
             }
 
-            if (enteredZone && rect.anchoredPosition.x > limitX + 20f && !validated)
+            if (enteredZone && rect.anchoredPosition.x > limitX + distanceBeforeLoose && !validated)
             {
                 OnExitZone?.Invoke(this);
                 break;

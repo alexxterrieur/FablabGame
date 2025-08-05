@@ -17,7 +17,7 @@ public class QTEManager : Assembler
 
     private static QTEKey[] PlayerAKeys = { QTEKey.Up, QTEKey.Down, QTEKey.Left, QTEKey.Right};
     private static QTEKey[] PlayerBKeys = { QTEKey.A, QTEKey.B };
-    public List<Sprite> images = new List<Sprite>();
+    public List<ImageBtn> images= new List<ImageBtn>();
 
     [Header("Parameters")]
     [SerializeField] private float spawnInterval = 1.5f;
@@ -27,6 +27,8 @@ public class QTEManager : Assembler
 
     [Header("Debug")]
     [SerializeField] private List<QTEKeys> activeKeys = new();
+    private QTEKeys currentKey;
+    private QTEKeys lastInstanciateKey;
 
     [Header("Canvas")]
     [SerializeField] private GameObject canvas;
@@ -47,6 +49,27 @@ public class QTEManager : Assembler
             SpawnNewQTE();
             yield return new WaitForSeconds(spawnInterval);
         }
+    }
+
+    private IEnumerator QTERoutine()
+    {
+        while(true)
+        {
+            yield return null;
+
+            if (currentKey != null)
+            {
+                currentKey.CheckInputs(inputManager.pressedKey);
+                Debug.Log("Check Input ...");
+            }
+        }
+    }
+
+    private void ChangeCurrentKey(QTEKeys _)
+    {
+        currentKey = currentKey.nextKey;
+
+        currentKey.OnEnterZone += ChangeCurrentKey;
     }
 
     private void SpawnNewQTE()
@@ -76,10 +99,25 @@ public class QTEManager : Assembler
         GameObject go = Instantiate(qteKeyPrefab, spawnPoint.position, Quaternion.identity, spawnPoint.parent);
         QTEKeys qte = go.GetComponent<QTEKeys>();
 
+        if (currentKey == null)
+        {
+            currentKey = qte;
+            currentKey.OnEnterZone += ChangeCurrentKey;
+        }
+
+
+        if (lastInstanciateKey == null)
+            lastInstanciateKey = qte;
+        else
+        {
+            lastInstanciateKey.nextKey = qte;
+            lastInstanciateKey = qte;
+        }
+
         float limitX = targetZone.anchoredPosition.x;
 
         qte.Initialize(keyList,GetSprites(keyList), moveSpeed, limitX);
-        qte.OnEnterZone += ValidateKey;
+        qte.OnEnterZone += (QTEKeys k) => StartCoroutine(ValidateKey(k));
         qte.OnExitZone += FailKey;
 
         activeKeys.Add(qte);
@@ -88,9 +126,9 @@ public class QTEManager : Assembler
         // go.GetComponentInChildren<Text>().text = string.Join(" + ", keys);
     }
 
-    private List<Sprite> GetSprites(List<QTEKey> keyList)
+    private List<ImageBtn> GetSprites(List<QTEKey> keyList)
     {
-        List<Sprite> sprites = new List<Sprite>();
+        List<ImageBtn> sprites = new List<ImageBtn>();
 
         foreach (QTEKey key in keyList)
         {
@@ -124,38 +162,32 @@ public class QTEManager : Assembler
     //    return keyList;
     //}
 
-    private int CountPressedFlags(QTEKey flags)
+    private IEnumerator ValidateKey(QTEKeys key)
     {
-        int count = 0;
-        foreach (QTEKey value in Enum.GetValues(typeof(QTEKey)))
+        while(key != null)
         {
-            if (flags.HasFlag(value) && Convert.ToInt32(value) != 0)
-                count++;
+            if (key.RequiredKeys.All(k => inputManager.pressedKey.HasFlag(k)) &&
+            Utils.CountPressedFlags(inputManager.pressedKey) == key.RequiredKeys.Count)
+            {
+                Debug.Log("QTE success!");
+                key.MarkAsValidated();
+                nbrOfValidKey++;
+            }
+            yield return null;
         }
-        return count;
-    }
 
-    private void ValidateKey(QTEKeys key)
-    {
-        if (key.RequiredKeys.All(k => inputManager.pressedKey.HasFlag(k)) &&
-            CountPressedFlags(inputManager.pressedKey) == key.RequiredKeys.Count)
-        {
-            Debug.Log("QTE success!");
-            key.MarkAsValidated();
-            nbrOfValidKey++;
-        }
-        else
-        {
-            Debug.Log("Wrong input.");
-            Debug.Log(key);
-            FailKey(key);
-            // Let it exit naturally for now
-        }
-        if(nbrOfValidKey >= sequenceLength)
-        {
-            UnActivate();
-            OnAssembleurActivityEnd?.Invoke(true, this);
-        }
+        //else
+        //{
+        //    Debug.Log("Wrong input.");
+        //    Debug.Log(key);
+        //    FailKey(key);
+        //    // Let it exit naturally for now
+        //}
+        //if(nbrOfValidKey >= sequenceLength)
+        //{
+        //    UnActivate();
+        //    OnAssembleurActivityEnd?.Invoke(true, this);
+        //}
     }
 
     private void FailKey(QTEKeys _)
@@ -170,6 +202,7 @@ public class QTEManager : Assembler
         canvas.SetActive(true);
         this.StopAllCoroutines();
         StartCoroutine(QTESequenceRoutine());
+        StartCoroutine(QTERoutine());
     }
 
     public override void UnActivate()
@@ -180,9 +213,16 @@ public class QTEManager : Assembler
                 Destroy(a.gameObject);
         }
             
-
+        currentKey = null;
+        lastInstanciateKey = null;
         canvas.SetActive(false);
         this.StopAllCoroutines();
     }
 }
 
+[Serializable]
+public struct ImageBtn
+{
+    public Sprite red;
+    public Sprite green;
+}

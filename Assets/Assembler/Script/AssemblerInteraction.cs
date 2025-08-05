@@ -15,7 +15,9 @@ public class AssemblerInteraction : MonoBehaviour, IHighlight
 
     private void Start()
     {
-        assembler.OnAssembleurActivityExit += EndActivity;
+        if (assembler)
+            assembler.OnAssembleurActivityExit += EndActivity;
+        
         AssemblerRegistry.Register(assemblerMaterial, this);
     }
 
@@ -56,7 +58,7 @@ public class AssemblerInteraction : MonoBehaviour, IHighlight
         {
             if (currentOrder.IsOrderComplete())
             {
-                assembler.Activate();
+                assembler?.Activate();
                 OnOrderCompleted?.Invoke();
             }
 

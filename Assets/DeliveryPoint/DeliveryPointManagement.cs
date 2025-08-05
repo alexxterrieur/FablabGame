@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,7 +35,18 @@ namespace DeliveryPoint
 
             animator.SetTrigger("OpenBox");
 
-            ordersDelivered.Add(new FinalObject(currentOrder, capture.capturedTexture)) ;
+            Debug.Log("debut coroutine");
+            StartCoroutine(WaitForAnim());
+            Debug.Log("fin coroutine");
+
+
+
+        }
+
+        private IEnumerator WaitForAnim()
+        {
+            yield return new WaitForSeconds(3.5f);
+            ordersDelivered.Add(new FinalObject(currentOrder, capture.capturedTexture));
             OnItemDelivered?.Invoke(currentOrder.orderPoints + customManager.additionalScore.colorScore + customManager.additionalScore.stickerScore);
         }
 

@@ -1139,6 +1139,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7976430068057733951, guid: 76f3b13c5261e6a4c81eaab0edac447e, type: 3}
+      propertyPath: m_Actions
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: ab46414ec62057b4fbbc9f748e05c9ee, type: 3}
     - target: {fileID: 8478681347373268029, guid: 76f3b13c5261e6a4c81eaab0edac447e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2005,11 +2009,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInteraction: {fileID: 1634545030}
   animator: {fileID: 1255130789}
+  countdownTimer: {fileID: 0}
   inputManager: {fileID: 2113237141}
   qteKeyPrefab: {fileID: 3583180208996013117, guid: 299fac9ee7e33f746b498b18ead8d28f, type: 3}
   spawnPointA: {fileID: 0}
   spawnPointB: {fileID: 0}
   targetZone: {fileID: 600107146}
+  images: []
   spawnInterval: 5
   moveSpeed: 20
   sequenceLength: 2
@@ -3016,6 +3022,10 @@ PrefabInstance:
     - target: {fileID: 92722618438553411, guid: 479b5ea10e10e3a42b6d9f644f5c791d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 250440951318222821, guid: 479b5ea10e10e3a42b6d9f644f5c791d, type: 3}
+      propertyPath: totalTime
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 756123000472238635, guid: 479b5ea10e10e3a42b6d9f644f5c791d, type: 3}
       propertyPath: playerScore

@@ -20,6 +20,7 @@ namespace GameManagement
         [SerializeField] private AssemblerInteraction metalAssembler;
         [SerializeField] private AssemblerInteraction plasticAssembler;
         [SerializeField] private CustomManager customManager;
+        [SerializeField] private MillingMachine millingMachine;
         
         public event Action<bool> OnGameFinished;
         public event Action<bool> OnGamePaused;
@@ -39,6 +40,7 @@ namespace GameManagement
             if (!metalAssembler)   Debug.LogError("metalAssembler is not assigned in the inspector");
             if (!plasticAssembler) Debug.LogError("plasticAssembler is not assigned in the inspector");
             if (!customManager) Debug.LogError("custom interaction is not assigned in the inspector");
+            if (!millingMachine) Debug.LogError("Milling Machine is not assigned in the inspector");
         }
 
         public void PauseGame()
@@ -103,6 +105,8 @@ namespace GameManagement
             deliveryPointManagement.SetCurrentOrder(order);
             
             countdownTimer.SetRunning(true);
+            
+            millingMachine.SetCurrentOrder(order);
         }
         
         public PlayerScore PlayerScore => playerScore;

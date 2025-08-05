@@ -31,11 +31,6 @@ public class MillingMachine : MonoBehaviour
     
     private Vector3 currentScale = Vector3.one;
 
-
-    private void OnEnable()
-    {
-        SetUpForm(data);
-    }
     private void Awake()
     {
         _transform = transform;
@@ -43,6 +38,15 @@ public class MillingMachine : MonoBehaviour
         currentScale.Set(normalDrillSize, normalDrillSize, normalDrillSize);
         _transform.localScale = currentScale;
 
+    }
+
+    public void SetCurrentOrder(SO_Order order)
+    {
+        if (!order || !order.millingForm)
+            return;
+        
+        data = order.millingForm;
+        SetUpForm(data);
     }
 
     private void SetUpForm(FormData _data)

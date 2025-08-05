@@ -1186,26 +1186,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1606463280098390019, guid: c93093bc2ce538e45b5333f729d54c46, type: 3}
-      propertyPath: m_AngularSpeed
-      value: 180
-      objectReference: {fileID: 0}
     - target: {fileID: 3322561672780283093, guid: c93093bc2ce538e45b5333f729d54c46, type: 3}
       propertyPath: deliveryWaypoint
       value: 
       objectReference: {fileID: 44910887}
-    - target: {fileID: 3322561672780283093, guid: c93093bc2ce538e45b5333f729d54c46, type: 3}
-      propertyPath: orders.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3322561672780283093, guid: c93093bc2ce538e45b5333f729d54c46, type: 3}
-      propertyPath: 'orders.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: d6f4a02359b94a24db4b85f2434ede7f, type: 2}
-    - target: {fileID: 3322561672780283093, guid: c93093bc2ce538e45b5333f729d54c46, type: 3}
-      propertyPath: 'orders.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 1b5b2eb3bf9721f4790ea6e3df687ebd, type: 2}
     - target: {fileID: 3322561672780283093, guid: c93093bc2ce538e45b5333f729d54c46, type: 3}
       propertyPath: woodAssemblerWaypoint
       value: 

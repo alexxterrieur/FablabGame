@@ -10,9 +10,9 @@ public class CameraCraftMovement : MonoBehaviour
     public float zoomedInFOV = 40f;
     public float zoomedOutFOV = 5f;
     public float distanceFromPlayer = 3f;
-    public Vector3 zoomOffset = Vector3.up * 1f; // Permet un léger décalage
+    public Vector3 zoomOffset = Vector3.up * 1f;
 
-    private bool isZooming = false;
+    public bool isZooming = false;
 
     private Vector3 originalPosition;
     private Quaternion originalRotation;

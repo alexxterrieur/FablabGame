@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public abstract class Assembler : MonoBehaviour
@@ -13,6 +14,7 @@ public abstract class Assembler : MonoBehaviour
 
     [SerializeField] private Animator animator;
     [SerializeField] private CountdownTimer countdownTimer;
+    [SerializeField] private GameObject failTextFeedback;
 
     protected void Start()
     {
@@ -27,6 +29,10 @@ public abstract class Assembler : MonoBehaviour
         if (isSuccessful)
         {
             animator.SetTrigger("PlayAnim");
+        }
+        else
+        {
+            failTextFeedback.SetActive(true);
         }
     }
 }

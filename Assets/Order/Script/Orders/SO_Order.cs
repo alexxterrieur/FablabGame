@@ -14,6 +14,7 @@ public class SO_Order : ScriptableObject
     public int orderPoints;
     
     [SerializeField] private List<MaterialAmount> materials = new();
+    public FormData millingForm;
     private Dictionary<SO_CollectableItem, int> itemDeliveryCount = new();
     public event Action<SO_CollectableItem, int, int> OnMaterialAmountChanged; 
 

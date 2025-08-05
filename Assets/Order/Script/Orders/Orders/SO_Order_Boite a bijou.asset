@@ -20,3 +20,4 @@ MonoBehaviour:
   materials:
   - item: {fileID: 11400000, guid: 53c1f22a71aade44aa568126c90c0a0a, type: 2}
     amount: 3
+  millingForm: {fileID: 11400000, guid: 552fe15c93777a9448c7b87807cda051, type: 2}

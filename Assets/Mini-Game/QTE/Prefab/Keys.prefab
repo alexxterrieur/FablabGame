@@ -151,6 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imagePrefab: {fileID: 1212455049964223473, guid: 0dc7a3ee7adb3fc48b3a3d41fa9cbc41, type: 3}
+  distanceBeforeLoose: 100
+  nextKey: {fileID: 0}
   text: {fileID: 3152711360311678357}
 --- !u!114 &7061996569859427888
 MonoBehaviour:

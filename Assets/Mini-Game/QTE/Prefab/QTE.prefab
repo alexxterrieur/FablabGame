@@ -199,15 +199,21 @@ MonoBehaviour:
   spawnPointB: {fileID: 7426683209498472230}
   targetZone: {fileID: 6591671957647539310}
   images:
-  - {fileID: 21300000, guid: 1f8fe2e84cedb2348ae97d92dcb7a72b, type: 3}
-  - {fileID: 21300000, guid: 31b4e6f33b1acdf4a80d41cfefcadbc7, type: 3}
-  - {fileID: 21300000, guid: 8da2be4dc103b5f46809c9b44f2b21a8, type: 3}
-  - {fileID: 21300000, guid: d73e82daf25f41549979df97f942a8ff, type: 3}
-  - {fileID: 21300000, guid: f81d8e0e694025c45890e1e8a97176d9, type: 3}
-  - {fileID: 21300000, guid: d12a61845893a4e46b23dab66deacadd, type: 3}
+  - red: {fileID: 0}
+    green: {fileID: 0}
+  - red: {fileID: 0}
+    green: {fileID: 0}
+  - red: {fileID: 0}
+    green: {fileID: 0}
+  - red: {fileID: 0}
+    green: {fileID: 0}
+  - red: {fileID: 0}
+    green: {fileID: 0}
+  - red: {fileID: 0}
+    green: {fileID: 0}
   spawnInterval: 5
   moveSpeed: 100
-  sequenceLength: 20
+  sequenceLength: 5
   activeKeys: []
   canvas: {fileID: 5458200710988518837}
 --- !u!1 &5458200710988518837

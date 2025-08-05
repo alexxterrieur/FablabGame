@@ -33,9 +33,11 @@ namespace PNJ
         [SerializeField] private LayerMask assemblerLayerMask;
         [SerializeField] private LayerMask deliveryLayerMask;
         
-        [FormerlySerializedAs("carriedItemMeshFilter")]
         [Header("Carried Item")]
         [SerializeField] private MeshFilter carriedItemRenderer;
+        
+        [Header("Animations")]
+        [SerializeField] private Animator animator;
         
         private List<SO_Order> availableOrders = new List<SO_Order>();
         private NavMeshAgent navMeshAgent;
@@ -56,6 +58,8 @@ namespace PNJ
             if (GetComponent<NavMeshAgent>() is {} agent)
                 navMeshAgent = agent;
             else Debug.LogError("PNJManager requires a NavMeshAgent component.");
+            
+            if (!animator) Debug.LogError("Animator is not assigned in the inspector.");
         }
 
         private void Start()
@@ -143,6 +147,8 @@ namespace PNJ
                 if (collectorCollider.GetComponent<Shelf>() is not { } shelf) continue;
                 if (shelf.TakeItem() != item) continue;
                 
+                animator.SetTrigger("Interact");
+                
                 ChangeCarriedItem(item);
                 break;
             }
@@ -158,6 +164,8 @@ namespace PNJ
                 if (assemblerCollider.GetComponent<AssemblerInteraction>() is not { } assembler) continue;
                 if (!assembler.TryDeliverItem(carriedItem)) continue;
                 
+                animator.SetTrigger("Interact");
+                
                 lastAssembler = assembler;
                 ChangeCarriedItem(null);
                 break;
@@ -168,6 +176,7 @@ namespace PNJ
 
         private IEnumerator GoToTarget(Vector3 target)
         {
+            animator.SetTrigger("Interact");
             navMeshAgent.SetDestination(target);
             yield return new WaitWhile(() => navMeshAgent.pathPending || navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance);
         }
@@ -188,6 +197,12 @@ namespace PNJ
             carriedItem = item;
             carriedItemRenderer.mesh = carriedItem?.itemMesh;
             carriedItemRenderer.gameObject.SetActive(carriedItem);
+        }
+
+        private void Update()
+        {
+            animator.SetFloat("Speed", navMeshAgent.velocity.magnitude);
+            animator.SetBool("IsCarryingObject", carriedItem);
         }
     }
 }

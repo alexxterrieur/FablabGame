@@ -228,11 +228,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1b5b2eb3bf9721f4790ea6e3df687ebd, type: 2}
   - {fileID: 11400000, guid: d6f4a02359b94a24db4b85f2434ede7f, type: 2}
   - {fileID: 11400000, guid: 061a91b02a2bbde47a17e6a227f34d5c, type: 2}
-  - {fileID: 11400000, guid: 9dd0e0a2780567e4aa37edfc32550f2a, type: 2}
   - {fileID: 11400000, guid: 295d9957f9da9764695125d8ccb81c77, type: 2}
   - {fileID: 11400000, guid: 922ebf507bf991c4782dcb407a08c991, type: 2}
-  - {fileID: 11400000, guid: 9898715ad0ca71a40b9b665b6575a65a, type: 2}
-  - {fileID: 11400000, guid: 22594f4fc079f9e4ea1f249fba31de60, type: 2}
   - {fileID: 11400000, guid: 19af18eccb498ba469220c342394085a, type: 2}
   - {fileID: 11400000, guid: 33b85833186f65a428238ef26564a7b9, type: 2}
   - {fileID: 11400000, guid: 257f24fa9fe7cec4c9d6e5a63897bebd, type: 2}
@@ -254,6 +251,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   carriedItemRenderer: {fileID: 4930464709137076024}
+  animator: {fileID: 6473198500899476325}
 --- !u!1001 &630501837081210612
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2706,5 +2704,10 @@ PrefabInstance:
 --- !u!4 &1095860604721793311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d4ed44274edad9e46862c482e907d363, type: 3}
+  m_PrefabInstance: {fileID: 630501837081210612}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6473198500899476325 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: d4ed44274edad9e46862c482e907d363, type: 3}
   m_PrefabInstance: {fileID: 630501837081210612}
   m_PrefabAsset: {fileID: 0}

@@ -325,7 +325,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c43f19e76e4a5a4198dbd7159ecc705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInteraction: {fileID: 0}
   animator: {fileID: 0}
+  countdownTimer: {fileID: 0}
   mainCamera: {fileID: 0}
   millingCamera: {fileID: 8365685304128194041}
   miniGame: {fileID: 9179166191152106218}
@@ -609,6 +611,9 @@ MonoBehaviour:
   millingButtonPrefab: {fileID: 248163704955284488, guid: bee528e7ac334054eb3fd21f9e123f14, type: 3}
   partPrefab: {fileID: 4453351434613174783, guid: c41caac0122015a49aceb2f4ff801eaa, type: 3}
   moveSpeed: 5
+  normalDrillSize: 1
+  minimalDrillSize: 0.5
+  waitTimeBeforeValidate: 1
 --- !u!1 &6610100855932917619
 GameObject:
   m_ObjectHideFlags: 0

@@ -152,6 +152,7 @@ MonoBehaviour:
   confirmBtn: {fileID: 4421474816963125318}
   orderManager: {fileID: 0}
   orderTextScore: {fileID: 0}
+  countdownTimer: {fileID: 0}
 --- !u!65 &963631842710696181
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -631,7 +632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6caf3a78eca7a4cb51aabff8bc2e36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderer: {fileID: 0}
+  renderer: {fileID: 4227806200449801866}
   color: {r: 0.043137256, g: 0.043137256, b: 0.043137256, a: 1}
   wrongColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &3003198937240957704
@@ -2189,5 +2190,10 @@ PrefabInstance:
 --- !u!4 &3091443561680266725 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 633d12d4b3f2f6447af08a3f9adbd7fe, type: 3}
+  m_PrefabInstance: {fileID: 3273478075121369614}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &4227806200449801866 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 633d12d4b3f2f6447af08a3f9adbd7fe, type: 3}
   m_PrefabInstance: {fileID: 3273478075121369614}
   m_PrefabAsset: {fileID: 0}

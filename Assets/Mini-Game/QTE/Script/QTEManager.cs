@@ -4,8 +4,9 @@ using UnityEngine;
 using System.Linq;
 using System;
 using GameManagement;
+using UnityEngine.UIElements;
 
-public class QTEManager : Assembler
+public class QTEManager : Assembler   
 {
     [Header("Dependencies")]
     [SerializeField] private QTEInputManager inputManager;
@@ -16,6 +17,7 @@ public class QTEManager : Assembler
 
     private static QTEKey[] PlayerAKeys = { QTEKey.Up, QTEKey.Down, QTEKey.Left, QTEKey.Right};
     private static QTEKey[] PlayerBKeys = { QTEKey.A, QTEKey.B };
+    public List<Sprite> images = new List<Sprite>();
 
     [Header("Parameters")]
     [SerializeField] private float spawnInterval = 1.5f;
@@ -76,7 +78,7 @@ public class QTEManager : Assembler
 
         float limitX = targetZone.anchoredPosition.x;
 
-        qte.Initialize(keyList, moveSpeed, limitX);
+        qte.Initialize(keyList,GetSprites(keyList), moveSpeed, limitX);
         qte.OnEnterZone += ValidateKey;
         qte.OnExitZone += FailKey;
 
@@ -84,6 +86,36 @@ public class QTEManager : Assembler
 
         // Display text or images here
         // go.GetComponentInChildren<Text>().text = string.Join(" + ", keys);
+    }
+
+    private List<Sprite> GetSprites(List<QTEKey> keyList)
+    {
+        List<Sprite> sprites = new List<Sprite>();
+
+        foreach (QTEKey key in keyList)
+        {
+            int index = GetKeyIndex(key); 
+            if (index >= 0 && index < images.Count)
+            {
+                sprites.Add(images[index]);
+            }
+        }
+
+        return sprites;
+    }
+
+    private int GetKeyIndex(QTEKey key)
+    {
+        switch (key)
+        {
+            case QTEKey.Up: return 0;
+            case QTEKey.Down: return 1;
+            case QTEKey.Left: return 2;
+            case QTEKey.Right: return 3;
+            case QTEKey.A: return 4;
+            case QTEKey.B: return 5;
+            default: return -1;
+        }
     }
 
     //private List<QTEKey> GenerateRandomKeys()
@@ -153,3 +185,4 @@ public class QTEManager : Assembler
         this.StopAllCoroutines();
     }
 }
+

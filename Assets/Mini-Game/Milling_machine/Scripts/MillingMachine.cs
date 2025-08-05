@@ -94,6 +94,9 @@ public class MillingMachine : MonoBehaviour
         float scale = Mathf.Lerp(minimalDrillSize, normalDrillSize, _transform.localPosition.y / miMaxReamerYPos.Item2);
         currentScale.Set(scale, scale, scale);
         _transform.localScale = currentScale;
+
+        if(scale <= minimalDrillSize)
+            _transform.Rotate(0,60*moveSpeed * Time.deltaTime, 0);
     }
 
     private void CheckIfCanMove()

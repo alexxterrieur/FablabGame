@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QTEKeys : MonoBehaviour
 {
     public event Action<QTEKeys> OnEnterZone;
     public event Action<QTEKeys> OnExitZone;
+    public GameObject imagePrefab;
 
     public List<QTEKey> RequiredKeys { get; private set; }
 
@@ -20,20 +22,29 @@ public class QTEKeys : MonoBehaviour
 
     private Coroutine moveRoutine;
 
-    public void Initialize(List<QTEKey> keys, float speed, float zoneX)
+    public void Initialize(List<QTEKey> keys, List<Sprite> sprites ,float speed, float zoneX)
     {
         RequiredKeys = keys;
         moveSpeed = speed;
         limitX = zoneX;
 
-        SetRequiredKeysText(RequiredKeys);
+        SetRequiredKeysImage(sprites);
 
         moveRoutine = StartCoroutine(MoveRoutine());
     }
 
-    public void SetRequiredKeysText(List<QTEKey> keys)
+    public void SetRequiredKeysImage(List<Sprite> sprites)
     {
-        text.text = string.Join("\n", keys);
+        foreach (Sprite sprite in sprites)
+        {
+            GameObject go = Instantiate(imagePrefab, transform);
+            Image img = go.GetComponent<Image>();
+
+            if (img != null)
+            {
+                img.sprite = sprite;
+            }
+        }
     }
 
     private IEnumerator MoveRoutine()

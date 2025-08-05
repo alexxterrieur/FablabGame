@@ -2133,32 +2133,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1226513360}
     - target: {fileID: 3197583745956499810, guid: fe431b2184b476a4d879843f2687a313, type: 3}
-      propertyPath: sequenceLength
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 3197583745956499810, guid: fe431b2184b476a4d879843f2687a313, type: 3}
       propertyPath: playerInteraction
       value: 
       objectReference: {fileID: 905340640}
     - target: {fileID: 5439832789131595903, guid: fe431b2184b476a4d879843f2687a313, type: 3}
       propertyPath: m_Name
       value: QTE
-      objectReference: {fileID: 0}
-    - target: {fileID: 5458200710988518837, guid: fe431b2184b476a4d879843f2687a313, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6591671957647539310, guid: fe431b2184b476a4d879843f2687a313, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 670
-      objectReference: {fileID: 0}
-    - target: {fileID: 6591671957647539310, guid: fe431b2184b476a4d879843f2687a313, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7426683209498472230, guid: fe431b2184b476a4d879843f2687a313, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -50,6 +50,9 @@ public class SimonManager : Assembler
     [SerializeField] private List<SimonRoundDisplay> roundDisplays = new();
     public TMP_Text targetText;
     public TMP_Text currentText;
+    [SerializeField] private TextMeshProUGUI stateText;
+    public string memorize;
+    public string play;
 
     [Header("Canvas")]
     [SerializeField] GameObject canvas;
@@ -67,6 +70,7 @@ public class SimonManager : Assembler
         Debug.Log("Nouvelle partie");
         sequence.Clear();
         currentScore = 0;
+        stateText.text = memorize;
 
         if (!endless)
         {
@@ -88,6 +92,8 @@ public class SimonManager : Assembler
 
     IEnumerator AddAndShowSequence()
     {
+        stateText.text = memorize;
+
         int newIndex = GetWeightedRandomButtonIndex();
         sequence.Add(newIndex);
         Debug.Log("Nouvelle séquence longueur: " + sequence.Count);
@@ -116,6 +122,7 @@ public class SimonManager : Assembler
 
         currentScore = 0;
         inputEnabled = true;
+        stateText.text = play;
     }
 
     private int GetWeightedRandomButtonIndex()

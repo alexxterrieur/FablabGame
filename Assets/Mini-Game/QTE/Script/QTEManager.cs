@@ -5,6 +5,7 @@ using System.Linq;
 using System;
 using GameManagement;
 using UnityEngine.UIElements;
+using TMPro;
 
 public class QTEManager : Assembler   
 {

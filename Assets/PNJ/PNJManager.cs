@@ -38,6 +38,8 @@ namespace PNJ
         
         [Header("Animations")]
         [SerializeField] private Animator animator;
+        [SerializeField] private float waitTimeTakeItem = 1f;
+        [SerializeField] private float waitTimeDeliverItem = 1f;
         
         private List<SO_Order> availableOrders = new List<SO_Order>();
         private NavMeshAgent navMeshAgent;
@@ -116,6 +118,7 @@ namespace PNJ
             
             if (currentOrder.IsOrderComplete())
             {
+                yield return SimulateCraft();
                 ChangeCarriedItem(currentOrder.finalItem);
                 
                 yield return GoToTarget(deliveryWaypoint.position);
@@ -152,7 +155,7 @@ namespace PNJ
                 ChangeCarriedItem(item);
                 break;
             }
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(waitTimeTakeItem);
             
             isMovingToCollector = false;
             isMovingToAssembler = true;
@@ -170,15 +173,24 @@ namespace PNJ
                 ChangeCarriedItem(null);
                 break;
             }
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(waitTimeDeliverItem);
             isMovingToAssembler = false;
         }
 
         private IEnumerator GoToTarget(Vector3 target)
         {
-            animator.SetTrigger("Interact");
             navMeshAgent.SetDestination(target);
             yield return new WaitWhile(() => navMeshAgent.pathPending || navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance);
+        }
+
+        private IEnumerator SimulateCraft()
+        {
+            if (lastAssembler.GetComponent<CraftAnim>() is { } craftAnim)
+            {
+                craftAnim.PlayParticleSystem();
+                yield return new WaitForSeconds(craftAnim.GetCraftDuration());
+            }
+            else Debug.LogWarning("No CraftAnim component found on the last assembler.");
         }
 
         private void StartManageOrder()
@@ -197,6 +209,7 @@ namespace PNJ
             carriedItem = item;
             carriedItemRenderer.mesh = carriedItem?.itemMesh;
             carriedItemRenderer.gameObject.SetActive(carriedItem);
+            animator.SetBool("IsCarryingObject", carriedItem);
         }
 
         private void Update()

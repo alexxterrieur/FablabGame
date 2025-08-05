@@ -10,7 +10,7 @@ public class CraftAnim : MonoBehaviour
     public void PlayParticleSystem()
     {
         craftParticle.Play();
-        cameraMovement.ZoomToPlayer();
+        cameraMovement?.ZoomToPlayer();
         //bloquer movement joeuur
     }
 
@@ -19,11 +19,16 @@ public class CraftAnim : MonoBehaviour
         //player anim, regarde la cam et montre lobjet
         //equip object
         OnAssembleurAnimExit.Invoke();
-        //rétablir mouvements joueur
+        //retablir mouvements joueur
     }
 
     public void MoveBackCamera()
     {
         cameraMovement.ZoomOut();
+    }
+
+    public float GetCraftDuration()
+    {
+        return craftParticle.main.duration;
     }
 }

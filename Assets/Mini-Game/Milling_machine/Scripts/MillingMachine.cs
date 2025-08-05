@@ -39,6 +39,10 @@ public class MillingMachine : MonoBehaviour
     private void Awake()
     {
         _transform = transform;
+        
+        currentScale.Set(normalDrillSize, normalDrillSize, normalDrillSize);
+        _transform.localScale = currentScale;
+
     }
 
     private void SetUpForm(FormData _data)

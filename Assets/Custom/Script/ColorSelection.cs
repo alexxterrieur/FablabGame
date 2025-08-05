@@ -13,6 +13,7 @@ public class ColorSelection : MonoBehaviour
     [SerializeField] private CustomInput input;
 
     [SerializeField] private Image menuImage;
+    [SerializeField] private Sprite NoneSprite;
 
     [SerializeField] private CustomManager manager;
     [SerializeField] private MeshRenderer finalItem;
@@ -22,6 +23,7 @@ public class ColorSelection : MonoBehaviour
     {
         manager.OnReset+=ResetValues;
         btnList = new List<ColorBtn>();
+        bool first = true;
         foreach (var color in materials)
         {
             GameObject go = Instantiate(colorPrefab, parentColors.transform);
@@ -35,7 +37,14 @@ public class ColorSelection : MonoBehaviour
             Image image = go.GetComponent<Image>();
             if (image == null)
                 return;
-            image.material = color;
+            if(first)
+            {
+                first = false;
+                image.sprite = NoneSprite;
+                image.material = null;
+            }
+            else
+                image.material = color;
         }
         ResetValues();
         DecalSelected(new Vector2Int(0, 0));

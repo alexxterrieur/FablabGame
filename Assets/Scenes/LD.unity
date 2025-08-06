@@ -194,7 +194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4530920685107147046, guid: 277c213631ac39649bc7bbc6be09bd94, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.69
+      value: 16.5
       objectReference: {fileID: 0}
     - target: {fileID: 4530920685107147046, guid: 277c213631ac39649bc7bbc6be09bd94, type: 3}
       propertyPath: m_LocalPosition.y
@@ -286,6 +286,10 @@ PrefabInstance:
       propertyPath: countdownTimer
       value: 
       objectReference: {fileID: 1226513360}
+    - target: {fileID: 1258368036182326257, guid: 12bf50340aba3504a838b7365e0a2776, type: 3}
+      propertyPath: failTextFeedback
+      value: 
+      objectReference: {fileID: 736882393}
     - target: {fileID: 1258368036182326257, guid: 12bf50340aba3504a838b7365e0a2776, type: 3}
       propertyPath: playerInteraction
       value: 
@@ -1212,7 +1216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4091691851601966397, guid: aded8bdd09523744da4aeaf988784eee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.749
+      value: 15.42
       objectReference: {fileID: 0}
     - target: {fileID: 4091691851601966397, guid: aded8bdd09523744da4aeaf988784eee, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1501,6 +1505,7 @@ MonoBehaviour:
   zoomedOutFOV: 62
   distanceFromPlayer: 10
   zoomOffset: {x: 0, y: 1, z: 0}
+  isZooming: 0
 --- !u!114 &574979240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1831,6 +1836,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4091691851601966397, guid: aded8bdd09523744da4aeaf988784eee, type: 3}
   m_PrefabInstance: {fileID: 672089561}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &736882393 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8537718922581852762, guid: 479b5ea10e10e3a42b6d9f644f5c791d, type: 3}
+  m_PrefabInstance: {fileID: 3942748618841004757}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &767841864 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8677710770862407314, guid: 479b5ea10e10e3a42b6d9f644f5c791d, type: 3}
@@ -2095,6 +2105,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1255130791}
     - target: {fileID: 9188886044664016459, guid: 28bd45a6faa2b504a8d0f61d7903655f, type: 3}
+      propertyPath: millingMachine
+      value: 
+      objectReference: {fileID: 1087966432}
+    - target: {fileID: 9188886044664016459, guid: 28bd45a6faa2b504a8d0f61d7903655f, type: 3}
       propertyPath: plasticAssembler
       value: 
       objectReference: {fileID: 1741451891}
@@ -2277,6 +2291,10 @@ PrefabInstance:
       propertyPath: countdownTimer
       value: 
       objectReference: {fileID: 1226513360}
+    - target: {fileID: 3197583745956499810, guid: fe431b2184b476a4d879843f2687a313, type: 3}
+      propertyPath: failTextFeedback
+      value: 
+      objectReference: {fileID: 736882393}
     - target: {fileID: 3197583745956499810, guid: fe431b2184b476a4d879843f2687a313, type: 3}
       propertyPath: playerInteraction
       value: 
@@ -3363,6 +3381,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4091691851601966397, guid: aded8bdd09523744da4aeaf988784eee, type: 3}
   m_PrefabInstance: {fileID: 1087503442}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1087966432 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1034453529701383115, guid: 12bf50340aba3504a838b7365e0a2776, type: 3}
+  m_PrefabInstance: {fileID: 56364732}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f87a18a0b42f144aff95a377f88247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1105674847
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3680,7 +3709,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4530920685107147046, guid: b57caedb4c381f049ad2b4a813bd18b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16
+      value: 15.5
       objectReference: {fileID: 0}
     - target: {fileID: 4530920685107147046, guid: b57caedb4c381f049ad2b4a813bd18b6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5326,6 +5355,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1226513360}
     - target: {fileID: 7447623638406655505, guid: 8eaf0c98f23f04d48b90c25f11c11b88, type: 3}
+      propertyPath: failTextFeedback
+      value: 
+      objectReference: {fileID: 736882393}
+    - target: {fileID: 7447623638406655505, guid: 8eaf0c98f23f04d48b90c25f11c11b88, type: 3}
       propertyPath: playerInteraction
       value: 
       objectReference: {fileID: 905340640}
@@ -5941,7 +5974,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4091691851601966397, guid: aded8bdd09523744da4aeaf988784eee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.63
+      value: 14.85
       objectReference: {fileID: 0}
     - target: {fileID: 4091691851601966397, guid: aded8bdd09523744da4aeaf988784eee, type: 3}
       propertyPath: m_LocalPosition.y

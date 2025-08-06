@@ -13,6 +13,8 @@ public class AssemblerInteraction : MonoBehaviour, IHighlight
 
     [SerializeField] private GameObject feedbackCircle;
 
+    public FeedbackManager feedbackManager;
+
     private void Start()
     {
         if (assembler)
@@ -32,6 +34,24 @@ public class AssemblerInteraction : MonoBehaviour, IHighlight
         }
 
         currentOrder.RemoveDeliveredItem();
+
+        if (feedbackManager != null)
+        {
+            foreach (var material in currentOrder.Materials)
+            {
+                if (currentOrder.CanAddItem(material.item))
+                {
+                    var shelfGroup = feedbackManager.shelfGroups.Find(g => g.item == material.item);
+                    if (shelfGroup != null)
+                    {
+                        foreach (var shelf in shelfGroup.shelves)
+                        {
+                            shelf.ToggleFeedback(true);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public void SetCurrentOrder(SO_Order order)

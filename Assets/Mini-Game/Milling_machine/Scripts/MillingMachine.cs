@@ -86,18 +86,6 @@ public class MillingMachine : MonoBehaviour
     {
         useReamer = context.ReadValueAsButton();
     }
-    
-    public void ResetMachine()
-    {
-        moveInput = Vector2.zero;
-        useReamer = false;
-        lockMovement = false;
-        
-        currentScale.Set(normalDrillSize, normalDrillSize, normalDrillSize);
-        _transform.localScale = currentScale;
-
-        _transform.localPosition = new Vector3(_transform.localPosition.x, miMaxReamerYPos.Item2, _transform.localPosition.z);
-    }
 
     private void FixedUpdate()
     {
@@ -187,8 +175,19 @@ public class MillingMachine : MonoBehaviour
         millingMachineManager.UnActivate();
     }
 
-    private void ResetMillingMachine()
+    public void ResetMillingMachine()
     {
+        moveInput = Vector2.zero;
+        useReamer = false;
+        lockMovement = false;
+        nbrOfPerfectForm = 0;
+        currentReamerRatationSpeed = reamerRotationSpeed;
+        
+        currentScale.Set(normalDrillSize, normalDrillSize, normalDrillSize);
+        _transform.localScale = currentScale;
+
+        _transform.localPosition = new Vector3(_transform.localPosition.x, miMaxReamerYPos.Item2, _transform.localPosition.z);
+        
         foreach (var part in parts)
         {
             if(part!=null)

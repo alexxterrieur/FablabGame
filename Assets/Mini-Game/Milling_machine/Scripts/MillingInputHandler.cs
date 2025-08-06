@@ -91,6 +91,6 @@ public class MillingInputHandler : MonoBehaviour, IPlayerInputsControlled
     {
         movementDir = Vector2.zero;
         pressedKey = QTEKey.None;
-        millingMachine.ResetMachine();
+        millingMachine.ResetMillingMachine();
     }
 }

@@ -774,6 +774,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8666315843908340906, guid: e99dc63067da3bf478c6e16594294755, type: 3}
+      propertyPath: glowColor.b
+      value: 0.047058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666315843908340906, guid: e99dc63067da3bf478c6e16594294755, type: 3}
+      propertyPath: glowColor.g
+      value: 0.16862746
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666315843908340906, guid: e99dc63067da3bf478c6e16594294755, type: 3}
+      propertyPath: glowColor.r
+      value: 0.02745098
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2199,6 +2211,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6089723636908964874, guid: d149ff481b7e267468890d5955b40929, type: 3}
+      propertyPath: glowColor.b
+      value: 0.047058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 6089723636908964874, guid: d149ff481b7e267468890d5955b40929, type: 3}
+      propertyPath: glowColor.g
+      value: 0.16862746
+      objectReference: {fileID: 0}
+    - target: {fileID: 6089723636908964874, guid: d149ff481b7e267468890d5955b40929, type: 3}
+      propertyPath: glowColor.r
+      value: 0.02745098
+      objectReference: {fileID: 0}
     - target: {fileID: 7242126797108298092, guid: d149ff481b7e267468890d5955b40929, type: 3}
       propertyPath: assembler
       value: 
@@ -3421,6 +3445,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shelf Plastic
       objectReference: {fileID: 0}
+    - target: {fileID: 2709745867144018479, guid: 02f6b1d340c34df40823e6725724e514, type: 3}
+      propertyPath: glowColor.b
+      value: 0.047058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 2709745867144018479, guid: 02f6b1d340c34df40823e6725724e514, type: 3}
+      propertyPath: glowColor.g
+      value: 0.16862746
+      objectReference: {fileID: 0}
+    - target: {fileID: 2709745867144018479, guid: 02f6b1d340c34df40823e6725724e514, type: 3}
+      propertyPath: glowColor.r
+      value: 0.02745098
+      objectReference: {fileID: 0}
     - target: {fileID: 2810354041272991473, guid: 02f6b1d340c34df40823e6725724e514, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -4048,6 +4084,18 @@ PrefabInstance:
     - target: {fileID: 2071286379684357793, guid: acda3772290f77f439df4c4f30f48613, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161708851640126269, guid: acda3772290f77f439df4c4f30f48613, type: 3}
+      propertyPath: glowColor.b
+      value: 0.047058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161708851640126269, guid: acda3772290f77f439df4c4f30f48613, type: 3}
+      propertyPath: glowColor.g
+      value: 0.16862746
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161708851640126269, guid: acda3772290f77f439df4c4f30f48613, type: 3}
+      propertyPath: glowColor.r
+      value: 0.02745098
       objectReference: {fileID: 0}
     - target: {fileID: 3457905723094860529, guid: acda3772290f77f439df4c4f30f48613, type: 3}
       propertyPath: cameraMovement
@@ -5557,6 +5605,30 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7504850648103077697, guid: c5ced8217844625469462f2244b8c8e3, type: 3}
+      propertyPath: color.b
+      value: 0.3442615
+      objectReference: {fileID: 0}
+    - target: {fileID: 7504850648103077697, guid: c5ced8217844625469462f2244b8c8e3, type: 3}
+      propertyPath: color.g
+      value: 0.6981132
+      objectReference: {fileID: 0}
+    - target: {fileID: 7504850648103077697, guid: c5ced8217844625469462f2244b8c8e3, type: 3}
+      propertyPath: color.r
+      value: 0.1672837
+      objectReference: {fileID: 0}
+    - target: {fileID: 7504850648103077697, guid: c5ced8217844625469462f2244b8c8e3, type: 3}
+      propertyPath: glowColor.b
+      value: 0.047058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 7504850648103077697, guid: c5ced8217844625469462f2244b8c8e3, type: 3}
+      propertyPath: glowColor.g
+      value: 0.16862746
+      objectReference: {fileID: 0}
+    - target: {fileID: 7504850648103077697, guid: c5ced8217844625469462f2244b8c8e3, type: 3}
+      propertyPath: glowColor.r
+      value: 0.02745098
+      objectReference: {fileID: 0}
     - target: {fileID: 8244129264583227530, guid: c5ced8217844625469462f2244b8c8e3, type: 3}
       propertyPath: m_Name
       value: Shelf ShelfMetal
@@ -6181,6 +6253,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3651616343473219941, guid: 646a1cf8e95ecb841a06257f773c2aa4, type: 3}
+      propertyPath: color.b
+      value: 0.122456394
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651616343473219941, guid: 646a1cf8e95ecb841a06257f773c2aa4, type: 3}
+      propertyPath: color.g
+      value: 0.4415095
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651616343473219941, guid: 646a1cf8e95ecb841a06257f773c2aa4, type: 3}
+      propertyPath: color.r
+      value: 0.16339679
+      objectReference: {fileID: 0}
     - target: {fileID: 4496477608481321289, guid: 646a1cf8e95ecb841a06257f773c2aa4, type: 3}
       propertyPath: m_Name
       value: Shelf Wood
@@ -6254,6 +6338,18 @@ PrefabInstance:
       propertyPath: cameraMovement
       value: 
       objectReference: {fileID: 574979239}
+    - target: {fileID: 7883408428202960902, guid: 78f7b0efafaec1141a1c364efe908a13, type: 3}
+      propertyPath: glowColor.b
+      value: 0.047058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883408428202960902, guid: 78f7b0efafaec1141a1c364efe908a13, type: 3}
+      propertyPath: glowColor.g
+      value: 0.16862746
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883408428202960902, guid: 78f7b0efafaec1141a1c364efe908a13, type: 3}
+      propertyPath: glowColor.r
+      value: 0.02745098
+      objectReference: {fileID: 0}
     - target: {fileID: 8596041783952515279, guid: 78f7b0efafaec1141a1c364efe908a13, type: 3}
       propertyPath: m_Name
       value: PlasticAssembler
@@ -6683,6 +6779,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8008024264754409255, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: glowColor.b
+      value: 0.047058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008024264754409255, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: glowColor.g
+      value: 0.16862746
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008024264754409255, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: glowColor.r
+      value: 0.02745098
+      objectReference: {fileID: 0}
     - target: {fileID: 8428444790439187917, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
       propertyPath: finalItem
       value: 
@@ -6820,6 +6928,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1848194645608502994, guid: 479b5ea10e10e3a42b6d9f644f5c791d, type: 3}
+      propertyPath: playerInteraction
+      value: 
+      objectReference: {fileID: 905340640}
     - target: {fileID: 2959785233108615442, guid: 479b5ea10e10e3a42b6d9f644f5c791d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

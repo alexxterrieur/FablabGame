@@ -10763,6 +10763,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 250440951318222821, guid: 479b5ea10e10e3a42b6d9f644f5c791d, type: 3}
+      propertyPath: totalTime
+      value: 480
+      objectReference: {fileID: 0}
     - target: {fileID: 756123000472238635, guid: 479b5ea10e10e3a42b6d9f644f5c791d, type: 3}
       propertyPath: playerScore
       value: 

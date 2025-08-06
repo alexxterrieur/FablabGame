@@ -7,7 +7,13 @@ public class StartMenuManager : MonoBehaviour, IPlayerInputsControlled
 {
     [Header("Scene Reference")]
     [SerializeField] private int gameSceneIndex = 1;
-    
+
+    private void Start()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     private void StartGame()
     {
         SceneManager.LoadScene(gameSceneIndex);

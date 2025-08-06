@@ -84,6 +84,18 @@ public class MillingMachine : MonoBehaviour
     {
         useReamer = context.ReadValueAsButton();
     }
+    
+    public void ResetMachine()
+    {
+        moveInput = Vector2.zero;
+        useReamer = false;
+        lockMovement = false;
+        
+        currentScale.Set(normalDrillSize, normalDrillSize, normalDrillSize);
+        _transform.localScale = currentScale;
+
+        _transform.localPosition = new Vector3(_transform.localPosition.x, miMaxReamerYPos.Item2, _transform.localPosition.z);
+    }
 
     private void FixedUpdate()
     {
@@ -153,6 +165,7 @@ public class MillingMachine : MonoBehaviour
 
                 millingMachineManager.OnAssembleurActivityEnd(false, millingMachineManager);
                 ResetMillingMachine();
+                SetUpForm(data);
                 millingMachineManager.UnActivate();
 
                 Debug.Log("Material Is Destroyed");

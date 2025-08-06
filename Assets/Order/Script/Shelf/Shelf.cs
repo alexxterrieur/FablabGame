@@ -7,18 +7,6 @@ public class Shelf : MonoBehaviour, IHighlight
 
     [SerializeField] private GameObject feedbackCircle;
 
-    private void Awake()
-    {
-        if (shelfItem != null)
-            ShelfRegistry.Register(shelfItem, this);
-    }
-
-    private void OnDestroy()
-    {
-        if (shelfItem != null)
-            ShelfRegistry.Unregister(shelfItem, this);
-    }
-
     public SO_CollectableItem TakeItem()
     {
         if (isDroppedItem)

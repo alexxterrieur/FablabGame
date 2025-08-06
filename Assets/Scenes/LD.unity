@@ -3508,6 +3508,10 @@ PrefabInstance:
       propertyPath: assembler
       value: 
       objectReference: {fileID: 1473623967}
+    - target: {fileID: 7242126797108298092, guid: d149ff481b7e267468890d5955b40929, type: 3}
+      propertyPath: feedbackManager
+      value: 
+      objectReference: {fileID: 1625347313}
     - target: {fileID: 7748842580824764009, guid: d149ff481b7e267468890d5955b40929, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.3
@@ -5984,6 +5988,10 @@ PrefabInstance:
       propertyPath: assembler
       value: 
       objectReference: {fileID: 1430642452}
+    - target: {fileID: 491447529680411004, guid: acda3772290f77f439df4c4f30f48613, type: 3}
+      propertyPath: feedbackManager
+      value: 
+      objectReference: {fileID: 1625347313}
     - target: {fileID: 2071286379684357793, guid: acda3772290f77f439df4c4f30f48613, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -9829,6 +9837,10 @@ PrefabInstance:
       propertyPath: assembler
       value: 
       objectReference: {fileID: 72922525}
+    - target: {fileID: 953018010889767894, guid: 78f7b0efafaec1141a1c364efe908a13, type: 3}
+      propertyPath: feedbackManager
+      value: 
+      objectReference: {fileID: 1625347313}
     - target: {fileID: 6900383428880585670, guid: 78f7b0efafaec1141a1c364efe908a13, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.5

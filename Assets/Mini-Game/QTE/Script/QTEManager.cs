@@ -216,7 +216,8 @@ public class QTEManager : Assembler
             if(a != null)
                 Destroy(a.gameObject);
         }
-            
+        inputManager.pressedKey = new QTEKey();
+        activeKeys.Clear();
         currentKey = null;
         lastInstanciateKey = null;
         canvas.SetActive(false);

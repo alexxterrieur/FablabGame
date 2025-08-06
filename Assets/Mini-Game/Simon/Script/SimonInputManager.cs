@@ -1,3 +1,4 @@
+using GameManagement;
 using InputsManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,6 +6,7 @@ using UnityEngine.InputSystem;
 public class SimonInputManager : MonoBehaviour, IPlayerInputsControlled
 {
     [SerializeField] private SimonManager simonManager;
+    [SerializeField] private GameManager gameManager;
   
     private void ClickOnButton(int i, InputAction.CallbackContext context)
     {
@@ -36,15 +38,31 @@ public class SimonInputManager : MonoBehaviour, IPlayerInputsControlled
 
     public void ReceiveAInput(InputAction.CallbackContext context)
     {
-        ClickOnButton(4, context);
+        if (context.started)
+        {
+            if (gameManager.IsGamePaused())
+                gameManager.ResumeGame();
+            else
+                ClickOnButton(4, context);
+        }
     }
 
     public void ReceiveBInput(InputAction.CallbackContext context)
     {
-        ClickOnButton(5, context);
+        if (context.started)
+        {
+            if (gameManager.IsGamePaused())
+                gameManager.RestartGame();
+            else
+                ClickOnButton(5, context);
+        }
     }
 
-    public void ReceiveStartInput(InputAction.CallbackContext context) { }
+    public void ReceiveStartInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            gameManager.PauseGame();
+    }
 
     public void ReceiveSelectInput(InputAction.CallbackContext context) { }
 

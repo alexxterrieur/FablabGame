@@ -104,7 +104,13 @@ namespace OrderChoice
 
         public void ReceiveAInput(InputAction.CallbackContext context)
         {
-            SelectOrder();
+            if (context.started)
+            {
+                if (gameManager.IsGamePaused())
+                    gameManager.ResumeGame();
+                else
+                    SelectOrder();
+            }
         }
 
         private void OnDestroy()
@@ -117,9 +123,20 @@ namespace OrderChoice
 
         public void ReceiveMovementDownInput(InputAction.CallbackContext context) { }
 
-        public void ReceiveBInput(InputAction.CallbackContext context) { }
+        public void ReceiveBInput(InputAction.CallbackContext context)
+        {
+            if (context.started)
+            {
+                if (gameManager.IsGamePaused())
+                    gameManager.RestartGame();
+            }
+        }
 
-        public void ReceiveStartInput(InputAction.CallbackContext context) { }
+        public void ReceiveStartInput(InputAction.CallbackContext context)
+        {
+            if (context.started)
+                gameManager.PauseGame();
+        }
 
         public void ReceiveSelectInput(InputAction.CallbackContext context) { }
         

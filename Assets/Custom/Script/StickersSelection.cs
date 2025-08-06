@@ -21,7 +21,7 @@ public class StickersSelection : MonoBehaviour
     private void Start()
     {
         customManager.OnReset += ResetValues;
-
+        menuImage.gameObject.SetActive(false);
         btnList = new List<StikerBtn>();
         foreach (var tex in textures)
         {
@@ -55,6 +55,7 @@ public class StickersSelection : MonoBehaviour
         DecalSelection(0, 0, grid.constraintCount);
         menuImage.sprite = Utils.ConvertToSprite(textures[0]);
         projector.transform.localPosition = Vector3.zero;
+        menuImage.gameObject.SetActive(false);
     }
 
     private void SetUpProjectorMovement()
@@ -81,11 +82,12 @@ public class StickersSelection : MonoBehaviour
         if (currentSelectSticker == 0)
         {
             projector.gameObject.SetActive(false);
+            menuImage.gameObject.SetActive(false);
             SelectPosition();
             customManager.additionalScore.Item2 = 0;
             return;
         }
-
+        menuImage.gameObject.SetActive(true);
         customManager.additionalScore.Item2 = 50;
         projector.gameObject.SetActive(true);
         SetUpProjectorMovement();

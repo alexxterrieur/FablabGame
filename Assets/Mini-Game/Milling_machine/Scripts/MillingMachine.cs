@@ -15,8 +15,11 @@ public class MillingMachine : MonoBehaviour
     private List<GameObject> millingButtons = new();
     [SerializeField] private GameObject partPrefab;
     private List<GameObject> parts = new();
-
+    [SerializeField] private Reamer reamer;
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float reamerRotationSpeed = 5f;
+    [SerializeField] private float reamerDownSpeed = 5f;
+    [SerializeField] private float speedMultiplier = 1.5f;
     [SerializeField] private (float, float) miMaxReamerYPos = (0f, 5f);
     [SerializeField] private float normalDrillSize = 1f;
     [SerializeField] private float minimalDrillSize = 0.2f;
@@ -28,7 +31,7 @@ public class MillingMachine : MonoBehaviour
     private Transform _transform;
 
     private int nbrOfPerfectForm = 0;
-    
+    private float currentReamerRatationSpeed = 0f;
     private Vector3 currentScale = Vector3.one;
 
     private void Awake()
@@ -38,6 +41,9 @@ public class MillingMachine : MonoBehaviour
         currentScale.Set(normalDrillSize, normalDrillSize, normalDrillSize);
         _transform.localScale = currentScale;
 
+        if (!reamer) Debug.LogError("Reamer is not assigned in MillingMachine script!");
+        
+        currentReamerRatationSpeed = reamerRotationSpeed;
     }
 
     public void SetCurrentOrder(SO_Order order)
@@ -47,6 +53,11 @@ public class MillingMachine : MonoBehaviour
         
         data = order.millingForm;
         SetUpForm(data);
+        
+        if (reamer) reamer.ResetReamerSpeed(); 
+        else Debug.LogError("Reamer is not assigned in MillingMachine script!");
+        
+        currentReamerRatationSpeed = reamerRotationSpeed;
     }
 
     private void SetUpForm(FormData _data)
@@ -87,11 +98,11 @@ public class MillingMachine : MonoBehaviour
 
         if (!useReamer && transform.localPosition.y < miMaxReamerYPos.Item2)
         {
-            _transform.position = new Vector3(_transform.position.x, _transform.position.y + Time.fixedDeltaTime * moveSpeed, _transform.position.z);
+            _transform.position = new Vector3(_transform.position.x, _transform.position.y + Time.fixedDeltaTime * reamerDownSpeed, _transform.position.z);
         }
         else if (useReamer && transform.localPosition.y > miMaxReamerYPos.Item1)
         {
-            _transform.localPosition = new Vector3(_transform.localPosition.x, _transform.localPosition.y + Time.fixedDeltaTime * -moveSpeed, _transform.localPosition.z);
+            _transform.localPosition = new Vector3(_transform.localPosition.x, _transform.localPosition.y + Time.fixedDeltaTime * -reamerDownSpeed, _transform.localPosition.z);
         }
         else if(useReamer && transform.localPosition.y < miMaxReamerYPos.Item1)
         {
@@ -103,8 +114,8 @@ public class MillingMachine : MonoBehaviour
         currentScale.Set(scale, scale, scale);
         _transform.localScale = currentScale;
 
-        if(scale <= minimalDrillSize)
-            _transform.Rotate(0,60*moveSpeed * Time.deltaTime, 0);
+        if (scale <= minimalDrillSize)
+            _transform.Rotate(0, 60 * currentReamerRatationSpeed * Time.deltaTime, 0);
     }
 
     private void CheckIfCanMove()
@@ -125,7 +136,9 @@ public class MillingMachine : MonoBehaviour
                 parts.Add(form.gameObject);
                 form.SetImage(millingButton.GetPart().form);
                 nbrOfPerfectForm++;
-                Debug.Log("Perfect");
+
+                currentReamerRatationSpeed *= speedMultiplier;
+                reamer.IncreaseReamerSpeed(speedMultiplier);
 
                 if (nbrOfPerfectForm >= data.forms.Count)
                 {

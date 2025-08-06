@@ -68,6 +68,9 @@ public class QTEManager : Assembler
 
     private void ChangeCurrentKey(QTEKeys _)
     {
+        if (currentKey.nextKey == null)
+            return;
+
         currentKey = currentKey.nextKey;
 
         currentKey.OnEnterZone += ChangeCurrentKey;

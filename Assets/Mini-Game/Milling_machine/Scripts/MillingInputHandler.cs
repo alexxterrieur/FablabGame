@@ -17,13 +17,11 @@ public class MillingInputHandler : MonoBehaviour, IPlayerInputsControlled
 
     public void ReceiveAInput(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            if (gameManager.IsGamePaused())
-                gameManager.ResumeGame();
-            else
-                millingMachine.OnMoveReamer(context);
-        }
+        if (gameManager.IsGamePaused())
+            gameManager.ResumeGame();
+        else
+            millingMachine.OnMoveReamer(context);
+
     }
 
     public void ReceiveBInput(InputAction.CallbackContext context)

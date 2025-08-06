@@ -72,7 +72,6 @@ public class QTEInputManager : MonoBehaviour, IPlayerInputsControlled
 
     public void ReceiveSelectInput(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
     }
 
     public void ResetInputs(){}

@@ -370,6 +370,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MillingMachine
       objectReference: {fileID: 0}
+    - target: {fileID: 4071852976380678581, guid: 12bf50340aba3504a838b7365e0a2776, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1723064294}
     - target: {fileID: 4752714462582142751, guid: 12bf50340aba3504a838b7365e0a2776, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.5
@@ -3650,6 +3654,10 @@ PrefabInstance:
       propertyPath: images.Array.data[5].green
       value: 
       objectReference: {fileID: 21300000, guid: cba0a7fbb0993c940bdc85b1ac2d5f91, type: 3}
+    - target: {fileID: 4963916857401522542, guid: fe431b2184b476a4d879843f2687a313, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1723064294}
     - target: {fileID: 5439832789131595903, guid: fe431b2184b476a4d879843f2687a313, type: 3}
       propertyPath: m_Name
       value: QTE
@@ -7943,6 +7951,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2303324085758801827, guid: 8eaf0c98f23f04d48b90c25f11c11b88, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1723064294}
     - target: {fileID: 2896312656841444064, guid: 8eaf0c98f23f04d48b90c25f11c11b88, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -10551,6 +10563,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 574979236}
+    - target: {fileID: 4269405735294572680, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1723064294}
     - target: {fileID: 6373019763837657468, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
       propertyPath: m_Sprite
       value: 

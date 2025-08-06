@@ -27,6 +27,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public OrderManager orderManager;
     public GameObject deliveryCircleFeedback;
+    public GameObject customCircleFeedback;
     
     private void Start()
     {
@@ -215,6 +216,9 @@ public class PlayerInteraction : MonoBehaviour
             // Active le cercle de feedback de livraison
             if (deliveryCircleFeedback != null)
                 deliveryCircleFeedback.SetActive(true);
+
+            if (customCircleFeedback != null)
+                customCircleFeedback.SetActive(true);
         }
         else
         {
@@ -224,6 +228,9 @@ public class PlayerInteraction : MonoBehaviour
             // Desactive le cercle de livraison si ce n'est pas un objet final
             if (deliveryCircleFeedback != null)
                 deliveryCircleFeedback.SetActive(false);
+
+            if (customCircleFeedback != null)
+                customCircleFeedback.SetActive(false);
         }
 
     }
@@ -252,6 +259,11 @@ public class PlayerInteraction : MonoBehaviour
         if (deliveryCircleFeedback != null)
         {
             deliveryCircleFeedback.SetActive(false);
+        }
+
+        if (customCircleFeedback != null)
+        {
+            customCircleFeedback.SetActive(false);
         }
 
 

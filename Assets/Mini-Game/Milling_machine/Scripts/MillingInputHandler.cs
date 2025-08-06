@@ -1,3 +1,4 @@
+using GameManagement;
 using InputsManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,14 +6,34 @@ using UnityEngine.InputSystem;
 public class MillingInputHandler : MonoBehaviour, IPlayerInputsControlled
 {
     public MillingMachine millingMachine;
+    [SerializeField] private GameManager gameManager;
+    
     private Vector2 movementDir = Vector2.zero;
+
+    private void Awake()
+    {
+        if (!gameManager) Debug.LogError("GameManager is not assigned in the inspector");
+    }
 
     public void ReceiveAInput(InputAction.CallbackContext context)
     {
-        millingMachine.OnMoveReamer(context);
+        if (context.started)
+        {
+            if (gameManager.IsGamePaused())
+                gameManager.ResumeGame();
+            else
+                millingMachine.OnMoveReamer(context);
+        }
     }
 
-    public void ReceiveBInput(InputAction.CallbackContext context){}
+    public void ReceiveBInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (gameManager.IsGamePaused())
+                gameManager.RestartGame();
+        }
+    }
 
     public QTEKey pressedKey { get; private set; }
 
@@ -62,7 +83,11 @@ public class MillingInputHandler : MonoBehaviour, IPlayerInputsControlled
         SetKeyState(context, key);
     }
 
-    public void ReceiveStartInput(InputAction.CallbackContext context){}
+    public void ReceiveStartInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            gameManager.PauseGame();
+    }
 
     public void ResetInputs()
     {

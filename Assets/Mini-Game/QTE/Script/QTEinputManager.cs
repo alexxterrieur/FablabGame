@@ -1,11 +1,12 @@
 using InputsManagement;
 using System;
+using GameManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class QTEInputManager : MonoBehaviour, IPlayerInputsControlled
 {
-
+    [SerializeField] private GameManager gameManager;
     public Action<bool, Assembler> OnActivityEnd;
     public QTEKey pressedKey { get; private set; }
 
@@ -43,17 +44,30 @@ public class QTEInputManager : MonoBehaviour, IPlayerInputsControlled
 
     public void ReceiveAInput(InputAction.CallbackContext context)
     {
-        SetKeyState(context, QTEKey.A);
+        if (context.started)
+        {
+            if (gameManager.IsGamePaused())
+                gameManager.ResumeGame();
+            else
+                SetKeyState(context, QTEKey.A);
+        }
     }
 
     public void ReceiveBInput(InputAction.CallbackContext context)
     {
-        SetKeyState(context, QTEKey.B);
+        if (context.started)
+        {
+            if (gameManager.IsGamePaused())
+                gameManager.RestartGame();
+            else
+                SetKeyState(context, QTEKey.B);
+        }
     }
 
     public void ReceiveStartInput(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        if (context.started)
+            gameManager.PauseGame();
     }
 
     public void ReceiveSelectInput(InputAction.CallbackContext context)

@@ -241,7 +241,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderer: {fileID: 5103151645176820843}
-  color: {r: 0.043137256, g: 0.043137256, b: 0.043137256, a: 1}
+  glowColor: {r: 0.02745098, g: 0.16862746, b: 0.047058824, a: 1}
+  noGlowColor: {r: 0, g: 0, b: 0, a: 1}
+  glowSpeed: 2
   wrongColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1001 &5842185506839095535
 PrefabInstance:

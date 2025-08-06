@@ -23,6 +23,7 @@ public class ColorSelection : MonoBehaviour
     {
         manager.OnReset+=ResetValues;
         btnList = new List<ColorBtn>();
+        menuImage.gameObject.SetActive(false);
         bool first = true;
         foreach (var color in materials)
         {
@@ -77,6 +78,7 @@ public class ColorSelection : MonoBehaviour
         finalItem.material = materials[0];
         holdingItem.material = materials[0];
 
+
     }
     private void Select()
     {
@@ -85,9 +87,16 @@ public class ColorSelection : MonoBehaviour
         holdingItem.material = materials[currentSelectColor];
 
         if (currentSelectColor != 0)
+        {
             manager.additionalScore.Item1 = 50;
+            menuImage.gameObject.SetActive(true);
+        }
+
         else
+        {
+            menuImage.gameObject.SetActive(false);
             manager.additionalScore.Item1 = 0;
+        }
 
         RemoveSelectionColor();
     }

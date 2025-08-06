@@ -64,5 +64,10 @@ public class MillingInputHandler : MonoBehaviour, IPlayerInputsControlled
 
     public void ReceiveStartInput(InputAction.CallbackContext context){}
 
-    public void ResetInputs(){}
+    public void ResetInputs()
+    {
+        movementDir = Vector2.zero;
+        pressedKey = QTEKey.None;
+        millingMachine.ResetMachine();
+    }
 }

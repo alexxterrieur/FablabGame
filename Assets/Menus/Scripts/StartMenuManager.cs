@@ -5,9 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class StartMenuManager : MonoBehaviour, IPlayerInputsControlled
 {
+    [Header("Scene Reference")]
+    [SerializeField] private int gameSceneIndex = 1;
+    
     private void StartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(gameSceneIndex);
     }
     
     public void ReceiveMovementUpInput(InputAction.CallbackContext context)

@@ -9,6 +9,10 @@ public class EndMenuManager : MonoBehaviour, IPlayerInputsControlled
     [Header("Game Reference")]
     [SerializeField] private GameManager gameManager;
     
+    [Header("Scene Reference")]
+    [SerializeField] private int mainMenuSceneIndex = 0;
+    
+    
     private void Awake()
     {
         if (gameManager) gameManager.OnGameFinished += ReceiveGameFinished;
@@ -32,7 +36,8 @@ public class EndMenuManager : MonoBehaviour, IPlayerInputsControlled
 
     public void ReceiveBInput(InputAction.CallbackContext context)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene(mainMenuSceneIndex);
     }
 
     private void OnDestroy()

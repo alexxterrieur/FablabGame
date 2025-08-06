@@ -8,7 +8,7 @@ public class QTEInputManager : MonoBehaviour, IPlayerInputsControlled
 {
     [SerializeField] private GameManager gameManager;
     public Action<bool, Assembler> OnActivityEnd;
-    public QTEKey pressedKey { get; private set; }
+    public QTEKey pressedKey;
 
     private void SetKeyState(InputAction.CallbackContext context, QTEKey key)
     {

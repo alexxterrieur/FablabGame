@@ -1,6 +1,7 @@
 using System;
 using DeliveryPoint;
 using UnityEngine;
+using static FeedbackManager;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -28,7 +29,8 @@ public class PlayerInteraction : MonoBehaviour
     public OrderManager orderManager;
     public GameObject deliveryCircleFeedback;
     public GameObject customCircleFeedback;
-    
+    [SerializeField] private FeedbackManager feedbackManager;
+
     private void Start()
     {
         if (animator == null)
@@ -222,10 +224,10 @@ public class PlayerInteraction : MonoBehaviour
 
         if (heldItem.IsFinalItem)
         {
-            // Desactive le feedback de l'assembleur
-            var assembler = AssemblerRegistry.GetAssembler(currentOrder.mainMaterial);
-            if (assembler != null)
-                assembler.ToggleFeedback(false);
+            // Désactive le feedback de l’assembleur associé à l’ordre actuel
+            var assemblerEntry = feedbackManager.assemblerGroups.Find(g => g.material == currentOrder.mainMaterial);
+            if (assemblerEntry != null)
+                assemblerEntry.assembler.ToggleFeedback(false);
 
             // Active le cercle de feedback de livraison
             if (deliveryCircleFeedback != null)
@@ -327,34 +329,49 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (order.CanAddItem(material.item))
             {
-                foreach (var shelf in ShelfRegistry.GetShelves(material.item))
+                var shelfGroup = feedbackManager.shelfGroups.Find(g => g.item == material.item);
+                if (shelfGroup != null)
                 {
-                    shelf.ToggleFeedback(true);
+                    foreach (var shelf in shelfGroup.shelves)
+                    {
+                        shelf.ToggleFeedback(true);
+                    }
                 }
             }
         }
 
-        // Desactive assembleur
-        var assembler = AssemblerRegistry.GetAssembler(order.mainMaterial);
-        if (assembler != null)
-            assembler.ToggleFeedback(false);
+        // Désactive l'assembleur lié à l'ordre
+        var assemblerEntry = feedbackManager.assemblerGroups.Find(g => g.material == order.mainMaterial);
+        if (assemblerEntry != null)
+        {
+            assemblerEntry.assembler.ToggleFeedback(false);
+        }
     }
+
+
 
     public void ShowAssemblerFeedbackForCurrentOrder(SO_Order order)
     {
-        // Desactive tous les shelfs
         foreach (var material in order.Materials)
         {
-            foreach (var shelf in ShelfRegistry.GetShelves(material.item))
+            var shelfGroup = feedbackManager.shelfGroups.Find(g => g.item == material.item);
+            if (shelfGroup != null)
             {
-                shelf.ToggleFeedback(false);
+                foreach (var shelf in shelfGroup.shelves)
+                {
+                    shelf.ToggleFeedback(false);
+                }
             }
         }
 
-        var assembler = AssemblerRegistry.GetAssembler(order.mainMaterial);
-        if (assembler != null)
-            assembler.ToggleFeedback(true);
+        var assemblerEntry = feedbackManager.assemblerGroups.Find(g => g.material == order.mainMaterial);
+        if (assemblerEntry != null)
+        {
+            assemblerEntry.assembler.ToggleFeedback(true);
+        }
     }
+
+
 
     private void UpdateDeliveryFeedbackColor(Highlight.HighlightState state)
     {

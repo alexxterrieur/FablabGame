@@ -6623,6 +6623,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Custom
       objectReference: {fileID: 0}
+    - target: {fileID: 830259430711013913, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1824090046606591822, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2073846691394051373, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1
@@ -6667,6 +6675,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 574979236}
+    - target: {fileID: 6373019763837657468, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e9315e41ea2e7ff44b84fbcb662b2421, type: 3}
+    - target: {fileID: 6724659034082206263, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8428444790439187917, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
       propertyPath: finalItem
       value: 

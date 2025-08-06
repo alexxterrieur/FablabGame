@@ -187,11 +187,11 @@ public class QTEManager : Assembler
         //    FailKey(key);
         //    // Let it exit naturally for now
         //}
-        //if(nbrOfValidKey >= sequenceLength)
-        //{
-        //    UnActivate();
-        //    OnAssembleurActivityEnd?.Invoke(true, this);
-        //}
+        if(nbrOfValidKey >= sequenceLength)
+        {
+            UnActivate();
+            OnAssembleurActivityEnd?.Invoke(true, this);
+        }
     }
 
     private void FailKey(QTEKeys _)

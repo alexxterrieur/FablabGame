@@ -16,6 +16,7 @@ public class MillingMachine : MonoBehaviour
     [SerializeField] private GameObject partPrefab;
     private List<GameObject> parts = new();
     [SerializeField] private Reamer reamer;
+    [SerializeField] private MeshRenderer itemPreviewRenderer;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float reamerRotationSpeed = 5f;
     [SerializeField] private float reamerDownSpeed = 5f;
@@ -52,6 +53,7 @@ public class MillingMachine : MonoBehaviour
             return;
         
         data = order.millingForm;
+        itemPreviewRenderer.material.mainTexture = data.itemPreview;
         SetUpForm(data);
         
         if (reamer) reamer.ResetReamerSpeed(); 

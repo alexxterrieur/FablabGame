@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Form", menuName = "Form/ New Form")]
 public class FormData : ScriptableObject
 {
+    public Texture itemPreview;
     public List<FormPart> forms;
 }
 

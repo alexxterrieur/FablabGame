@@ -58,6 +58,7 @@ public class PlayerInteraction : MonoBehaviour
             case "DeliveryPoint":
                 deliveryPointManagement = parent.GetComponent<DeliveryPointManagement>();
                 state = deliveryPointManagement.CanBeUse(heldItem);
+                UpdateDeliveryFeedbackColor(state);
                 break;
 
             case "Custom":
@@ -77,7 +78,13 @@ public class PlayerInteraction : MonoBehaviour
         if (other.gameObject.TryGetComponent(out Highlight hl))
         {
             hl.ToggleHighlight(state);
+
+            if (parent.TryGetComponent(out IHighlight highlightable))
+            {
+                highlightable.UpdateFeedbackColor(state);
+            }
         }
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -98,6 +105,7 @@ public class PlayerInteraction : MonoBehaviour
 
             case "DeliveryPoint":
                 deliveryPointManagement = null;
+                UpdateDeliveryFeedbackColor(Highlight.HighlightState.NotInteractable);
                 break;
 
             case "Custom":
@@ -108,14 +116,20 @@ public class PlayerInteraction : MonoBehaviour
                 collisionDroppedItem = null;
                 break;
         }
-        
+
 
         if (other.gameObject.TryGetComponent(out Highlight hl))
         {
             hl.ToggleHighlight(Highlight.HighlightState.Disabled);
+
+            if (parent.TryGetComponent(out IHighlight highlightable))
+            {
+                highlightable.UpdateFeedbackColor(Highlight.HighlightState.NotInteractable);
+            }
         }
+
     }
-    
+
     public void EquipCraftItem(SO_CollectableItem item)
     {
         if (isCarrying)
@@ -329,6 +343,20 @@ public class PlayerInteraction : MonoBehaviour
         if (assembler != null)
             assembler.ToggleFeedback(true);
     }
+
+    private void UpdateDeliveryFeedbackColor(Highlight.HighlightState state)
+    {
+        if (deliveryCircleFeedback != null)
+        {
+            var renderer = deliveryCircleFeedback.GetComponent<SpriteRenderer>();
+
+            if (state == Highlight.HighlightState.Interactable)
+                renderer.color = Color.green;
+            else
+                renderer.color = Color.white;
+        }
+    }
+
 
     public void ShowDeliveryFeedback()
     {

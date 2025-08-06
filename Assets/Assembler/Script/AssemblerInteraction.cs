@@ -81,6 +81,19 @@ public class AssemblerInteraction : MonoBehaviour, IHighlight
         return Highlight.HighlightState.Interactable;
     }
 
+    public void UpdateFeedbackColor(Highlight.HighlightState state)
+    {
+        if (feedbackCircle != null)
+        {
+            var renderer = feedbackCircle.GetComponent<SpriteRenderer>();
+
+            if (state == Highlight.HighlightState.Interactable)
+                renderer.color = Color.green;
+            else
+                renderer.color = Color.white;
+        }
+    }
+
     public void ToggleFeedback(bool isOn)
     {
         if (feedbackCircle != null)

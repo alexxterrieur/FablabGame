@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace DeliveryPoint
 {
-    public class DeliveryPointManagement : MonoBehaviour, IHighlight
+    public class DeliveryPointManagement : MonoBehaviour
     {
         [SerializeField] private Transform entryPoint;
         [SerializeField] private ObjectCapture capture;

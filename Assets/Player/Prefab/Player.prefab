@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 199613019211562563}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: -0.327, z: 0.61}
+  m_LocalPosition: {x: 0, y: 0.11, z: 0.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -412,6 +412,8 @@ MonoBehaviour:
   animator: {fileID: 8552045178051550853}
   orderManager: {fileID: 0}
   deliveryCircleFeedback: {fileID: 0}
+  customCircleFeedback: {fileID: 0}
+  feedbackManager: {fileID: 0}
 --- !u!114 &5806903988838381698
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46644a2065d37264fbc8eac1c2c828f6, type: 3}
   m_Name: BoiteBijou
   m_EditorClassIdentifier: 
+  itemPreview: {fileID: 2800000, guid: 5804b6d62686c554bbff56a5479daaee, type: 3}
   forms:
   - position: {x: 2, y: 0, z: 2}
     radius: 0

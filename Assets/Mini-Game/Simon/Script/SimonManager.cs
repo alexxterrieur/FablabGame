@@ -168,6 +168,8 @@ public class SimonManager : Assembler
             yield return new WaitForSeconds(pauseTime * speedMultiplier);
         }
 
+        yield return new WaitForSeconds(0.5f);
+
         currentScore = 0;
         StartCoroutine(ShowAnimatedText(stateText, play));
         yield return new WaitForSeconds(scaleDuration + fadeDelay + fadeDuration);

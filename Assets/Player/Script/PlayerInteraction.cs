@@ -249,6 +249,23 @@ public class PlayerInteraction : MonoBehaviour
                 customCircleFeedback.SetActive(false);
         }
 
+        if (collisionAssembler != null)
+        {
+            Highlight.HighlightState state = collisionAssembler.CanBeUse(heldItem);
+
+            Highlight hl = collisionAssembler.GetComponentInChildren<Highlight>();
+
+            if (hl != null)
+            {
+                hl.ToggleHighlight(state);
+                IHighlight highlightable = collisionAssembler.GetComponentInChildren<IHighlight>();
+                if (highlightable != null)
+                {
+                    highlightable.UpdateFeedbackColor(state);
+                }
+            }
+        }
+
     }
 
     private GameObject UnequipItem(GameObject itemPrefab)

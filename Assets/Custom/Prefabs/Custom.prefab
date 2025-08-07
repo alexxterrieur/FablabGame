@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 996ae78b694f8a040bd5b196332f47ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
 --- !u!114 &8943656881275775511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -735,7 +736,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderer: {fileID: 4227806200449801866}
-  color: {r: 0.043137256, g: 0.043137256, b: 0.043137256, a: 1}
+  glowColor: {r: 0, g: 1, b: 1, a: 1}
+  noGlowColor: {r: 0, g: 0, b: 0, a: 1}
+  glowSpeed: 2
   wrongColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &3003198937240957704
 GameObject:
@@ -1877,13 +1880,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   materials:
   - {fileID: -8056718885330383686, guid: 87a2a6bd85b253841b88b2c1cf5da843, type: 3}
-  - {fileID: 2100000, guid: 2a12a21a5c870194ca52b5ddfc2e7aa4, type: 2}
-  - {fileID: 2100000, guid: 2a12a21a5c870194ca52b5ddfc2e7aa4, type: 2}
-  - {fileID: 2100000, guid: 2a12a21a5c870194ca52b5ddfc2e7aa4, type: 2}
-  - {fileID: 2100000, guid: 2a12a21a5c870194ca52b5ddfc2e7aa4, type: 2}
-  - {fileID: 2100000, guid: 2a12a21a5c870194ca52b5ddfc2e7aa4, type: 2}
-  - {fileID: 2100000, guid: 2a12a21a5c870194ca52b5ddfc2e7aa4, type: 2}
-  - {fileID: 2100000, guid: 2a12a21a5c870194ca52b5ddfc2e7aa4, type: 2}
+  - {fileID: 2100000, guid: 019e5c39f9ce5f94b9dccd4e8d25b16e, type: 2}
+  - {fileID: 2100000, guid: c3809eec7d16a0445b349941fc1bafd4, type: 2}
+  - {fileID: 2100000, guid: d41b552a1451aaa43b5f9de11a2ec7ad, type: 2}
+  - {fileID: 2100000, guid: 0bc67de34681cc2439999503a8134cc8, type: 2}
+  - {fileID: 2100000, guid: 0595e9b80cb74cd4d83d6d4712da5080, type: 2}
+  - {fileID: 2100000, guid: 346f02b89393901429bbfaf60c26b40c, type: 2}
+  - {fileID: 2100000, guid: b8a8e51e273ae1e44bd46b80fa790ac2, type: 2}
+  - {fileID: 2100000, guid: 7c00c646b5acec3408b81dd1a72c7a8b, type: 2}
+  - {fileID: 2100000, guid: 57436afd099741e40a6960e5618a8252, type: 2}
   colorPrefab: {fileID: 1357225606963982588, guid: 45dcb339716679e4fac1d2e9fe10da74, type: 3}
   grid: {fileID: 1808975815313070837}
   parentColors: {fileID: 7772220903688686223}

@@ -127,7 +127,7 @@ public class StickersSelection : MonoBehaviour
     {
         btnList[currentSelectSticker].Unselect();
 
-        DecalSelection(selectionMovement.x, selectionMovement.y, grid.constraintCount);
+        DecalSelection(selectionMovement.x, -selectionMovement.y, grid.constraintCount);
         btnList[currentSelectSticker].Select();
     }
 

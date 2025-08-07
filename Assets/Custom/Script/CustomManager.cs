@@ -1,6 +1,7 @@
 using DeliveryPoint;
 using System;
 using System.Collections;
+using GameManagement;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -8,6 +9,8 @@ using UnityEngine.UI;
 
 public class CustomManager : MonoBehaviour
 {
+    [SerializeField] private GameManager gameManager;
+    
     [Header("Canvas")]
     [SerializeField] private GameObject customCanvas;
     [SerializeField] private GameObject GlobalCanvas;
@@ -21,6 +24,7 @@ public class CustomManager : MonoBehaviour
     [SerializeField] private MeshFilter finalItem;
     [SerializeField] private DeliveryPointManagement delivery;
 
+    [SerializeField] private TMP_Text stickerText;
 
     [Header("Input")]
     public CustomInput customInput;
@@ -51,12 +55,18 @@ public class CustomManager : MonoBehaviour
 
     private void Start()
     {
+        if (!gameManager)
+            Debug.LogError("GameManager not assigned to PlayerInteraction.");
+        
         delivery.OnItemDelivered += (int _) => OnReset?.Invoke();
         OnReset += () => additionalScore = (0, 0);
         ChangeBtn(new Vector2Int(0, 0));
         countdownTimer.onTimerFinished.AddListener(CloseMenuCustom);
         OnEnter += OpenMenuCustom;
         OnExit += CloseMenuCustom;
+
+        StickersCustom.GetComponentInChildren<StickersSelection>().onStickerSelected += ReceiveStickerSelected;
+        stickerText.text = "0/1";
     }
 
     private void OpenMenuCustom(SO_CollectableItem obj)
@@ -81,6 +91,7 @@ public class CustomManager : MonoBehaviour
 
         Deactivate();
 
+        gameManager.ResumeGame();
     }
 
 
@@ -183,5 +194,11 @@ public class CustomManager : MonoBehaviour
     {
         StickersCustom.SetActive(true);
         Deactivate();
+    }
+    
+    private void ReceiveStickerSelected(bool isSelected)
+    {
+        if (stickerText)
+            stickerText.text = isSelected ? "1/1" : "0/1";
     }
 }

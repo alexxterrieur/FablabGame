@@ -17,7 +17,8 @@ MonoBehaviour:
   itemColor: {r: 0, g: 0, b: 0, a: 0}
   itemMesh: {fileID: 6894428203817054813, guid: 78cf0cd456d87ae44b2b966b4f29373b, type: 3}
   slowdownMovementFactor: 1
+  itemMaterial: 0
   IsFinalItem: 1
-  customPosition: {x: 2.05, y: -0.08, z: 15}
+  customPosition: {x: 2.05, y: -0.08, z: 12}
   customRotation: {x: 270, y: 270, z: 0}
   customScale: {x: 7.5, y: 7.5, z: 7.5}

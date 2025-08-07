@@ -33,19 +33,15 @@ public class ColorSelection : MonoBehaviour
             if (btn == null)
                 Debug.Log("BTN IS NULLLLLLLLLLL");
             else
-                btnList.Add(go.GetComponent<ColorBtn>());
-
-            Image image = go.GetComponent<Image>();
-            if (image == null)
-                return;
+                btnList.Add(btn);
+            
             if(first)
             {
                 first = false;
-                image.sprite = NoneSprite;
-                image.material = null;
+                btn.Setup(NoneSprite);
             }
             else
-                image.material = color;
+                btn.Setup(color);
         }
         ResetValues();
         DecalSelected(new Vector2Int(0, 0));

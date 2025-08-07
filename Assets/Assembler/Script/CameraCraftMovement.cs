@@ -14,25 +14,23 @@ public class CameraCraftMovement : MonoBehaviour
 
     public bool isZooming = false;
 
-    private Vector3 originalPosition;
     private Quaternion originalRotation;
     private float originalFOV;
 
+    private CameraMovement camMovement;
+
     private void Start()
     {
-        originalPosition = mainCam.transform.position;
         originalRotation = mainCam.transform.rotation;
         originalFOV = mainCam.fieldOfView;
+        camMovement = GetComponent<CameraMovement>();
     }
 
     public void ZoomToPlayer()
     {
-        Debug.Log("cameraZoom");
         if (!isZooming)
         {
-            Vector3 direction = (mainCam.transform.position - player.position).normalized;
-            Vector3 targetPos = player.position + direction * distanceFromPlayer + zoomOffset;
-            StartCoroutine(ZoomCoroutine(targetPos, originalRotation, zoomedInFOV));
+            StartCoroutine(ZoomInCoroutine());
         }
     }
 
@@ -40,13 +38,49 @@ public class CameraCraftMovement : MonoBehaviour
     {
         if (!isZooming)
         {
-            StartCoroutine(ZoomCoroutine(originalPosition, originalRotation, originalFOV));
+            Vector3 targetPos = camMovement != null
+                ? camMovement.GetTargetCameraPosition()
+                : mainCam.transform.position;
+
+            StartCoroutine(ZoomOutCoroutine(targetPos));
         }
     }
 
-    private IEnumerator ZoomCoroutine(Vector3 targetPos, Quaternion fixedRot, float targetFOV)
+    private IEnumerator ZoomInCoroutine()
     {
         isZooming = true;
+        if (camMovement != null) camMovement.enabled = false;
+
+        Vector3 startPos = mainCam.transform.position;
+        float startFOV = mainCam.fieldOfView;
+
+        Vector3 direction = (mainCam.transform.position - player.position).normalized;
+        Vector3 targetPos = player.position + direction * distanceFromPlayer + zoomOffset;
+
+        float time = 0f;
+
+        while (time < zoomDuration)
+        {
+            float t = time / zoomDuration;
+            float smoothT = Mathf.SmoothStep(0f, 1f, t);
+
+            mainCam.transform.position = Vector3.Lerp(startPos, targetPos, smoothT);
+            mainCam.fieldOfView = Mathf.Lerp(startFOV, zoomedInFOV, smoothT);
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        mainCam.transform.position = targetPos;
+        mainCam.fieldOfView = zoomedInFOV;
+
+        isZooming = false;
+    }
+
+    private IEnumerator ZoomOutCoroutine(Vector3 targetPos)
+    {
+        isZooming = true;
+        if (camMovement != null) camMovement.enabled = false;
 
         Vector3 startPos = mainCam.transform.position;
         float startFOV = mainCam.fieldOfView;
@@ -56,19 +90,26 @@ public class CameraCraftMovement : MonoBehaviour
         while (time < zoomDuration)
         {
             float t = time / zoomDuration;
+            float smoothT = Mathf.SmoothStep(0f, 1f, t);
 
-            mainCam.transform.position = Vector3.Lerp(startPos, targetPos, t);
-            mainCam.transform.rotation = fixedRot;
-            mainCam.fieldOfView = Mathf.Lerp(startFOV, targetFOV, t);
+            mainCam.transform.position = Vector3.Lerp(startPos, targetPos, smoothT);
+            mainCam.fieldOfView = Mathf.Lerp(startFOV, zoomedOutFOV, smoothT);
 
             time += Time.deltaTime;
             yield return null;
         }
 
         mainCam.transform.position = targetPos;
-        mainCam.transform.rotation = fixedRot;
-        mainCam.fieldOfView = targetFOV;
+        mainCam.fieldOfView = zoomedOutFOV;
 
+        if (camMovement != null) camMovement.enabled = true;
         isZooming = false;
+    }
+
+    // Debug input (optionnel)
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Z)) ZoomToPlayer();
+        if (Input.GetKeyDown(KeyCode.X)) ZoomOut();
     }
 }

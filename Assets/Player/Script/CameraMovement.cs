@@ -25,15 +25,19 @@ public class CameraMovement : MonoBehaviour
     {
         if (cameraCraftMovement != null && cameraCraftMovement.isZooming)
         {
-            return;
+            return; // Bloquer le mouvement auto pendant un zoom
         }
 
-        float currentPlayerZ = target.position.z;
+        transform.position = GetTargetCameraPosition();
+    }
 
+    public Vector3 GetTargetCameraPosition()
+    {
+        float currentPlayerZ = target.position.z;
         float clampedPlayerZ = Mathf.Clamp(currentPlayerZ, playerZMin, playerZMax);
         float t = (clampedPlayerZ - playerZMin) / (playerZMax - playerZMin);
         float targetCamZ = Mathf.Lerp(camZMin, camZMax, t);
 
-        transform.position = new Vector3(fixedX, fixedY, targetCamZ);
+        return new Vector3(fixedX, fixedY, targetCamZ);
     }
 }

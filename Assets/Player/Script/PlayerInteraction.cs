@@ -254,6 +254,7 @@ public class PlayerInteraction : MonoBehaviour
     private GameObject UnequipItem(GameObject itemPrefab)
     {
         if (!isCarrying) return null;
+        Material mat = objectHolding.GetComponent<MeshRenderer>().material;
 
         isCarrying = false;
         objectHolding.SetActive(false);
@@ -264,6 +265,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             unequippedItem = Instantiate(itemPrefab, objectHolding.transform.position, objectHolding.transform.rotation);
             unequippedItem.GetComponent<DroppedItem>()?.SetItem(heldItem);
+            unequippedItem.GetComponent<MeshRenderer>().material = mat;
         }
 
         heldItem = null;
@@ -303,7 +305,7 @@ public class PlayerInteraction : MonoBehaviour
     public void ThrowItem()
     {
         if (!isCarrying) return;
-        
+
         animator.SetTrigger("Throw");
         
         SO_CollectableItem formerHeldItem = heldItem;

@@ -4073,6 +4073,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -2784942574676848876, guid: 76f3b13c5261e6a4c81eaab0edac447e, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1723064294}
+    - target: {fileID: -2784942574676848876, guid: 76f3b13c5261e6a4c81eaab0edac447e, type: 3}
       propertyPath: orderManager
       value: 
       objectReference: {fileID: 1567847453}
@@ -10366,6 +10370,10 @@ PrefabInstance:
       propertyPath: finalItem
       value: 
       objectReference: {fileID: 1211845250}
+    - target: {fileID: 8943656881275775511, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1723064294}
     - target: {fileID: 8943656881275775511, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
       propertyPath: GlobalCanvas
       value: 

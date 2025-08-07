@@ -184,7 +184,8 @@ public class PlayerInteraction : MonoBehaviour
 
             else
             {
-                DropHoldItem(dropedObjectPrefab);
+                if (!heldItem.IsFinalItem)
+                    DropHoldItem(dropedObjectPrefab);
             }
         }
         else
@@ -336,7 +337,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public void ThrowItem()
     {
-        if (!isCarrying) return;
+        if (!isCarrying || heldItem.IsFinalItem) return;
 
         animator.SetTrigger("Throw");
         

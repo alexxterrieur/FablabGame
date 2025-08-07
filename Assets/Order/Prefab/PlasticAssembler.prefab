@@ -169,7 +169,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderer: {fileID: 8963759049679691133}
-  color: {r: 0.043137256, g: 0.043137256, b: 0.043137256, a: 1}
+  glowColor: {r: 0.02745098, g: 0.16862746, b: 0.047058824, a: 1}
+  noGlowColor: {r: 0, g: 0, b: 0, a: 1}
+  glowSpeed: 2
   wrongColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &8596041783952515279
 GameObject:
@@ -246,6 +248,9 @@ MonoBehaviour:
   assemblerMaterial: 1
   assembler: {fileID: 0}
   feedbackCircle: {fileID: 444600126333578807}
+  controlPanel: {fileID: 0}
+  miniGamesRulesPanel: {fileID: 0}
+  feedbackManager: {fileID: 0}
 --- !u!95 &895570024025263909
 Animator:
   serializedVersion: 7

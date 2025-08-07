@@ -29,6 +29,7 @@ public abstract class Assembler : MonoBehaviour
         if (isSuccessful)
         {
             animator.SetTrigger("PlayAnim");
+            //desactiver regles du jeu
         }
         else
         {

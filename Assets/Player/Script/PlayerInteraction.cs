@@ -48,6 +48,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             case "Shelf":
                 collisionShelf = parent.GetComponent<Shelf>();
+                collisionShelf.SetPlayerInteraction(this);
                 state = collisionShelf.CanBeUse(heldItem);
                 break;
 
@@ -249,27 +250,27 @@ public class PlayerInteraction : MonoBehaviour
                 customCircleFeedback.SetActive(false);
         }
 
-        SetHightLightAssembleur(collisionAssembler);
+        SetHighlightAssembler(collisionAssembler);
+
+        SetHighlightAssembler(collisionShelf);
     }
 
-    private void SetHightLightAssembleur(AssemblerInteraction collisionAssembler)
+    private void SetHighlightAssembler<T>(T collisionAssembler) where T : MonoBehaviour, IHighlight
     {
-        if (collisionAssembler != null)
-        {
-            Highlight.HighlightState state = collisionAssembler.CanBeUse(heldItem);
+        if (collisionAssembler == null)
+            return;
 
-            Highlight hl = collisionAssembler.GetComponentInChildren<Highlight>();
+        Highlight.HighlightState state = collisionAssembler.CanBeUse(heldItem);
 
-            if (hl != null)
-            {
-                hl.ToggleHighlight(state);
-                IHighlight highlightable = collisionAssembler.GetComponentInChildren<IHighlight>();
-                if (highlightable != null)
-                {
-                    highlightable.UpdateFeedbackColor(state);
-                }
-            }
-        }
+        // Récupère le Highlight (visuel glow par exemple)
+        Highlight hl = collisionAssembler.GetComponentInChildren<Highlight>();
+        if (hl != null)
+            hl.ToggleHighlight(state);
+
+        // Récupère le composant métier (comportement)
+        T highlightable = collisionAssembler.GetComponentInChildren<T>();
+        if (highlightable != null)
+            highlightable.UpdateFeedbackColor(state);
     }
 
     private GameObject UnequipItem(GameObject itemPrefab)
@@ -306,7 +307,8 @@ public class PlayerInteraction : MonoBehaviour
             customCircleFeedback.SetActive(false);
         }
 
-        SetHightLightAssembleur(collisionAssembler);
+        SetHighlightAssembler(collisionAssembler);
+        SetHighlightAssembler(collisionShelf);
 
         return unequippedItem;
     }

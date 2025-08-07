@@ -139,8 +139,8 @@ public class MillingMachine : MonoBehaviour
                 form.SetImage(millingButton.GetPart().form);
                 nbrOfPerfectForm++;
 
-                currentReamerRatationSpeed *= speedMultiplier;
-                reamer.IncreaseReamerSpeed(speedMultiplier);
+                //currentReamerRatationSpeed *= speedMultiplier;
+                //reamer.IncreaseReamerSpeed(speedMultiplier);
 
                 if (nbrOfPerfectForm >= data.forms.Count)
                 {

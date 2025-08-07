@@ -1704,6 +1704,10 @@ MonoBehaviour:
   stateText: {fileID: 4891413136666708035}
   memorize: Memorisez
   play: A vous de jouer
+  scaleDuration: 0.3
+  fadeDelay: 0.7
+  fadeDuration: 1
+  waitDelay: 0.5
   canvas: {fileID: 6250322745642871281}
 --- !u!1001 &1190995008573117818
 PrefabInstance:

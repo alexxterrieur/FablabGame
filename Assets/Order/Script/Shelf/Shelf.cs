@@ -4,8 +4,15 @@ public class Shelf : MonoBehaviour, IHighlight
 {
     [SerializeField] private SO_CollectableItem shelfItem;
     public bool isDroppedItem;
+    private PlayerInteraction playerInteraction;
+
 
     [SerializeField] private GameObject feedbackCircle;
+
+    public void SetPlayerInteraction(PlayerInteraction playerInteract)
+    {
+        playerInteraction = playerInteract;
+    }
 
     public SO_CollectableItem TakeItem()
     {
@@ -19,7 +26,12 @@ public class Shelf : MonoBehaviour, IHighlight
 
     public Highlight.HighlightState CanBeUse(SO_CollectableItem item)
     {
-        return Highlight.HighlightState.Interactable;
+        if(playerInteraction == null)
+            return Highlight.HighlightState.Interactable;
+        if(playerInteraction.isCarrying)
+            return Highlight.HighlightState.Disabled;
+        else
+            return Highlight.HighlightState.Interactable;
     }
 
     public void ToggleFeedback(bool isOn)

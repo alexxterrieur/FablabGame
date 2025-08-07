@@ -50,9 +50,15 @@ public class SimonManager : Assembler
     [SerializeField] private List<SimonRoundDisplay> roundDisplays = new();
     public TMP_Text targetText;
     public TMP_Text currentText;
+
+    [Header("Text Feedback State")]
     [SerializeField] private TextMeshProUGUI stateText;
     public string memorize;
     public string play;
+    public float scaleDuration = 0.3f;
+    public float fadeDelay = 0.5f;
+    public float fadeDuration = 1f;
+    public float waitDelay = 0.3f;
 
     [Header("Canvas")]
     [SerializeField] GameObject canvas;
@@ -63,6 +69,48 @@ public class SimonManager : Assembler
         {
             btn.button.GetComponent<Image>().color = neutralColor * btn.buttonColor;
         }
+    }
+
+    public IEnumerator ShowAnimatedText(TextMeshProUGUI targetText, string message)
+    {
+        // Set initial state
+        targetText.text = message;
+        targetText.transform.localScale = Vector3.zero;
+
+        Color originalColor = targetText.color;
+        originalColor.a = 1f;
+        targetText.color = originalColor;
+
+        // Scale up
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / scaleDuration;
+            targetText.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, t);
+            yield return null;
+        }
+
+        targetText.transform.localScale = Vector3.one;
+
+        // Wait before fading
+        yield return new WaitForSeconds(fadeDelay);
+
+        // Fade out alpha
+        t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / fadeDuration;
+            Color newColor = targetText.color;
+            newColor.a = Mathf.Lerp(1f, 0f, t);
+            targetText.color = newColor;
+            yield return null;
+        }
+
+        // Optional: reset scale and alpha after done
+        targetText.transform.localScale = Vector3.zero;
+        Color finalColor = targetText.color;
+        finalColor.a = 0f;
+        targetText.color = finalColor;
     }
 
     IEnumerator StartNewGame()
@@ -92,7 +140,7 @@ public class SimonManager : Assembler
 
     IEnumerator AddAndShowSequence()
     {
-        stateText.text = memorize;
+        StartCoroutine(ShowAnimatedText(stateText, memorize));
 
         int newIndex = GetWeightedRandomButtonIndex();
         sequence.Add(newIndex);
@@ -105,7 +153,7 @@ public class SimonManager : Assembler
 
         inputEnabled = false;
         ResetButtons();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(scaleDuration + fadeDelay + fadeDuration + waitDelay);
 
         foreach (int index in sequence)
         {
@@ -120,9 +168,13 @@ public class SimonManager : Assembler
             yield return new WaitForSeconds(pauseTime * speedMultiplier);
         }
 
+        yield return new WaitForSeconds(0.5f);
+
         currentScore = 0;
+        StartCoroutine(ShowAnimatedText(stateText, play));
+        yield return new WaitForSeconds(scaleDuration + fadeDelay + fadeDuration);
+
         inputEnabled = true;
-        stateText.text = play;
     }
 
     private int GetWeightedRandomButtonIndex()

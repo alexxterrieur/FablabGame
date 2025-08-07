@@ -203,6 +203,7 @@ public class QTEManager : Assembler
 
     public override void Activate()
     {
+        inputManager.pressedKey = new QTEKey();
         canvas.SetActive(true);
         this.StopAllCoroutines();
         StartCoroutine(QTESequenceRoutine());

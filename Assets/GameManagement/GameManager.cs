@@ -68,6 +68,9 @@ namespace GameManagement
 
         private void ReceiveTimerFinished()
         {
+            if (deliveryPointManagement.IsDelivering)
+                deliveryPointManagement.ForceDeliverItem();
+            
             StartCoroutine(ReceiveTimerFinishedCoroutine());
         }
 
@@ -81,6 +84,7 @@ namespace GameManagement
 
             if (betterScore)
                 PlayerPrefs.SetInt(PlayerPrefsKeys.HighScoreKey, currentScore);
+            
 
             OnGameFinished?.Invoke(betterScore);
         }

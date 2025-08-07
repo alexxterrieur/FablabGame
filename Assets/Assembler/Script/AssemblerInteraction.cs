@@ -12,6 +12,8 @@ public class AssemblerInteraction : MonoBehaviour, IHighlight
     private bool isObjectCraft = false;
 
     [SerializeField] private GameObject feedbackCircle;
+    [SerializeField] private GameObject controlPanel;
+    [SerializeField] private GameObject miniGamesRulesPanel;
 
     public FeedbackManager feedbackManager;
 
@@ -28,12 +30,16 @@ public class AssemblerInteraction : MonoBehaviour, IHighlight
 
         if (isSuccess)
         {
+            DisableRules();
+
             isObjectCraft = true;
             OnOrderCraft(currentOrder.finalItem);
             return;
         }
 
         currentOrder.RemoveDeliveredItem();
+
+        DisableRules();
 
         if (feedbackManager != null)
         {
@@ -77,6 +83,11 @@ public class AssemblerInteraction : MonoBehaviour, IHighlight
             if (currentOrder.IsOrderComplete())
             {
                 assembler?.Activate();
+
+                controlPanel.SetActive(false);
+                if (miniGamesRulesPanel != null)
+                    miniGamesRulesPanel.SetActive(true);
+
                 OnOrderCompleted?.Invoke();
             }
 
@@ -116,5 +127,12 @@ public class AssemblerInteraction : MonoBehaviour, IHighlight
     {
         if (feedbackCircle != null)
             feedbackCircle.SetActive(isOn);
+    }
+
+    public void DisableRules()
+    {
+        controlPanel.SetActive(true);
+        if (miniGamesRulesPanel != null)
+            miniGamesRulesPanel.SetActive(false);
     }
 }

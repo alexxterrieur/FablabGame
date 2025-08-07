@@ -2,6 +2,7 @@ using DeliveryPoint;
 using OrderChoice;
 using OrderProgression;
 using Score;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameMenuManager : MonoBehaviour
@@ -15,6 +16,7 @@ public class GameMenuManager : MonoBehaviour
     [SerializeField] private OrderProgressionDisplay orderProgressionDisplay;
     [SerializeField] private PlayerScoreDisplay playerScoreDisplay;
     [SerializeField] private OrderChoiceManager orderChoiceManager;
+    [SerializeField] private GameObject controlsPanel;
     
     private void Awake()
     {
@@ -35,12 +37,14 @@ public class GameMenuManager : MonoBehaviour
     private void ReceiveItemDelivered(int _)
     {
         playerScoreDisplay.SetVisibility(false);
+        controlsPanel.SetActive(false);
         countdownTimer.SetVisibility(false);
     }
 
     private void ReceiveOrderChanged(SO_Order _)
     {
         playerScoreDisplay.SetVisibility(true);
+        controlsPanel.SetActive(true);
         countdownTimer.SetVisibility(true);
     }
 
@@ -49,6 +53,7 @@ public class GameMenuManager : MonoBehaviour
         countdownTimer.SetVisibility(false);
         orderProgressionDisplay.SetVisibility(false);
         playerScoreDisplay.SetVisibility(false);
+        controlsPanel.SetActive(false);
         orderChoiceManager.SetVisibility(false);
     }
     

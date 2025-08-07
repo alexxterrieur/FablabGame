@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   filler: {fileID: 2663652486498546938}
-  minAcceptSize: 0.66
+  minAcceptSize: 0.6
   maxAcceptSize: 0.85
 --- !u!65 &8485370637906716947
 BoxCollider:

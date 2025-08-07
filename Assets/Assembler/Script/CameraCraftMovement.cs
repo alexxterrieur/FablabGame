@@ -27,6 +27,7 @@ public class CameraCraftMovement : MonoBehaviour
 
     public void ZoomToPlayer()
     {
+        Debug.Log("cameraZoom");
         if (!isZooming)
         {
             Vector3 direction = (mainCam.transform.position - player.position).normalized;

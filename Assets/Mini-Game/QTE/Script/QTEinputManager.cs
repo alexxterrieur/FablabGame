@@ -3,6 +3,7 @@ using System;
 using GameManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class QTEInputManager : MonoBehaviour, IPlayerInputsControlled
 {
@@ -44,23 +45,27 @@ public class QTEInputManager : MonoBehaviour, IPlayerInputsControlled
 
     public void ReceiveAInput(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (gameManager.IsGamePaused())
         {
-            if (gameManager.IsGamePaused())
+            if (context.started)
                 gameManager.ResumeGame();
-            else
-                SetKeyState(context, QTEKey.A);
+        }
+        else
+        {
+            SetKeyState(context, QTEKey.A);
         }
     }
 
     public void ReceiveBInput(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (gameManager.IsGamePaused())
         {
-            if (gameManager.IsGamePaused())
+            if (context.started)
                 gameManager.RestartGame();
-            else
-                SetKeyState(context, QTEKey.B);
+        }
+        else
+        {
+            SetKeyState(context, QTEKey.B);
         }
     }
 

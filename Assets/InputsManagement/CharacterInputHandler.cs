@@ -1,5 +1,6 @@
 using GameManagement;
 using Player.Script;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,7 @@ namespace InputsManagement
         [SerializeField] private PlayerMovement playerMovement;
         [SerializeField] private PlayerInteraction playerInteraction;
         [SerializeField] private GameManager gameManager;
+
 
         private void Awake()
         {

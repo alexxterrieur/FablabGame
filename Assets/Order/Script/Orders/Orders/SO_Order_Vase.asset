@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: SO_Order_Vase
   m_EditorClassIdentifier: 
   orderName: Vase
-  orderIcon: {fileID: 21300000, guid: 1b22f8fb9e7ad9a48b37665cadd415a1, type: 3}
+  orderIcon: {fileID: 21300000, guid: 24c7e1b063307274fbbdb00a08809197, type: 3}
   mainMaterial: 1
   finalItem: {fileID: 11400000, guid: 7e406f0477f1c3c43ab4b1d5c589ca98, type: 2}
   orderPoints: 120
   materials:
   - item: {fileID: 11400000, guid: a5f3f296058344d419b706aa108fa509, type: 2}
     amount: 2
+  millingForm: {fileID: 0}

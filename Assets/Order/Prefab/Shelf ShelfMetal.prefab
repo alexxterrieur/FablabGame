@@ -52,7 +52,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.3, y: 2, z: 3.8}
+  m_Size: {x: 2.5, y: 2, z: 4.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7504850648103077697
 MonoBehaviour:
@@ -67,7 +67,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderer: {fileID: 6887653454743958197}
-  color: {r: 0.043137256, g: 0.043137256, b: 0.043137256, a: 1}
+  glowColor: {r: 0.02745098, g: 0.16862746, b: 0.047058824, a: 1}
+  noGlowColor: {r: 0, g: 0, b: 0, a: 1}
+  glowSpeed: 2
   wrongColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &3491764820709341132
 GameObject:

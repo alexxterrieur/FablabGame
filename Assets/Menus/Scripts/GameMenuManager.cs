@@ -17,6 +17,7 @@ public class GameMenuManager : MonoBehaviour
     [SerializeField] private OrderProgressionDisplay orderProgressionDisplay;
     [SerializeField] private PlayerScoreDisplay playerScoreDisplay;
     [SerializeField] private OrderChoiceManager orderChoiceManager;
+    [SerializeField] private GameObject controlsPanel;
     
     private void Awake()
     {
@@ -39,12 +40,14 @@ public class GameMenuManager : MonoBehaviour
     {
         playerScoreDisplay.SetVisibility(false);
         timerDisplay.SetVisibility(false);
+        controlsPanel.SetActive(false);
     }
 
     private void ReceiveOrderChanged(SO_Order _)
     {
         playerScoreDisplay.SetVisibility(true);
         timerDisplay.SetVisibility(true);
+        controlsPanel.SetActive(true);
     }
 
     private void ReceiveGameFinished()
@@ -52,6 +55,7 @@ public class GameMenuManager : MonoBehaviour
         timerDisplay.SetVisibility(false);
         orderProgressionDisplay.SetVisibility(false);
         playerScoreDisplay.SetVisibility(false);
+        controlsPanel.SetActive(false);
         orderChoiceManager.SetVisibility(false);
     }
     

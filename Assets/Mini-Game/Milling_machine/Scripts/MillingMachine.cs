@@ -25,6 +25,9 @@ public class MillingMachine : MonoBehaviour
     [SerializeField] private float normalDrillSize = 1f;
     [SerializeField] private float minimalDrillSize = 0.2f;
     [SerializeField] private float waitTimeBeforeValidate = 1f;
+
+    [SerializeField]
+    public (float maxX, float maxY) maxMovementXY = (7f, 5f);
     
     private Vector2 moveInput;
     private bool useReamer = false;
@@ -110,14 +113,28 @@ public class MillingMachine : MonoBehaviour
         {
             _transform.localPosition = new Vector3(_transform.localPosition.x, miMaxReamerYPos.Item1, _transform.localPosition.z);
         }
-        
-        
+
+        CheckLimits();
+
         float scale = Mathf.Lerp(minimalDrillSize, normalDrillSize, _transform.localPosition.y / miMaxReamerYPos.Item2);
         currentScale.Set(scale, scale, scale);
         _transform.localScale = currentScale;
 
         if (scale <= minimalDrillSize)
             _transform.Rotate(0, 60 * currentReamerRatationSpeed * Time.deltaTime, 0);
+    }
+
+    private void CheckLimits()
+    {
+        if (_transform.localPosition.x > maxMovementXY.maxX)
+            _transform.localPosition = new Vector3(maxMovementXY.maxX, _transform.localPosition.y, _transform.localPosition.z);
+        else if(_transform.localPosition.x < -maxMovementXY.maxX)
+            _transform.localPosition = new Vector3(-maxMovementXY.maxX, _transform.localPosition.y, _transform.localPosition.z);
+
+        if (_transform.localPosition.z > maxMovementXY.maxY)
+            _transform.localPosition = new Vector3(_transform.localPosition.x, _transform.localPosition.y, maxMovementXY.maxY);
+        else if (_transform.localPosition.z < -maxMovementXY.maxY)
+            _transform.localPosition = new Vector3(_transform.localPosition.x, _transform.localPosition.y, -maxMovementXY.maxY);
     }
 
     private void CheckIfCanMove()

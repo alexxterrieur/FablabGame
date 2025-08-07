@@ -7982,14 +7982,6 @@ PrefabInstance:
       propertyPath: playerInteraction
       value: 
       objectReference: {fileID: 905340640}
-    - target: {fileID: 7447623638406655505, guid: 8eaf0c98f23f04d48b90c25f11c11b88, type: 3}
-      propertyPath: simonButtons.Array.data[4].weight
-      value: 3.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7447623638406655505, guid: 8eaf0c98f23f04d48b90c25f11c11b88, type: 3}
-      propertyPath: simonButtons.Array.data[5].weight
-      value: 3.6
-      objectReference: {fileID: 0}
     - target: {fileID: 9121378623201887140, guid: 8eaf0c98f23f04d48b90c25f11c11b88, type: 3}
       propertyPath: m_Name
       value: Simon

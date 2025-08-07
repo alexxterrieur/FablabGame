@@ -249,6 +249,11 @@ public class PlayerInteraction : MonoBehaviour
                 customCircleFeedback.SetActive(false);
         }
 
+        SetHightLightAssembleur(collisionAssembler);
+    }
+
+    private void SetHightLightAssembleur(AssemblerInteraction collisionAssembler)
+    {
         if (collisionAssembler != null)
         {
             Highlight.HighlightState state = collisionAssembler.CanBeUse(heldItem);
@@ -265,12 +270,12 @@ public class PlayerInteraction : MonoBehaviour
                 }
             }
         }
-
     }
 
     private GameObject UnequipItem(GameObject itemPrefab)
     {
         if (!isCarrying) return null;
+
         Material mat = objectHolding.GetComponent<MeshRenderer>().material;
 
         isCarrying = false;
@@ -301,6 +306,7 @@ public class PlayerInteraction : MonoBehaviour
             customCircleFeedback.SetActive(false);
         }
 
+        SetHightLightAssembleur(collisionAssembler);
 
         return unequippedItem;
     }

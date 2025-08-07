@@ -119,6 +119,55 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &200702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 200703}
+  - component: {fileID: 200704}
+  m_Layer: 0
+  m_Name: TimerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &200703
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200702}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1057781551}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &200704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f6766c71c189d3459a9d588f43fee38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalTime: 480
+  warningTime: 60
+  onTimerFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &724406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -357,7 +406,7 @@ PrefabInstance:
     - target: {fileID: 1258368036182326257, guid: 12bf50340aba3504a838b7365e0a2776, type: 3}
       propertyPath: countdownTimer
       value: 
-      objectReference: {fileID: 1226513360}
+      objectReference: {fileID: 200704}
     - target: {fileID: 1258368036182326257, guid: 12bf50340aba3504a838b7365e0a2776, type: 3}
       propertyPath: failTextFeedback
       value: 
@@ -3400,7 +3449,7 @@ PrefabInstance:
     - target: {fileID: 9188886044664016459, guid: 28bd45a6faa2b504a8d0f61d7903655f, type: 3}
       propertyPath: countdownTimer
       value: 
-      objectReference: {fileID: 1226513360}
+      objectReference: {fileID: 200704}
     - target: {fileID: 9188886044664016459, guid: 28bd45a6faa2b504a8d0f61d7903655f, type: 3}
       propertyPath: metalAssembler
       value: 
@@ -3612,7 +3661,7 @@ PrefabInstance:
     - target: {fileID: 3197583745956499810, guid: fe431b2184b476a4d879843f2687a313, type: 3}
       propertyPath: countdownTimer
       value: 
-      objectReference: {fileID: 1226513360}
+      objectReference: {fileID: 200704}
     - target: {fileID: 3197583745956499810, guid: fe431b2184b476a4d879843f2687a313, type: 3}
       propertyPath: failTextFeedback
       value: 
@@ -4852,6 +4901,7 @@ Transform:
   - {fileID: 1723064295}
   - {fileID: 1567847452}
   - {fileID: 1625347312}
+  - {fileID: 200703}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1076851033
@@ -5718,15 +5768,15 @@ Transform:
   - {fileID: 981894245}
   m_Father: {fileID: 812772980}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1226513360 stripped
+--- !u!114 &1226513362 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 250440951318222821, guid: 479b5ea10e10e3a42b6d9f644f5c791d, type: 3}
+  m_CorrespondingSourceObject: {fileID: 598192256805246354, guid: 479b5ea10e10e3a42b6d9f644f5c791d, type: 3}
   m_PrefabInstance: {fileID: 3942748618841004757}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f6766c71c189d3459a9d588f43fee38, type: 3}
+  m_Script: {fileID: 11500000, guid: e7e9bc42c3ca4888814faa64b4297e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1230495734
@@ -8173,7 +8223,7 @@ PrefabInstance:
     - target: {fileID: 7447623638406655505, guid: 8eaf0c98f23f04d48b90c25f11c11b88, type: 3}
       propertyPath: countdownTimer
       value: 
-      objectReference: {fileID: 1226513360}
+      objectReference: {fileID: 200704}
     - target: {fileID: 7447623638406655505, guid: 8eaf0c98f23f04d48b90c25f11c11b88, type: 3}
       propertyPath: failTextFeedback
       value: 
@@ -10761,7 +10811,7 @@ PrefabInstance:
     - target: {fileID: 8943656881275775511, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
       propertyPath: countdownTimer
       value: 
-      objectReference: {fileID: 1226513360}
+      objectReference: {fileID: 200704}
     - target: {fileID: 8943656881275775511, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
       propertyPath: orderTextScore
       value: 
@@ -10803,6 +10853,10 @@ PrefabInstance:
       propertyPath: totalTime
       value: 480
       objectReference: {fileID: 0}
+    - target: {fileID: 598192256805246354, guid: 479b5ea10e10e3a42b6d9f644f5c791d, type: 3}
+      propertyPath: timer
+      value: 
+      objectReference: {fileID: 200704}
     - target: {fileID: 756123000472238635, guid: 479b5ea10e10e3a42b6d9f644f5c791d, type: 3}
       propertyPath: playerScore
       value: 
@@ -10815,6 +10869,14 @@ PrefabInstance:
       propertyPath: orderManager
       value: 
       objectReference: {fileID: 1567847453}
+    - target: {fileID: 1153993005985414747, guid: 479b5ea10e10e3a42b6d9f644f5c791d, type: 3}
+      propertyPath: timerDisplay
+      value: 
+      objectReference: {fileID: 1226513362}
+    - target: {fileID: 1153993005985414747, guid: 479b5ea10e10e3a42b6d9f644f5c791d, type: 3}
+      propertyPath: countdownTimer
+      value: 
+      objectReference: {fileID: 200704}
     - target: {fileID: 1153993005985414747, guid: 479b5ea10e10e3a42b6d9f644f5c791d, type: 3}
       propertyPath: deliveryPointManagement
       value: 

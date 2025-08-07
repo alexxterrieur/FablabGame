@@ -19,6 +19,6 @@ MonoBehaviour:
   slowdownMovementFactor: 1
   itemMaterial: 0
   IsFinalItem: 1
-  customPosition: {x: 0, y: -2, z: 12.8}
+  customPosition: {x: 0, y: -2, z: 11}
   customRotation: {x: 319.11, y: 180, z: 90}
   customScale: {x: 12, y: 12, z: 12}

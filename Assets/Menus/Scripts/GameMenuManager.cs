@@ -2,16 +2,18 @@ using DeliveryPoint;
 using OrderChoice;
 using OrderProgression;
 using Score;
+using Timer.Scripts;
 using UnityEngine;
 
 public class GameMenuManager : MonoBehaviour
 {
     [Header("Game References")]
     [SerializeField] private OrderManager orderManager;
+    [SerializeField] private CountdownTimer countdownTimer;
     [SerializeField] private DeliveryPointManagement deliveryPointManagement;
     
     [Header("UI References")]
-    [SerializeField] private CountdownTimer countdownTimer;
+    [SerializeField] private TimerDisplay timerDisplay;
     [SerializeField] private OrderProgressionDisplay orderProgressionDisplay;
     [SerializeField] private PlayerScoreDisplay playerScoreDisplay;
     [SerializeField] private OrderChoiceManager orderChoiceManager;
@@ -28,6 +30,7 @@ public class GameMenuManager : MonoBehaviour
         else Debug.LogError("DeliveryPointManagement is not assigned in the inspector");
         
         if (!orderProgressionDisplay) Debug.LogError("OrderProgressionDisplay is not assigned in the inspector");
+        if (!timerDisplay) Debug.LogError("TimerDisplay is not assigned in the inspector");
         if (!playerScoreDisplay) Debug.LogError("PlayerScoreDisplay is not assigned in the inspector");
         if (!orderChoiceManager) Debug.LogError("OrderChoiceManager is not assigned in the inspector");
     }
@@ -35,18 +38,18 @@ public class GameMenuManager : MonoBehaviour
     private void ReceiveItemDelivered(int _)
     {
         playerScoreDisplay.SetVisibility(false);
-        countdownTimer.SetVisibility(false);
+        timerDisplay.SetVisibility(false);
     }
 
     private void ReceiveOrderChanged(SO_Order _)
     {
         playerScoreDisplay.SetVisibility(true);
-        countdownTimer.SetVisibility(true);
+        timerDisplay.SetVisibility(true);
     }
 
     private void ReceiveGameFinished()
     {
-        countdownTimer.SetVisibility(false);
+        timerDisplay.SetVisibility(false);
         orderProgressionDisplay.SetVisibility(false);
         playerScoreDisplay.SetVisibility(false);
         orderChoiceManager.SetVisibility(false);

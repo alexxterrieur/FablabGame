@@ -1,10 +1,13 @@
 using System;
 using DeliveryPoint;
+using GameManagement;
 using UnityEngine;
 using static FeedbackManager;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    [SerializeField] private GameManager gameManager;
+    
     [Header("Item")]
     public bool isCarrying;
     public SO_CollectableItem heldItem;
@@ -33,6 +36,9 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Start()
     {
+        if (!gameManager)
+            Debug.LogError("GameManager not assigned to PlayerInteraction.");
+        
         if (animator == null)
             Debug.LogWarning("Animator not assigned to PlayerInteraction.");
     }
@@ -172,6 +178,7 @@ public class PlayerInteraction : MonoBehaviour
             else if(collisionCustom != null && heldItem.IsFinalItem)
             {
                 collisionCustom.Interact(heldItem);
+                gameManager.PauseGame();
             }
 
             else

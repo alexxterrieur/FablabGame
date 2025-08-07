@@ -10714,6 +10714,30 @@ PrefabInstance:
       propertyPath: projectorMovement
       value: 
       objectReference: {fileID: 3916968}
+    - target: {fileID: 8935953106995052664, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: textures.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8935953106995052664, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: 'textures.Array.data[8]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 8e489fb56f250c04db3dc3cabe5ad732, type: 3}
+    - target: {fileID: 8935953106995052664, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: 'textures.Array.data[9]'
+      value: 
+      objectReference: {fileID: 2800000, guid: c81e6ef545025e54ca6fa6089231a06d, type: 3}
+    - target: {fileID: 8935953106995052664, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: 'textures.Array.data[10]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 956669beb6cbab644ba379787a3770ec, type: 3}
+    - target: {fileID: 8935953106995052664, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: 'textures.Array.data[11]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 1b22f8fb9e7ad9a48b37665cadd415a1, type: 3}
+    - target: {fileID: 8935953106995052664, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: 'textures.Array.data[12]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 1103f605249601f43a7dff752baaeed3, type: 3}
     - target: {fileID: 8943656881275775511, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
       propertyPath: capture
       value: 

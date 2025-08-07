@@ -159,7 +159,7 @@ public class PlayerInteraction : MonoBehaviour
             }
             else if (deliveryPointManagement != null)
             {
-                if (deliveryPointManagement.CanDeliver(heldItem))
+                if (deliveryPointManagement.CanDeliver(heldItem, true))
                 {
                     SO_CollectableItem formerHeldItem = heldItem;
                     GameObject finalItem = DropHoldItem(finalItemPrefab);
@@ -224,7 +224,7 @@ public class PlayerInteraction : MonoBehaviour
 
         if (heldItem.IsFinalItem)
         {
-            // Désactive le feedback de l’assembleur associé à l’ordre actuel
+            // Dï¿½sactive le feedback de lï¿½assembleur associï¿½ ï¿½ lï¿½ordre actuel
             var assemblerEntry = feedbackManager.assemblerGroups.Find(g => g.material == currentOrder.mainMaterial);
             if (assemblerEntry != null)
                 assemblerEntry.assembler.ToggleFeedback(false);
@@ -342,7 +342,7 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
 
-        // Désactive l'assembleur lié à l'ordre
+        // Dï¿½sactive l'assembleur liï¿½ ï¿½ l'ordre
         var assemblerEntry = feedbackManager.assemblerGroups.Find(g => g.material == order.mainMaterial);
         if (assemblerEntry != null)
         {

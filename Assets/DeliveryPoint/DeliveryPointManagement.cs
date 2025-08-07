@@ -14,8 +14,11 @@ namespace DeliveryPoint
         
         private SO_Order currentOrder;
         private List<FinalObject> ordersDelivered = new();
+        private bool isDelivering;
         
         public event Action<int> OnItemDelivered;
+        
+        private Coroutine deliveryCoroutine;
 
         public void SetCurrentOrder(SO_Order order)
         {
@@ -25,40 +28,50 @@ namespace DeliveryPoint
                 capture.capturedTexture = null;
         }
 
-        public bool CanDeliver(SO_CollectableItem item)
+        public bool CanDeliver(SO_CollectableItem item, bool inIsDelivering)
         {
+            if (inIsDelivering)
+                isDelivering = true;
+            
             return item == currentOrder.finalItem;
         }
 
         public void DeliverItem()
         {
-            // Logic for delivering an item
-            Debug.Log("Item delivered successfully!");
-
             animator.SetTrigger("OpenBox");
 
-            Debug.Log("debut coroutine");
-            StartCoroutine(WaitForAnim());
-            Debug.Log("fin coroutine");
+            deliveryCoroutine = StartCoroutine(WaitForAnim());
+        }
 
-
-
+        public void ForceDeliverItem()
+        {
+            StopCoroutine(deliveryCoroutine);
+            ordersDelivered.Add(new FinalObject(currentOrder, capture.capturedTexture));
+            OnItemDelivered?.Invoke(GetScoreToAdd());
         }
 
         private IEnumerator WaitForAnim()
         {
             yield return new WaitForSeconds(3.5f);
             ordersDelivered.Add(new FinalObject(currentOrder, capture.capturedTexture));
-            OnItemDelivered?.Invoke(currentOrder.orderPoints + customManager.additionalScore.colorScore + customManager.additionalScore.stickerScore);
+            OnItemDelivered?.Invoke(GetScoreToAdd());
+            isDelivering = false;
+        }
+        
+        private int GetScoreToAdd()
+        {
+            return currentOrder.orderPoints + customManager.additionalScore.colorScore + customManager.additionalScore.stickerScore;
         }
 
         public Highlight.HighlightState CanBeUse(SO_CollectableItem item)
         {
-            return CanDeliver(item) ? Highlight.HighlightState.Interactable : Highlight.HighlightState.NotInteractable;
+            return CanDeliver(item, false) ? Highlight.HighlightState.Interactable : Highlight.HighlightState.NotInteractable;
         }
 
         public List<FinalObject> OrdersDelivered => ordersDelivered;
         public Transform EntryPoint => entryPoint;
+        
+        public bool IsDelivering => isDelivering;
     }
 }
 

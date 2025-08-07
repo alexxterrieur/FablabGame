@@ -126,7 +126,7 @@ namespace PNJ
                 foreach (var deliveryCollider in Physics.OverlapSphere(navMeshAgent.transform.position, detectionRadius, deliveryLayerMask))
                 {
                     if (deliveryCollider.GetComponent<DeliveryPointManagement>() is not { } deliveryPoint) continue;
-                    if (!deliveryPoint.CanDeliver(carriedItem)) continue;
+                    if (!deliveryPoint.CanDeliver(carriedItem, false)) continue;
                     
                     ChangeCarriedItem(null);
                     

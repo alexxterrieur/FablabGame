@@ -4516,6 +4516,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6446617893335227009, guid: 8aaea09e8b6e41b499bb3184972092e4, type: 3}
+      propertyPath: far clip plane
+      value: 11.4
+      objectReference: {fileID: 0}
     - target: {fileID: 6814928036972352876, guid: 8aaea09e8b6e41b499bb3184972092e4, type: 3}
       propertyPath: m_LocalPosition.z
       value: 15
@@ -5234,6 +5238,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49f87a18a0b42f144aff95a377f88247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1102720711 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1215948657294790767, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+  m_PrefabInstance: {fileID: 1851343414198821677}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1105674847
@@ -10708,6 +10723,10 @@ PrefabInstance:
       propertyPath: projector
       value: 
       objectReference: {fileID: 3916969}
+    - target: {fileID: 8935953106995052664, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: stickerTextMenu
+      value: 
+      objectReference: {fileID: 1102720711}
     - target: {fileID: 8935953106995052664, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
       propertyPath: projectorMovement
       value: 

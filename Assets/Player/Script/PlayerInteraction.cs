@@ -1,8 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using DeliveryPoint;
 using GameManagement;
 using UnityEngine;
-using static FeedbackManager;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -17,7 +18,8 @@ public class PlayerInteraction : MonoBehaviour
     public Shelf collisionShelf;
     public AssemblerInteraction collisionAssembler;
     public DeliveryPointManagement deliveryPointManagement;
-    public DroppedItem collisionDroppedItem;
+    //public DroppedItem collisionDroppedItem;
+    private Queue<DroppedItem> collisionDroppedItem = new();
     public CustomManager collisionCustom;
     
     [Header("Prefabs References")]
@@ -80,7 +82,15 @@ public class PlayerInteraction : MonoBehaviour
                 break;
 
             case "DroppedItem":
-                collisionDroppedItem = other.transform.parent.GetComponent<DroppedItem>();
+                //collisionDroppedItem = other.transform.parent.GetComponent<DroppedItem>();
+                
+                DroppedItem droppedItem = other.transform.parent.GetComponent<DroppedItem>();
+                
+                if (!collisionDroppedItem.Contains(droppedItem))
+                {
+                    Debug.Log($"{droppedItem.name} added to collisionDroppedItem queue.");
+                    collisionDroppedItem.Enqueue(droppedItem);
+                }
                 break;
 
         }
@@ -123,7 +133,16 @@ public class PlayerInteraction : MonoBehaviour
                 break;
 
             case "DroppedItem":
-                collisionDroppedItem = null;
+                
+                DroppedItem droppedItem = other.transform.parent.GetComponent<DroppedItem>();
+                
+                if (collisionDroppedItem.Contains(droppedItem))
+                {
+                    Debug.Log($"'{droppedItem.name}' removed from collisionDroppedItem queue.");
+                    RemoveDroppedItem(droppedItem);
+                }
+                
+                //collisionDroppedItem = null;
                 break;
         }
 
@@ -196,12 +215,23 @@ public class PlayerInteraction : MonoBehaviour
                 animator.SetTrigger("Interact");
                 EquipItem(collisionShelf.TakeItem());
             }
-            else if (collisionDroppedItem != null)
+            /*else if (collisionDroppedItem != null)
             {
                 //Play interaction animation
                 animator.SetTrigger("Interact");
                 EquipItem(collisionDroppedItem.TakeItem());
+            }*/
+            else if (collisionDroppedItem.Count > 0)
+            {
+                if (collisionDroppedItem.Dequeue() is { } droppedItem)
+                {
+                    RemoveDroppedItem(droppedItem);
+                    
+                    animator.SetTrigger("Interact");
+                    EquipItem(droppedItem.TakeItem());
+                }
             }
+
             else if (collisionAssembler != null)
             {
                 heldItem = collisionAssembler.TryGetCraftItem();
@@ -270,12 +300,12 @@ public class PlayerInteraction : MonoBehaviour
 
         Highlight.HighlightState state = collisionAssembler.CanBeUse(heldItem);
 
-        // Récupère le Highlight (visuel glow par exemple)
+        // Rï¿½cupï¿½re le Highlight (visuel glow par exemple)
         Highlight hl = collisionAssembler.GetComponentInChildren<Highlight>();
         if (hl != null)
             hl.ToggleHighlight(state);
 
-        // Récupère le composant métier (comportement)
+        // Rï¿½cupï¿½re le composant mï¿½tier (comportement)
         T highlightable = collisionAssembler.GetComponentInChildren<T>();
         if (highlightable != null)
             highlightable.UpdateFeedbackColor(state);
@@ -419,6 +449,12 @@ public class PlayerInteraction : MonoBehaviour
             else
                 renderer.color = Color.white;
         }
+    }
+    
+    private void RemoveDroppedItem(DroppedItem droppedItem)
+    {
+        if (collisionDroppedItem.Contains(droppedItem))
+            collisionDroppedItem = new Queue<DroppedItem>(collisionDroppedItem.Where(cdi => cdi != droppedItem));
     }
 
 

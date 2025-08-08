@@ -67,6 +67,7 @@ public class StickersSelection : MonoBehaviour
         projector.transform.localPosition = Vector3.zero;
         menuImage.gameObject.SetActive(false);
         projector.gameObject.SetActive(false);
+        stickerText.text = "0/1";
     }
 
     private void SetUpProjectorMovement()

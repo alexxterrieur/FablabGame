@@ -73,8 +73,7 @@ public class ColorSelection : MonoBehaviour
         menuImage.material = materials[0];
         finalItem.material = materials[0];
         holdingItem.material = materials[0];
-
-
+        menuImage.gameObject.SetActive(false);
     }
     private void Select()
     {

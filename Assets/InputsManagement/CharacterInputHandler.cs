@@ -99,6 +99,7 @@ namespace InputsManagement
         public void ResetInputs()
         {
             Debug.Log("Resetting character inputs");
+            pressedKey = QTEKey.None;
             playerMovement.ResetDirection();
         }
     }

@@ -23,7 +23,7 @@ namespace OrderCompleted
             if (!orderCompletedDisplayPrefab) Debug.LogError("OrderCompletedDisplayPrefab is not assigned in the inspector");
         }
         
-        private void DisplayOrdersCompleted(bool _)
+        private void DisplayOrdersCompleted(bool _, bool __)
         {
             gameObject.SetActive(true);
             

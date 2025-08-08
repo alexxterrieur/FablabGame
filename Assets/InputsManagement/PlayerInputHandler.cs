@@ -133,7 +133,7 @@ namespace InputsManagement
             currentInputHandler?.ReceiveSelectInput(context);
         }
 
-        private void ReceiveGameFinished(bool _)
+        private void ReceiveGameFinished(bool _, bool __)
         {
             currentInputHandler?.ResetInputs();
             currentInputHandler = endMenuInputHandler;

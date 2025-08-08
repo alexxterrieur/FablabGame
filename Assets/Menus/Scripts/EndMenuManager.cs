@@ -24,7 +24,7 @@ public class EndMenuManager : MonoBehaviour, IPlayerInputsControlled
         SetVisibility(false);
     }
     
-    private void ReceiveGameFinished(bool betterScore)
+    private void ReceiveGameFinished(bool betterScore, bool betterDailyScore)
     {
         SetVisibility(true);
     }

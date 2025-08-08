@@ -22,7 +22,7 @@ namespace GameManagement
         [SerializeField] private CustomManager customManager;
         [SerializeField] private MillingMachine millingMachine;
         
-        public event Action<bool> OnGameFinished;
+        public event Action<bool, bool> OnGameFinished;
         public event Action<bool> OnGamePaused;
 
         private void Awake()
@@ -79,14 +79,18 @@ namespace GameManagement
             yield return new WaitForEndOfFrame();
 
             int highScore = PlayerPrefs.GetInt(PlayerPrefsKeys.HighScoreKey);
+            int dailyScore = PlayerPrefs.GetInt(PlayerPrefsKeys.DailyScoreKey);
             int currentScore = playerScore.Score;
             bool betterScore = currentScore > highScore;
+            bool betterDailyScore = currentScore > dailyScore;
 
             if (betterScore)
                 PlayerPrefs.SetInt(PlayerPrefsKeys.HighScoreKey, currentScore);
-            
+            if(betterDailyScore)
+                PlayerPrefs.SetInt(PlayerPrefsKeys.DailyScoreKey, currentScore);
 
-            OnGameFinished?.Invoke(betterScore);
+
+            OnGameFinished?.Invoke(betterScore, betterDailyScore);
         }
 
 

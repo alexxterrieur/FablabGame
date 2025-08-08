@@ -414,7 +414,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0b400042cb837a049a98d55712f7ffcb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 84b638b9ceeb0dc4fa584ce7990a3948, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -842,7 +842,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6107356429614955455
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1707,6 +1707,7 @@ MonoBehaviour:
   fadeDuration: 1
   waitDelay: 0.5
   canvas: {fileID: 6250322745642871281}
+  multiplierOfTime: 0.5
 --- !u!1001 &1190995008573117818
 PrefabInstance:
   m_ObjectHideFlags: 0

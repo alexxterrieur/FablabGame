@@ -84,7 +84,9 @@ public class AssemblerInteraction : MonoBehaviour, IHighlight
             {
                 assembler?.Activate();
 
-                controlPanel.SetActive(false);
+                if (controlPanel)
+                    controlPanel.SetActive(false);
+                
                 if (miniGamesRulesPanel != null)
                     miniGamesRulesPanel.SetActive(true);
 

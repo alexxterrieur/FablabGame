@@ -192,7 +192,7 @@ public class PlayerInteraction : MonoBehaviour
             else if(collisionCustom != null && heldItem.IsFinalItem)
             {
                 collisionCustom.Interact(heldItem);
-                gameManager.PauseGame();
+                //gameManager.PauseGame();
             }
 
             else

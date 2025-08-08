@@ -87,10 +87,7 @@ public class PlayerInteraction : MonoBehaviour
                 DroppedItem droppedItem = other.transform.parent.GetComponent<DroppedItem>();
                 
                 if (!collisionDroppedItem.Contains(droppedItem))
-                {
-                    Debug.Log($"{droppedItem.name} added to collisionDroppedItem queue.");
                     collisionDroppedItem.Enqueue(droppedItem);
-                }
                 break;
 
         }
@@ -137,10 +134,7 @@ public class PlayerInteraction : MonoBehaviour
                 DroppedItem droppedItem = other.transform.parent.GetComponent<DroppedItem>();
                 
                 if (collisionDroppedItem.Contains(droppedItem))
-                {
-                    Debug.Log($"'{droppedItem.name}' removed from collisionDroppedItem queue.");
                     RemoveDroppedItem(droppedItem);
-                }
                 
                 //collisionDroppedItem = null;
                 break;

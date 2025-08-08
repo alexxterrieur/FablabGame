@@ -63,6 +63,8 @@ public class SimonManager : Assembler
     [Header("Canvas")]
     [SerializeField] GameObject canvas;
 
+    private bool firstGame = false;
+    public float multiplierOfTime = 0.5f;
     void ResetButtons()
     {
         foreach (var btn in simonButtons)
@@ -71,7 +73,7 @@ public class SimonManager : Assembler
         }
     }
 
-    public IEnumerator ShowAnimatedText(TextMeshProUGUI targetText, string message)
+    public IEnumerator ShowAnimatedText(TextMeshProUGUI targetText, string message, float multiplier)
     {
         // Set initial state
         targetText.text = message;
@@ -85,7 +87,7 @@ public class SimonManager : Assembler
         float t = 0f;
         while (t < 1f)
         {
-            t += Time.deltaTime / scaleDuration;
+            t += Time.deltaTime / (scaleDuration*multiplier);
             targetText.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, t);
             yield return null;
         }
@@ -93,13 +95,13 @@ public class SimonManager : Assembler
         targetText.transform.localScale = Vector3.one;
 
         // Wait before fading
-        yield return new WaitForSeconds(fadeDelay);
+        yield return new WaitForSeconds(fadeDelay * multiplier);
 
         // Fade out alpha
         t = 0f;
         while (t < 1f)
         {
-            t += Time.deltaTime / fadeDuration;
+            t += Time.deltaTime / (fadeDuration* multiplier);
             Color newColor = targetText.color;
             newColor.a = Mathf.Lerp(1f, 0f, t);
             targetText.color = newColor;
@@ -115,6 +117,7 @@ public class SimonManager : Assembler
 
     IEnumerator StartNewGame()
     {
+        firstGame = true;
         Debug.Log("Nouvelle partie");
         sequence.Clear();
         currentScore = 0;
@@ -140,7 +143,7 @@ public class SimonManager : Assembler
 
     IEnumerator AddAndShowSequence()
     {
-        StartCoroutine(ShowAnimatedText(stateText, memorize));
+        StartCoroutine(ShowAnimatedText(stateText, memorize,1));
 
         int newIndex = GetWeightedRandomButtonIndex();
         sequence.Add(newIndex);
@@ -171,10 +174,20 @@ public class SimonManager : Assembler
         yield return new WaitForSeconds(0.5f);
 
         currentScore = 0;
-        StartCoroutine(ShowAnimatedText(stateText, play));
-        yield return new WaitForSeconds(scaleDuration + fadeDelay + fadeDuration);
+        
+        if(firstGame)
+        {
+            StartCoroutine(ShowAnimatedText(stateText, play, 1));
+            yield return new WaitForSeconds(scaleDuration + fadeDelay + fadeDuration);
+        }
+        else
+        {
+            StartCoroutine(ShowAnimatedText(stateText, play, multiplierOfTime));
+            yield return new WaitForSeconds(scaleDuration * multiplierOfTime + fadeDelay * multiplierOfTime + fadeDuration * multiplierOfTime);
+        }
 
         inputEnabled = true;
+        firstGame = false;
     }
 
     private int GetWeightedRandomButtonIndex()

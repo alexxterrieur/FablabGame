@@ -77,7 +77,7 @@ namespace OrderChoice
             gameObject.SetActive(isVisible);
         }
         
-        private void ReceiveGameFinished(bool _)
+        private void ReceiveGameFinished(bool _, bool __)
         {
             SetVisibility(false);
         }

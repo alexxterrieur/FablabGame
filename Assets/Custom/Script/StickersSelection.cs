@@ -20,9 +20,15 @@ public class StickersSelection : MonoBehaviour
     [SerializeField] private ProjectorMovement projectorMovement;
     [SerializeField] private CustomManager customManager;
 
-    [SerializeField] private TMP_Text stickerText; 
+    [SerializeField] private TMP_Text stickerText;
+    [SerializeField] private TMP_Text stickerTextMenu;
     public event Action<bool> onStickerSelected; 
 
+    private void SetStickerText(string text)
+    {
+        stickerText.text = text;
+        stickerTextMenu.text = text;
+    }
     private void Start()
     {
         customManager.OnReset += ResetValues;
@@ -48,7 +54,7 @@ public class StickersSelection : MonoBehaviour
         */
         }
         DecalSelected(new Vector2Int(0, 0));
-        stickerText.text = "0/1";
+        SetStickerText("0/1");
     }
 
     private void OnEnable()
@@ -67,7 +73,7 @@ public class StickersSelection : MonoBehaviour
         projector.transform.localPosition = Vector3.zero;
         menuImage.gameObject.SetActive(false);
         projector.gameObject.SetActive(false);
-        stickerText.text = "0/1";
+        SetStickerText("0/1");
     }
 
     private void SetUpProjectorMovement()
@@ -97,11 +103,11 @@ public class StickersSelection : MonoBehaviour
             menuImage.gameObject.SetActive(false);
             SelectPosition();
             customManager.additionalScore.Item2 = 0;
-            stickerText.text = "0/1";
+            SetStickerText("0/1");
             onStickerSelected?.Invoke(false);
             return;
         }
-        stickerText.text = "1/1";
+        SetStickerText("1/1");
         onStickerSelected?.Invoke(true);
         menuImage.gameObject.SetActive(true);
         customManager.additionalScore.Item2 = 50;

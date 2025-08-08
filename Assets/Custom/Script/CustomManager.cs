@@ -24,8 +24,6 @@ public class CustomManager : MonoBehaviour
     [SerializeField] private MeshFilter finalItem;
     [SerializeField] private DeliveryPointManagement delivery;
 
-    [SerializeField] private TMP_Text stickerText;
-
     [Header("Input")]
     public CustomInput customInput;
     public (int colorScore, int stickerScore) additionalScore = (0, 0);
@@ -64,9 +62,6 @@ public class CustomManager : MonoBehaviour
         countdownTimer.onTimerFinished.AddListener(CloseMenuCustom);
         OnEnter += OpenMenuCustom;
         OnExit += CloseMenuCustom;
-
-        StickersCustom.GetComponentInChildren<StickersSelection>().onStickerSelected += ReceiveStickerSelected;
-        stickerText.text = "0/1";
     }
 
     private void OpenMenuCustom(SO_CollectableItem obj)
@@ -195,10 +190,5 @@ public class CustomManager : MonoBehaviour
         StickersCustom.SetActive(true);
         Deactivate();
     }
-    
-    private void ReceiveStickerSelected(bool isSelected)
-    {
-        if (stickerText)
-            stickerText.text = isSelected ? "1/1" : "0/1";
-    }
+   
 }

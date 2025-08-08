@@ -22,6 +22,8 @@ namespace GameManagement
         [SerializeField] private CustomManager customManager;
         [SerializeField] private MillingMachine millingMachine;
         
+        [SerializeField] private int sceneToLoadIndex = 0;
+        
         public event Action<bool, bool> OnGameFinished;
         public event Action<bool> OnGamePaused;
 
@@ -63,7 +65,7 @@ namespace GameManagement
         public void RestartGame()
         {
             Time.timeScale = 1;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(sceneToLoadIndex);
         }
 
         private void ReceiveTimerFinished()

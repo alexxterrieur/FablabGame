@@ -42,7 +42,7 @@ public class CameraCraftMovement : MonoBehaviour
                 ? camMovement.GetTargetCameraPosition()
                 : mainCam.transform.position;
 
-            StartCoroutine(ZoomOutCoroutine(targetPos));
+            StartCoroutine(ZoomOutCoroutine());
         }
     }
 
@@ -77,7 +77,7 @@ public class CameraCraftMovement : MonoBehaviour
         isZooming = false;
     }
 
-    private IEnumerator ZoomOutCoroutine(Vector3 targetPos)
+    private IEnumerator ZoomOutCoroutine()
     {
         isZooming = true;
         if (camMovement != null) camMovement.enabled = false;
@@ -92,19 +92,26 @@ public class CameraCraftMovement : MonoBehaviour
             float t = time / zoomDuration;
             float smoothT = Mathf.SmoothStep(0f, 1f, t);
 
-            mainCam.transform.position = Vector3.Lerp(startPos, targetPos, smoothT);
+            Vector3 dynamicTargetPos = camMovement != null
+                ? camMovement.GetTargetCameraPosition()
+                : mainCam.transform.position;
+
+            mainCam.transform.position = Vector3.Lerp(startPos, dynamicTargetPos, smoothT);
             mainCam.fieldOfView = Mathf.Lerp(startFOV, zoomedOutFOV, smoothT);
 
             time += Time.deltaTime;
             yield return null;
         }
 
-        mainCam.transform.position = targetPos;
+        // Assurer position et FOV finaux
+        if (camMovement != null)
+            mainCam.transform.position = camMovement.GetTargetCameraPosition();
         mainCam.fieldOfView = zoomedOutFOV;
 
         if (camMovement != null) camMovement.enabled = true;
         isZooming = false;
     }
+
 
     // Debug input (optionnel)
     private void Update()

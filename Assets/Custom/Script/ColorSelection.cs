@@ -101,7 +101,7 @@ public class ColorSelection : MonoBehaviour
     {
         btnList[currentSelectColor].Unselect();
 
-        DecalSelection(selectionMovement.x, selectionMovement.y, grid.constraintCount);
+        DecalSelection(selectionMovement.x, -selectionMovement.y, grid.constraintCount);
         btnList[currentSelectColor].Select();
     }
 

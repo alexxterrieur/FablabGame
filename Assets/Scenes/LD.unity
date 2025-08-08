@@ -415,6 +415,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 864032573}
     m_Modifications:
+    - target: {fileID: 691671328701906468, guid: 12bf50340aba3504a838b7365e0a2776, type: 3}
+      propertyPath: drillingSpeed
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1258368036182326257, guid: 12bf50340aba3504a838b7365e0a2776, type: 3}
       propertyPath: animator
       value: 
@@ -10733,12 +10737,40 @@ PrefabInstance:
       objectReference: {fileID: 3916968}
     - target: {fileID: 8935953106995052664, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
       propertyPath: textures.Array.size
-      value: 13
+      value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 8935953106995052664, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: 'textures.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 4fb6b267238ee25459f7f1a06c27ef7a, type: 3}
+    - target: {fileID: 8935953106995052664, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: 'textures.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 0b331e581c860834da466feb4b7eb02e, type: 3}
+    - target: {fileID: 8935953106995052664, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: 'textures.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 1013a71d48121bd4bbb739eca80f8c0c, type: 3}
+    - target: {fileID: 8935953106995052664, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: 'textures.Array.data[4]'
+      value: 
+      objectReference: {fileID: 2800000, guid: a82386e222414df41afebd27c3cb5a4b, type: 3}
+    - target: {fileID: 8935953106995052664, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: 'textures.Array.data[5]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 96d913c213f02bf439065fae5aea380b, type: 3}
+    - target: {fileID: 8935953106995052664, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: 'textures.Array.data[6]'
+      value: 
+      objectReference: {fileID: 2800000, guid: bff5d72f30537e4479d2200f23e96577, type: 3}
+    - target: {fileID: 8935953106995052664, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
+      propertyPath: 'textures.Array.data[7]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 89c233577bb6be345bb414d9773d03ea, type: 3}
     - target: {fileID: 8935953106995052664, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
       propertyPath: 'textures.Array.data[8]'
       value: 
-      objectReference: {fileID: 2800000, guid: 8e489fb56f250c04db3dc3cabe5ad732, type: 3}
+      objectReference: {fileID: 2800000, guid: b5b89fac6aa516444bcf1c3bdde5e901, type: 3}
     - target: {fileID: 8935953106995052664, guid: 8106c8a6418c18b409c0436141d6fafd, type: 3}
       propertyPath: 'textures.Array.data[9]'
       value: 

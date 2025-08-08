@@ -79,11 +79,12 @@ namespace InputsManagement
 
         public void ReceiveStartInput(InputAction.CallbackContext context)
         {
+            if (context.started)
+                gameManager.PauseGame();
         }
 
         public void ReceiveSelectInput(InputAction.CallbackContext context)
         {
-            gameManager.PauseGame();
         }
 
         private void MovementPlayer(InputAction.CallbackContext context, Vector2 input, QTEKey key)

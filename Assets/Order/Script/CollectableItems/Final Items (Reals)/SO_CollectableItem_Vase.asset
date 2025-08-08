@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SO_CollectableItem_Vase
   m_EditorClassIdentifier: 
   itemName: Vase
-  itemIcon: {fileID: 21300000, guid: 1b22f8fb9e7ad9a48b37665cadd415a1, type: 3}
+  itemIcon: {fileID: 21300000, guid: 24c7e1b063307274fbbdb00a08809197, type: 3}
   itemColor: {r: 0, g: 0, b: 0, a: 0}
   itemMesh: {fileID: 3163171260390484736, guid: c6df90faad5618b4b93b329fd4b7aee3, type: 3}
   slowdownMovementFactor: 1

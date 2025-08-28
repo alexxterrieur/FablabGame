@@ -6,7 +6,8 @@ using TMPro;
 public class LeaderboardManager : MonoBehaviour
 {
     [Header("UI Prefabs")]
-    public GameObject leaderboardEntryPrefab;
+    [SerializeField] GameObject leaderboardEntryPrefab;
+    [SerializeField] Transform leaderboardEntryParent;
 
     [Header("Current User")]
     public string currentEmail;
@@ -41,7 +42,7 @@ public class LeaderboardManager : MonoBehaviour
     void ParseLeaderboard(string data)
     {
         // Effacer l’ancien leaderboard
-        foreach (Transform child in transform)
+        foreach (Transform child in leaderboardEntryParent)
         {
             Destroy(child.gameObject);
         }
@@ -66,7 +67,7 @@ public class LeaderboardManager : MonoBehaviour
 
                     if (leaderboardEntryPrefab != null)
                     {
-                        GameObject entry = Instantiate(leaderboardEntryPrefab, transform);
+                        GameObject entry = Instantiate(leaderboardEntryPrefab, leaderboardEntryParent);
                         var comp = entry.GetComponent<LeaderboardEntry>();
                         if (comp != null)
                             comp.Setup(i, username, score);
@@ -93,12 +94,17 @@ public class LeaderboardManager : MonoBehaviour
 
                 if (leaderboardEntryPrefab != null)
                 {
-                    GameObject entry = Instantiate(leaderboardEntryPrefab, transform);
+                    GameObject entry = Instantiate(leaderboardEntryPrefab, leaderboardEntryParent);
                     var comp = entry.GetComponent<LeaderboardEntry>();
                     if (comp != null)
                         comp.Setup(rank, username, score, true);
                 }
             }
         }
+    }
+
+    public void CloseLeaderBoard()
+    {
+        gameObject.SetActive(false);
     }
 }

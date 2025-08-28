@@ -16,8 +16,10 @@ public class LoginManager : MonoBehaviour
 
     [SerializeField] private GameObject registerPanel;
     [SerializeField] private GameObject loginPanel;
-    [SerializeField] private StartMenuManager startMenuManager;
     [SerializeField] private LeaderboardManager leaderboardManager;
+
+    [SerializeField] private GameObject leaderboardPanel;
+
 
     public async void OnRegisterPressed()
     {
@@ -90,6 +92,12 @@ public class LoginManager : MonoBehaviour
 
             leaderboardManager.currentEmail = userEmail;
             leaderboardManager.currentUsername = userName;
+
+            //close register
+            gameObject.SetActive(false);
+            leaderboardPanel.SetActive(true);
+
+            //menu de fin afficher leaderBoard + menu start
         }
         else
         {

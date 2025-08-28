@@ -23,6 +23,8 @@ namespace GameManagement
         [SerializeField] private MillingMachine millingMachine;
         
         [SerializeField] private int sceneToLoadIndex = 0;
+
+        [SerializeField] private LeaderboardManager leaderboardManager;
         
         public event Action<bool, bool> OnGameFinished;
         public event Action<bool> OnGamePaused;
@@ -90,6 +92,14 @@ namespace GameManagement
                 PlayerPrefs.SetInt(PlayerPrefsKeys.HighScoreKey, currentScore);
             if(betterDailyScore)
                 PlayerPrefs.SetInt(PlayerPrefsKeys.DailyScoreKey, currentScore);
+
+
+            ScoreSync sync = GetComponent<ScoreSync>();
+            if (sync != null)
+            {
+                sync.playerEmail = leaderboardManager.currentEmail;
+                StartCoroutine(sync.SyncScore(currentScore));
+            }
 
 
             OnGameFinished?.Invoke(betterScore, betterDailyScore);

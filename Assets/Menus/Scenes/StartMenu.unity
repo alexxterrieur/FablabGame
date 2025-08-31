@@ -294,6 +294,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd967d436a1467db5d11dab2e35e81e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &784892006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 784892008}
+  - component: {fileID: 784892007}
+  m_Layer: 0
+  m_Name: PlayerSession
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &784892007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784892006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18259d5de6478754ca52daee1506a55f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &784892008
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784892006}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1079.6272, y: 529.8997, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &786997078 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2506989505177903863, guid: cbdc4165176ed9f479be48172b0b3379, type: 3}
@@ -1203,6 +1247,10 @@ PrefabInstance:
       propertyPath: logPanel
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5964120637429296494, guid: b005d6ed70a6f1d47a1d7769d8bc9154, type: 3}
+      propertyPath: gameSceneIndex
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8801821971624086485, guid: b005d6ed70a6f1d47a1d7769d8bc9154, type: 3}
       propertyPath: m_Name
       value: StartMenuBackground
@@ -1377,3 +1425,4 @@ SceneRoots:
   - {fileID: 6254439037148269811}
   - {fileID: 926341283}
   - {fileID: 1959586055}
+  - {fileID: 784892008}

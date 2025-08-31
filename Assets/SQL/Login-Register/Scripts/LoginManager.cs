@@ -16,7 +16,6 @@ public class LoginManager : MonoBehaviour
 
     [SerializeField] private GameObject registerPanel;
     [SerializeField] private GameObject loginPanel;
-    [SerializeField] private LeaderboardManager leaderboardManager;
 
     [SerializeField] private GameObject leaderboardPanel;
 
@@ -90,8 +89,7 @@ public class LoginManager : MonoBehaviour
         {
             Debug.Log("Successfully Logged in user: '" + userName + "'  email: '" + userEmail + "'");
 
-            leaderboardManager.currentEmail = userEmail;
-            leaderboardManager.currentUsername = userName;
+            PlayerSession.Instance.SetSession(userEmail, userName);
 
             //close register
             gameObject.SetActive(false);

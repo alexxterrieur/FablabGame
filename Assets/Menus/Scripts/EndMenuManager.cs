@@ -1,5 +1,6 @@
 using GameManagement;
 using InputsManagement;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,7 @@ public class EndMenuManager : MonoBehaviour, IPlayerInputsControlled
     
     [Header("Scene Reference")]
     [SerializeField] private int mainMenuSceneIndex = 0;
+    [SerializeField] GameObject leaderboardPanel;
     
     
     private void Awake()
@@ -32,6 +34,19 @@ public class EndMenuManager : MonoBehaviour, IPlayerInputsControlled
     private void SetVisibility(bool isVisible)
     {
         gameObject.SetActive(isVisible);
+        StartCoroutine(EnableLeaderboard(isVisible));
+    }
+
+    private IEnumerator EnableLeaderboard(bool isVisible)
+    {
+        if(!isVisible)
+        {
+            leaderboardPanel.SetActive(false);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.1f);
+        leaderboardPanel.SetActive(true);
     }
 
     public void ReceiveBInput(InputAction.CallbackContext context)

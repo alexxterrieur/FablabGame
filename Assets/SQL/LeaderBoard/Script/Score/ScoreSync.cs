@@ -5,22 +5,18 @@ using UnityEngine.Networking;
 
 public class ScoreSync : MonoBehaviour
 {
-    [Header("Utilisateur")]
-    public string playerEmail; // à remplir depuis LoginManager
-    public string playerUsername; // optionnel, peut être utile
-
     private readonly string serverUrl = "http://127.0.0.1/eurekagame/UpdateScore.php";
 
     public IEnumerator SyncScore(int score)
     {
-        if (string.IsNullOrEmpty(playerEmail))
+        if (string.IsNullOrEmpty(PlayerSession.Instance?.Email))
         {
-            Debug.LogWarning("ScoreSync: playerEmail is not set!");
+            Debug.LogWarning("ScoreSync: No logged in user!");
             yield break;
         }
 
         WWWForm form = new WWWForm();
-        form.AddField("email", playerEmail);
+        form.AddField("email", PlayerSession.Instance.Email);
         form.AddField("score", score);
 
         using (UnityWebRequest www = UnityWebRequest.Post(serverUrl, form))
@@ -37,4 +33,5 @@ public class ScoreSync : MonoBehaviour
             }
         }
     }
+
 }

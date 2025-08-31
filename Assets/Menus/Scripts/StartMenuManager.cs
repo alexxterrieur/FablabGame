@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class StartMenuManager : MonoBehaviour, IPlayerInputsControlled
 {
     [Header("Scene Reference")]
-    [SerializeField] private int gameSceneIndex = 1;
+    [SerializeField] private int logSceneIndex = 1;
+    [SerializeField] private int gameSceneIndex = 2;
 
     private void Start()
     {
@@ -24,10 +25,23 @@ public class StartMenuManager : MonoBehaviour, IPlayerInputsControlled
 
     public void StartGame()
     {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        Debug.Log("IsLogged: " + PlayerSession.Instance.IsLoggedIn);
 
-        SceneManager.LoadScene(gameSceneIndex);
+
+        if (PlayerSession.Instance.IsLoggedIn)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
+            SceneManager.LoadScene(gameSceneIndex);
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
+            SceneManager.LoadScene(logSceneIndex);
+        }
     }
 
     public void ReceiveMovementUpInput(InputAction.CallbackContext context)

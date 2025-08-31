@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LeaderboardManager : MonoBehaviour
 {
@@ -15,7 +16,12 @@ public class LeaderboardManager : MonoBehaviour
 
     private void OnEnable()
     {
-        StartCoroutine(GetLeaderboard());
+        if (PlayerSession.Instance != null && PlayerSession.Instance.IsLoggedIn)
+        {
+            currentEmail = PlayerSession.Instance.Email;
+            currentUsername = PlayerSession.Instance.Username;
+            StartCoroutine(GetLeaderboard());
+        }
     }
 
     IEnumerator GetLeaderboard()
@@ -105,6 +111,9 @@ public class LeaderboardManager : MonoBehaviour
 
     public void CloseLeaderBoard()
     {
-        gameObject.SetActive(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
+        SceneManager.LoadScene(2);
     }
 }
